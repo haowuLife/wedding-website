@@ -10,6 +10,9 @@ test("mobile invitation opens wedding details", async ({ page }) => {
 
 test("guest can submit RSVP and receive thanks", async ({ page }) => {
   await page.goto("/rsvp");
+  await expect(page.getByLabel("携带儿童")).toHaveCount(0);
+  await expect(page.getByLabel("饮食忌口")).toHaveCount(0);
+  await expect(page.getByLabel("需要停车位")).toBeVisible();
   await page.getByLabel("姓名").fill("周清");
   await page.getByLabel("手机号").fill("13800001024");
   await page.getByRole("button", { name: "提交 RSVP" }).click();

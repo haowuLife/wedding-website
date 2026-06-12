@@ -26,4 +26,28 @@ describe("defaultSiteContent", () => {
         "https://www.hilton.com/zh-hans/hotels/ytytxhx-hampton-taizhou-taixing/",
     });
   });
+
+  it("provides practical transport, parking, and weather guidance", () => {
+    const guide = Object.fromEntries(
+      defaultSiteContent.guide.map((item) => [item.title, item.description]),
+    );
+
+    expect(guide["公共交通"]).toContain("泰州站");
+    expect(guide["公共交通"]).toContain("泰兴汽车客运站");
+    expect(guide["停车信息"]).toBe(
+      "酒店提供免费现场停车，抵达后请按现场指引停放。",
+    );
+    expect(guide["天气提醒"]).toContain("根据当天气温增减衣物");
+    expect(guide).not.toHaveProperty("着装建议");
+  });
+
+  it("does not expose legacy invitation mockups as story photos", () => {
+    expect(defaultSiteContent.story.map((item) => item.image)).not.toEqual(
+      expect.arrayContaining([
+        "/images/gallery/story-02.jpg",
+        "/images/gallery/story-03.jpg",
+        "/images/gallery/story-04.jpg",
+      ]),
+    );
+  });
 });

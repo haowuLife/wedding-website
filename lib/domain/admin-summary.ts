@@ -11,7 +11,6 @@ export function summarizeGuests(guests: Guest[]) {
       attendingPeople:
         summary.attendingPeople + (guest.attending ? guest.guestCount : 0),
       parkingSpaces: summary.parkingSpaces + (guest.needParking ? 1 : 0),
-      childrenGroups: summary.childrenGroups + (guest.hasChildren ? 1 : 0),
     }),
     {
       responses: 0,
@@ -19,7 +18,6 @@ export function summarizeGuests(guests: Guest[]) {
       declinedResponses: 0,
       attendingPeople: 0,
       parkingSpaces: 0,
-      childrenGroups: 0,
     },
   );
 }

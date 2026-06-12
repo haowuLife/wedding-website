@@ -130,33 +130,32 @@ export const defaultSiteContent: SiteContent = {
       title: "相知相伴",
       description:
         "那些平凡却闪闪发光的日子，等待你们补充真实的回忆。",
-      image: "/images/gallery/story-02.jpg",
+      image: "/images/gallery/story-02-clean.webp",
     },
     {
       date: "待补充",
       title: "决定同行",
       description:
         "从两个人到一个家，这段重要的约定将在这里被珍藏。",
-      image: "/images/gallery/story-03.jpg",
+      image: "/images/gallery/story-03-clean.webp",
     },
     {
       date: "2026.10.06",
       title: "婚礼将至",
       description:
         "我们想把最珍贵的一天分享给一路陪伴的人，期待在泰兴的金秋与你相见。",
-      image: "/images/gallery/story-04.jpg",
+      image: "/images/gallery/story-04-clean.webp",
     },
   ],
   guide: [
     {
       title: "公共交通",
       description:
-        "建议使用实时地图导航至泰州泰兴希尔顿欢朋酒店，出发前留意当天路况。",
+        "乘高铁抵达泰州站后，可乘出租车或网约车前往酒店；从泰兴汽车客运站出发，可直接打车并导航至“泰州泰兴希尔顿欢朋酒店”。出发前请以实时地图和当天交通信息为准。",
     },
     {
       title: "停车信息",
-      description:
-        "酒店提供免费现场停车。自驾宾客请在 RSVP 中勾选停车需求，便于提前统计。",
+      description: "酒店提供免费现场停车，抵达后请按现场指引停放。",
     },
     {
       title: "住宿建议",
@@ -164,9 +163,9 @@ export const defaultSiteContent: SiteContent = {
         "外地宾客可优先咨询泰州泰兴希尔顿欢朋酒店，房态与价格请以酒店实时信息为准。",
     },
     {
-      title: "着装建议",
+      title: "天气提醒",
       description:
-        "推荐简洁雅致的半正式着装，可选择米白、浅棕、雾灰或柔和低饱和色。",
+        "十月泰兴早晚可能偏凉，请根据当天气温增减衣物；如遇降雨，建议随身携带雨具。",
     },
     {
       title: "婚礼联系人",

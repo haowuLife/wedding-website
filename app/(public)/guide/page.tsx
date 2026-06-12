@@ -1,7 +1,7 @@
 import {
   BedIcon,
   CarIcon,
-  CoatHangerIcon,
+  CloudSunIcon,
   PhoneIcon,
   TrainIcon,
 } from "@phosphor-icons/react/dist/ssr";
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   title: "宾客指南",
 };
 
-const icons = [TrainIcon, CarIcon, BedIcon, CoatHangerIcon, PhoneIcon];
+const icons = [TrainIcon, CarIcon, BedIcon, CloudSunIcon, PhoneIcon];
 
 export default async function GuidePage() {
   const content = await getSiteContent();

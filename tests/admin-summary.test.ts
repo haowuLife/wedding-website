@@ -10,9 +10,7 @@ const baseGuest: Guest = {
   phoneNormalized: "13800001024",
   attending: true,
   guestCount: 2,
-  hasChildren: false,
   needParking: false,
-  dietaryRestrictions: "",
   message: "",
   createdAt: "2026-06-01T00:00:00.000Z",
   updatedAt: "2026-06-01T00:00:00.000Z",
@@ -32,7 +30,6 @@ describe("summarizeGuests", () => {
       declinedResponses: 1,
       attendingPeople: 5,
       parkingSpaces: 0,
-      childrenGroups: 0,
     });
   });
 });

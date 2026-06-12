@@ -24,9 +24,7 @@ export function RsvpForm() {
       phone: form.get("phone"),
       attending,
       guestCount: attending ? Number(form.get("guestCount") || 1) : 0,
-      hasChildren: attending && form.get("hasChildren") === "on",
       needParking: attending && form.get("needParking") === "on",
-      dietaryRestrictions: form.get("dietaryRestrictions") ?? "",
       message: form.get("message") ?? "",
       website: form.get("website") ?? "",
     };
@@ -135,17 +133,9 @@ export function RsvpForm() {
             </select>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2">
-            <CheckField name="hasChildren" label="携带儿童" />
+          <div>
             <CheckField name="needParking" label="需要停车位" />
           </div>
-
-          <TextAreaField
-            name="dietaryRestrictions"
-            label="饮食忌口"
-            placeholder="如素食、过敏信息等"
-            error={fieldErrors.dietaryRestrictions}
-          />
         </>
       ) : null}
 

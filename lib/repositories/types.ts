@@ -5,9 +5,7 @@ export type Guest = {
   phoneNormalized: string;
   attending: boolean;
   guestCount: number;
-  hasChildren: boolean;
   needParking: boolean;
-  dietaryRestrictions: string;
   message: string;
   createdAt: string;
   updatedAt: string;

@@ -52,9 +52,7 @@ export async function POST(request: NextRequest) {
     phoneNormalized: value.phone,
     attending: value.attending,
     guestCount: value.guestCount,
-    hasChildren: value.hasChildren,
     needParking: value.needParking,
-    dietaryRestrictions: value.dietaryRestrictions,
     message: value.message,
   });
 

@@ -59,7 +59,7 @@ export default async function GuestsPage({
         </button>
       </form>
       <div className="mt-5 overflow-x-auto rounded-2xl bg-white">
-        <table className="min-w-[920px] w-full text-left text-sm">
+        <table className="min-w-[760px] w-full text-left text-sm">
           <thead className="border-b border-black/8 text-black/45">
             <tr>
               {[
@@ -67,9 +67,7 @@ export default async function GuestsPage({
                 "手机号",
                 "出席",
                 "人数",
-                "儿童",
                 "停车",
-                "饮食忌口",
                 "留言",
               ].map((title) => (
                 <th key={title} className="px-5 py-4 font-normal">
@@ -87,11 +85,7 @@ export default async function GuestsPage({
                   {guest.attending ? "参加" : "缺席"}
                 </td>
                 <td className="px-5 py-4">{guest.guestCount}</td>
-                <td className="px-5 py-4">{guest.hasChildren ? "是" : "否"}</td>
                 <td className="px-5 py-4">{guest.needParking ? "是" : "否"}</td>
-                <td className="max-w-48 px-5 py-4">
-                  {guest.dietaryRestrictions || "—"}
-                </td>
                 <td className="max-w-64 px-5 py-4">{guest.message || "—"}</td>
               </tr>
             ))}

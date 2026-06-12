@@ -20,7 +20,7 @@ const previews = [
     description:
       "仪式、午宴、交通与住宿信息，都已为你整理在这份宾客指南中。",
     href: "/details",
-    image: "/images/gallery/story-03.jpg",
+    image: "/images/gallery/story-03-clean.webp",
   },
 ];
 
@@ -30,7 +30,7 @@ export function HomePreview({ content }: { content: SiteContent }) {
       <section className="px-5 py-24 md:px-10 md:py-36">
         <Reveal className="mx-auto max-w-3xl text-center">
           <p className="eyebrow">Dear Family & Friends</p>
-          <h2 className="mt-6 font-serif text-4xl leading-[1.5] tracking-[0.12em] md:text-6xl">
+          <h2 className="mt-6 font-serif text-5xl leading-[1.4] tracking-[0.1em] md:text-7xl">
             我们要结婚了
           </h2>
           <p className="mx-auto mt-8 max-w-2xl text-base leading-9 text-[var(--color-muted)] md:text-lg">
@@ -65,7 +65,7 @@ export function HomePreview({ content }: { content: SiteContent }) {
             </div>
             <div className={index % 2 ? "md:order-1" : ""}>
               <p className="eyebrow">{preview.eyebrow}</p>
-              <h2 className="mt-5 font-serif text-4xl leading-snug tracking-[0.08em] md:text-5xl">
+              <h2 className="mt-5 font-serif text-5xl leading-snug tracking-[0.06em] md:text-6xl">
                 {preview.title}
               </h2>
               <p className="mt-6 max-w-lg leading-8 text-[var(--color-muted)]">
@@ -86,7 +86,7 @@ export function HomePreview({ content }: { content: SiteContent }) {
       <section className="bg-[var(--color-ivory-deep)] px-5 py-24 text-center md:px-10 md:py-32">
         <Reveal>
           <p className="eyebrow">Will You Join Us?</p>
-          <h2 className="mt-6 font-serif text-4xl tracking-[0.1em] md:text-6xl">
+          <h2 className="mt-6 font-serif text-5xl tracking-[0.08em] md:text-7xl">
             期待与你相见
           </h2>
           <p className="mx-auto mt-6 max-w-xl leading-8 text-[var(--color-muted)]">

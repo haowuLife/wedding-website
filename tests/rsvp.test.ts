@@ -7,15 +7,13 @@ describe("RSVP validation", () => {
     expect(normalizePhone("+86 138 0000 1024")).toBe("13800001024");
   });
 
-  it("forces dependent fields off when a guest declines", () => {
+  it("accepts the simplified RSVP payload and resets attendance details", () => {
     const result = rsvpSchema.parse({
       name: "周清",
       phone: "13800001024",
       attending: false,
       guestCount: 4,
-      hasChildren: true,
       needParking: true,
-      dietaryRestrictions: "",
       message: "",
       website: "",
     });
@@ -23,9 +21,10 @@ describe("RSVP validation", () => {
     expect(result).toMatchObject({
       attending: false,
       guestCount: 0,
-      hasChildren: false,
       needParking: false,
     });
+    expect(result).not.toHaveProperty("hasChildren");
+    expect(result).not.toHaveProperty("dietaryRestrictions");
   });
 
   it("rejects invalid mobile numbers", () => {
@@ -35,9 +34,7 @@ describe("RSVP validation", () => {
         phone: "123",
         attending: true,
         guestCount: 1,
-        hasChildren: false,
         needParking: false,
-        dietaryRestrictions: "",
         message: "",
         website: "",
       }),

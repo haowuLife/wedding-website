@@ -38,10 +38,6 @@ export default async function AdminDashboardPage() {
               <dt className="text-black/50">需要停车位</dt>
               <dd>{summary.parkingSpaces} 辆</dd>
             </div>
-            <div className="flex justify-between">
-              <dt className="text-black/50">携带儿童的家庭</dt>
-              <dd>{summary.childrenGroups} 组</dd>
-            </div>
           </dl>
         </div>
         <div className="rounded-2xl bg-[#2d2924] p-6 text-white">
