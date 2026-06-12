@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Reveal } from "@/components/motion/reveal";
-import { defaultSiteContent } from "@/lib/content/site";
+import type { SiteContent } from "@/lib/content/site";
 
 const previews = [
   {
@@ -24,7 +24,7 @@ const previews = [
   },
 ];
 
-export function HomePreview() {
+export function HomePreview({ content }: { content: SiteContent }) {
   return (
     <div id="invitation">
       <section className="px-5 py-24 md:px-10 md:py-36">
@@ -39,7 +39,7 @@ export function HomePreview() {
           </p>
           <div className="mx-auto mt-10 h-px w-20 bg-[var(--color-champagne)]" />
           <p className="mt-8 font-serif text-xl tracking-[0.2em] text-[var(--color-champagne)]">
-            {defaultSiteContent.wedding.displayDate}
+            {content.wedding.displayDate}
           </p>
         </Reveal>
       </section>

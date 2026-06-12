@@ -24,3 +24,11 @@ export async function getDisplayPhotos(
     }),
   );
 }
+
+export async function getDisplayAllPhotos(): Promise<Photo[]> {
+  const [gallery, memories] = await Promise.all([
+    getDisplayPhotos("gallery"),
+    getDisplayPhotos("memories"),
+  ]);
+  return [...gallery, ...memories];
+}

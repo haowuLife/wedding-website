@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import Image from "next/image";
 
 import { Reveal } from "@/components/motion/reveal";
-import { defaultSiteContent } from "@/lib/content/site";
+import { getSiteContent } from "@/lib/content/settings";
 
 export const metadata: Metadata = {
   title: "我们的故事",
 };
 
-export default function StoryPage() {
+export default async function StoryPage() {
+  const content = await getSiteContent();
   return (
     <div className="page-shell">
       <header className="mx-auto max-w-3xl text-center">
@@ -22,7 +23,7 @@ export default function StoryPage() {
       <div className="relative mx-auto mt-20 max-w-5xl md:mt-28">
         <div className="absolute bottom-0 left-3 top-0 w-px bg-[var(--color-line)] md:left-1/2" />
         <div className="space-y-20 md:space-y-28">
-          {defaultSiteContent.story.map((item, index) => (
+          {content.story.map((item, index) => (
             <Reveal
               key={item.date}
               className="relative grid gap-7 pl-10 md:grid-cols-2 md:gap-20 md:pl-0"

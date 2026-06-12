@@ -8,7 +8,7 @@ import {
 import type { Metadata } from "next";
 
 import { Reveal } from "@/components/motion/reveal";
-import { defaultSiteContent } from "@/lib/content/site";
+import { getSiteContent } from "@/lib/content/settings";
 
 export const metadata: Metadata = {
   title: "宾客指南",
@@ -16,7 +16,8 @@ export const metadata: Metadata = {
 
 const icons = [TrainIcon, CarIcon, BedIcon, CoatHangerIcon, PhoneIcon];
 
-export default function GuidePage() {
+export default async function GuidePage() {
+  const content = await getSiteContent();
   return (
     <div className="page-shell">
       <header className="mx-auto max-w-3xl text-center">
@@ -28,7 +29,7 @@ export default function GuidePage() {
       </header>
 
       <div className="mx-auto mt-16 max-w-4xl md:mt-24">
-        {defaultSiteContent.guide.map((item, index) => {
+        {content.guide.map((item, index) => {
           const Icon = icons[index];
           return (
             <Reveal

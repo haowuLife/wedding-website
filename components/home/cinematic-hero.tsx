@@ -5,13 +5,13 @@ import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 
-import { defaultSiteContent } from "@/lib/content/site";
+import type { SiteContent } from "@/lib/content/site";
 
 import { Countdown } from "./countdown";
 
-export function CinematicHero() {
+export function CinematicHero({ content }: { content: SiteContent }) {
   const reduceMotion = useReducedMotion();
-  const { hero, identity, wedding } = defaultSiteContent;
+  const { hero, identity, wedding } = content;
 
   return (
     <section className="relative min-h-[100svh] overflow-hidden bg-[#e7ddcf]">

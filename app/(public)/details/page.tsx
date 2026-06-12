@@ -2,14 +2,14 @@ import { MapPinIcon } from "@phosphor-icons/react/dist/ssr";
 import type { Metadata } from "next";
 
 import { Reveal } from "@/components/motion/reveal";
-import { defaultSiteContent } from "@/lib/content/site";
+import { getSiteContent } from "@/lib/content/settings";
 
 export const metadata: Metadata = {
   title: "婚礼信息",
 };
 
-export default function DetailsPage() {
-  const { wedding } = defaultSiteContent;
+export default async function DetailsPage() {
+  const { wedding } = await getSiteContent();
 
   return (
     <div className="page-shell">
