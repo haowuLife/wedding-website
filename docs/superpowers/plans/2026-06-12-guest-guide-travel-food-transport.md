@@ -59,7 +59,7 @@ Use the approved three travel entries, three food entries, four transport entrie
 
 - [ ] **Step 3: Add optimized local images**
 
-Store six responsive WebP images under `public/images/guide/`, keep each image appropriately compressed, and document source or generation details in `docs/image-sources.md`.
+Store six responsive WebP images under `public/images/guide/`: three government-page scenic photos and three user-provided food photos. Keep each image appropriately compressed and document the sources in `docs/image-sources.md`.
 
 - [ ] **Step 4: Preserve settings compatibility**
 
@@ -188,4 +188,3 @@ git add -A
 git commit -m "feat: expand guest travel guide"
 git push origin HEAD:main
 ```
-

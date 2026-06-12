@@ -10,14 +10,12 @@ export function summarizeGuests(guests: Guest[]) {
         summary.declinedResponses + (guest.attending ? 0 : 1),
       attendingPeople:
         summary.attendingPeople + (guest.attending ? guest.guestCount : 0),
-      parkingSpaces: summary.parkingSpaces + (guest.needParking ? 1 : 0),
     }),
     {
       responses: 0,
       attendingResponses: 0,
       declinedResponses: 0,
       attendingPeople: 0,
-      parkingSpaces: 0,
     },
   );
 }

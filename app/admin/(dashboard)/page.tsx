@@ -30,17 +30,8 @@ export default async function AdminDashboardPage() {
           </div>
         ))}
       </div>
-      <div className="mt-8 grid gap-4 md:grid-cols-2">
-        <div className="rounded-2xl bg-white p-6">
-          <h2 className="font-serif text-2xl">现场准备提示</h2>
-          <dl className="mt-6 space-y-4 text-sm">
-            <div className="flex justify-between">
-              <dt className="text-black/50">需要停车位</dt>
-              <dd>{summary.parkingSpaces} 辆</dd>
-            </div>
-          </dl>
-        </div>
-        <div className="rounded-2xl bg-[#2d2924] p-6 text-white">
+      <div className="mt-8">
+        <div className="max-w-2xl rounded-2xl bg-[#2d2924] p-6 text-white">
           <h2 className="font-serif text-2xl">下一步</h2>
           <p className="mt-5 text-sm leading-7 text-white/60">
             定期审核宾客留言，并在婚礼前一周导出最终 RSVP 名单交给酒店。

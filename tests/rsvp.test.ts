@@ -13,7 +13,6 @@ describe("RSVP validation", () => {
       phone: "13800001024",
       attending: false,
       guestCount: 4,
-      needParking: true,
       message: "",
       website: "",
     });
@@ -21,8 +20,8 @@ describe("RSVP validation", () => {
     expect(result).toMatchObject({
       attending: false,
       guestCount: 0,
-      needParking: false,
     });
+    expect(result).not.toHaveProperty("needParking");
     expect(result).not.toHaveProperty("hasChildren");
     expect(result).not.toHaveProperty("dietaryRestrictions");
   });
@@ -34,7 +33,6 @@ describe("RSVP validation", () => {
         phone: "123",
         attending: true,
         guestCount: 1,
-        needParking: false,
         message: "",
         website: "",
       }),

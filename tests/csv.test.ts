@@ -10,7 +10,6 @@ const guest: Guest = {
   phoneNormalized: "13800001024",
   attending: true,
   guestCount: 2,
-  needParking: true,
   message: "期待见面",
   createdAt: "2026-06-01T00:00:00.000Z",
   updatedAt: "2026-06-01T00:00:00.000Z",
@@ -21,7 +20,7 @@ describe("createGuestsCsv", () => {
     const csv = createGuestsCsv([guest]);
     expect(csv.startsWith("\uFEFF")).toBe(true);
     expect(csv).toContain('"周""清"');
-    expect(csv).toContain("需要停车");
+    expect(csv).not.toContain("需要停车");
     expect(csv).not.toContain("携带儿童");
     expect(csv).not.toContain("饮食忌口");
   });

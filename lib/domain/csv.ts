@@ -11,7 +11,6 @@ export function createGuestsCsv(guests: Guest[]): string {
     "手机号",
     "是否参加",
     "参加人数",
-    "需要停车",
     "祝福留言",
     "提交时间",
   ];
@@ -20,7 +19,6 @@ export function createGuestsCsv(guests: Guest[]): string {
     guest.phone,
     guest.attending ? "是" : "否",
     guest.guestCount,
-    guest.needParking ? "是" : "否",
     guest.message,
     guest.createdAt,
   ]);

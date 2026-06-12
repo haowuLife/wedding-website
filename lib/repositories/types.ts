@@ -5,7 +5,6 @@ export type Guest = {
   phoneNormalized: string;
   attending: boolean;
   guestCount: number;
-  needParking: boolean;
   message: string;
   createdAt: string;
   updatedAt: string;

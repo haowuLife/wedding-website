@@ -58,7 +58,7 @@ export default async function DetailsPage() {
             {wedding.city} · 泰州
           </h2>
           <p className="mt-6 leading-8 text-[var(--color-muted)]">
-            午宴地点位于泰兴市文昌中路。建议宾客提前规划路线，并根据后续通知预留充足到场时间。
+            午宴地点位于泰兴市文昌中路，详细交通方式与周边行程可在宾客指南中查看。
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a

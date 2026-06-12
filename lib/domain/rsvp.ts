@@ -17,14 +17,12 @@ export const rsvpSchema = z
       .refine((value) => /^1[3-9]\d{9}$/.test(value), "请输入有效手机号"),
     attending: z.boolean(),
     guestCount: z.coerce.number().int().min(0).max(10),
-    needParking: z.boolean(),
     message: z.string().trim().max(1000, "留言过长"),
     website: z.string().max(0).optional().default(""),
   })
   .transform((value) => ({
     ...value,
     guestCount: value.attending ? Math.max(1, value.guestCount) : 0,
-    needParking: value.attending ? value.needParking : false,
   }));
 
 export type RsvpPayload = z.infer<typeof rsvpSchema>;

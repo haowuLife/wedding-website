@@ -52,7 +52,6 @@ export async function POST(request: NextRequest) {
     phoneNormalized: value.phone,
     attending: value.attending,
     guestCount: value.guestCount,
-    needParking: value.needParking,
     message: value.message,
   });
 

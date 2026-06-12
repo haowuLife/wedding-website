@@ -24,7 +24,6 @@ export function RsvpForm() {
       phone: form.get("phone"),
       attending,
       guestCount: attending ? Number(form.get("guestCount") || 1) : 0,
-      needParking: attending && form.get("needParking") === "on",
       message: form.get("message") ?? "",
       website: form.get("website") ?? "",
     };
@@ -133,9 +132,6 @@ export function RsvpForm() {
             </select>
           </div>
 
-          <div>
-            <CheckField name="needParking" label="需要停车位" />
-          </div>
         </>
       ) : null}
 
@@ -197,19 +193,6 @@ function Field({
         </p>
       ) : null}
     </div>
-  );
-}
-
-function CheckField({ name, label }: { name: string; label: string }) {
-  return (
-    <label className="flex items-center gap-3 border-b border-[var(--color-line)] py-3 text-sm tracking-[0.08em]">
-      <input
-        type="checkbox"
-        name={name}
-        className="size-4 accent-[var(--color-champagne)]"
-      />
-      {label}
-    </label>
   );
 }
 

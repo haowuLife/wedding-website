@@ -25,6 +25,26 @@ export type GuideItem = {
   };
 };
 
+export type RecommendationItem = {
+  title: string;
+  description: string;
+  image: string;
+  meta?: string;
+  action?: {
+    label: string;
+    href: string;
+  };
+};
+
+export type TransportItem = {
+  title: string;
+  description: string;
+  action?: {
+    label: string;
+    href: string;
+  };
+};
+
 export type SiteContent = {
   identity: {
     groom: string;
@@ -52,6 +72,11 @@ export type SiteContent = {
   };
   story: StoryItem[];
   guide: GuideItem[];
+  travel: RecommendationItem[];
+  travelDisclaimer: string;
+  food: RecommendationItem[];
+  transport: TransportItem[];
+  holidayTravelNote: string;
   navigation: NavigationItem[];
   memories: {
     enabled: boolean;
@@ -149,15 +174,6 @@ export const defaultSiteContent: SiteContent = {
   ],
   guide: [
     {
-      title: "公共交通",
-      description:
-        "乘高铁抵达泰州站后，可乘出租车或网约车前往酒店；从泰兴汽车客运站出发，可直接打车并导航至“泰州泰兴希尔顿欢朋酒店”。出发前请以实时地图和当天交通信息为准。",
-    },
-    {
-      title: "停车信息",
-      description: "酒店提供免费现场停车，抵达后请按现场指引停放。",
-    },
-    {
       title: "住宿建议",
       description:
         "外地宾客可优先咨询泰州泰兴希尔顿欢朋酒店，房态与价格请以酒店实时信息为准。",
@@ -172,6 +188,91 @@ export const defaultSiteContent: SiteContent = {
       description: "如需接驳或临时协助，请联系新人；具体联络方式将在确认后更新。",
     },
   ],
+  travel: [
+    {
+      title: "泰兴国家古银杏森林公园",
+      description:
+        "成片古银杏在秋日铺开金色林荫，适合散步、拍照，也适合在婚礼行程之外留一段安静时光。",
+      image: "/images/guide/taixing-ginkgo-forest.webp",
+      meta: "免费开放",
+      action: {
+        label: "地图查看",
+        href: "https://uri.amap.com/search?keyword=%E6%B3%B0%E5%85%B4%E5%9B%BD%E5%AE%B6%E5%8F%A4%E9%93%B6%E6%9D%8F%E6%A3%AE%E6%9E%97%E5%85%AC%E5%9B%AD",
+      },
+    },
+    {
+      title: "溱湖国家湿地公园",
+      description:
+        "湖面、芦苇与湿地水乡相映成景，可以乘船慢游，也适合安排半日感受泰州的自然气息。",
+      image: "/images/guide/qin-lake-wetland.webp",
+      meta: "成人票参考约 ¥78",
+      action: {
+        label: "地图查看",
+        href: "https://uri.amap.com/search?keyword=%E6%BA%B1%E6%B9%96%E5%9B%BD%E5%AE%B6%E6%B9%BF%E5%9C%B0%E5%85%AC%E5%9B%AD",
+      },
+    },
+    {
+      title: "凤城河风景区与望海楼",
+      description:
+        "沿凤城河漫步，可以一并看看望海楼与水城夜景，适合在泰州市区安排轻松的傍晚行程。",
+      image: "/images/guide/fengcheng-river-wanghai-tower.webp",
+      meta: "望海楼日场成人票参考约 ¥35",
+      action: {
+        label: "地图查看",
+        href: "https://uri.amap.com/search?keyword=%E6%B3%B0%E5%B7%9E%E5%87%A4%E5%9F%8E%E6%B2%B3%E9%A3%8E%E6%99%AF%E5%8C%BA%E6%9C%9B%E6%B5%B7%E6%A5%BC",
+      },
+    },
+  ],
+  travelDisclaimer:
+    "票价、开放时间及预约要求可能调整，请以景区当日公示为准。",
+  food: [
+    {
+      title: "黄桥烧饼",
+      description:
+        "酥香分层、芝麻气息浓郁，是泰兴很有代表性的传统点心，适合作为伴手礼慢慢品尝。",
+      image: "/images/guide/huangqiao-sesame-cake.webp",
+    },
+    {
+      title: "宣堡小馄饨",
+      description:
+        "皮薄馅嫩，清汤鲜香，一碗热乎的小馄饨，是当地朴素又舒服的早餐与夜宵选择。",
+      image: "/images/guide/xuanbao-wontons.webp",
+    },
+    {
+      title: "曲霞汤包",
+      description:
+        "薄皮包裹鲜美汤汁，趁热轻轻提起、先开口再品汤，是到泰兴值得尝试的一口鲜香。",
+      image: "/images/guide/quxia-soup-dumplings.webp",
+    },
+  ],
+  transport: [
+    {
+      title: "泰州站",
+      description:
+        "乘出租车或网约车前往酒店，车程约 1 小时，参考费用约 60 元。建议好友同行，路上也能彼此照应。",
+    },
+    {
+      title: "扬州泰州国际机场",
+      description:
+        "乘出租车或网约车前往酒店，车程约 1 小时 10 分钟，参考费用约 130 元。",
+    },
+    {
+      title: "泰兴汽车客运站",
+      description:
+        "距酒店约 4.7 公里，可直接打车前往；实际时间和费用请以实时地图及平台计价为准。",
+    },
+    {
+      title: "自驾前往",
+      description:
+        "直接导航至“泰州泰兴希尔顿欢朋酒店”。酒店提供免费现场停车，抵达后请按现场指引停放。",
+      action: {
+        label: "打开地图导航",
+        href: "https://uri.amap.com/search?keyword=%E6%B3%B0%E5%B7%9E%E6%B3%B0%E5%85%B4%E5%B8%8C%E5%B0%94%E9%A1%BF%E6%AC%A2%E6%9C%8B%E9%85%92%E5%BA%97",
+      },
+    },
+  ],
+  holidayTravelNote:
+    "婚礼恰逢国庆假期尾声，返程车流可能较多，路途也会比平日辛苦。很抱歉让大家舟车劳顿，也格外感谢你们愿意跨越路途，来见证我们的重要时刻。",
   navigation: [
     { label: "首页", href: "/" },
     { label: "我们的故事", href: "/story" },
