@@ -37,4 +37,24 @@ describe("DemoRepository", () => {
       expect.objectContaining({ id: "approved" }),
     ]);
   });
+
+  it("updates photo classification and publication state", async () => {
+    const repository = new DemoRepository();
+    const [photo] = await repository.listPhotos("gallery");
+
+    await repository.updatePhoto(photo.id, {
+      category: "精选",
+      sortOrder: 9,
+      isPublic: false,
+    });
+
+    await expect(repository.listPhotos("gallery")).resolves.toContainEqual(
+      expect.objectContaining({
+        id: photo.id,
+        category: "精选",
+        sortOrder: 9,
+        isPublic: false,
+      }),
+    );
+  });
 });

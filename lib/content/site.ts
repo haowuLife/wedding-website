@@ -75,7 +75,7 @@ export const defaultSiteContent: SiteContent = {
     subtitle: "诚邀您见证我们的婚礼",
   },
   hero: {
-    image: "/images/hero-wedding.png",
+    image: "/images/hero-wedding-photo.png",
     eyebrow: "OUR WEDDING DAY",
     invitationLabel: "查看邀请",
   },

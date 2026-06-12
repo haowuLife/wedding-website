@@ -4,6 +4,7 @@ import { NextRequest } from "next/server";
 
 import { getAdminIdentity } from "@/lib/domain/auth";
 import { isDemoMode } from "@/lib/domain/env";
+import { isAllowedVideoUrl } from "@/lib/domain/media";
 import { isSameOrigin } from "@/lib/domain/request";
 import { getRepository } from "@/lib/repositories";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
@@ -31,23 +32,36 @@ export async function POST(request: NextRequest) {
   }
   const form = await request.formData();
   const file = form.get("file");
-  if (!(file instanceof File) || !allowedTypes.has(file.type)) {
-    return Response.json({ error: "Unsupported image" }, { status: 400 });
-  }
-  if (file.size > 15 * 1024 * 1024) {
-    return Response.json({ error: "Image is too large" }, { status: 400 });
-  }
-
+  const mediaType = form.get("mediaType") === "video" ? "video" : "image";
   const collection =
     form.get("collection") === "memories" ? "memories" : "gallery";
-  let imageUrl = "/images/gallery/story-01.jpg";
-  if (!isDemoMode()) {
-    const extension = extensions[file.type];
-    imageUrl = `${collection}/${randomUUID()}${extension}`;
-    const { error } = await createSupabaseAdminClient().storage
-      .from("wedding-media")
-      .upload(imageUrl, file, { contentType: file.type, upsert: false });
-    if (error) throw new Error(error.message);
+  let imageUrl: string;
+
+  if (mediaType === "video") {
+    const videoUrl = String(form.get("videoUrl") || "");
+    if (!isAllowedVideoUrl(videoUrl)) {
+      return Response.json(
+        { error: "Video URL must be a direct HTTPS MP4/WebM URL" },
+        { status: 400 },
+      );
+    }
+    imageUrl = videoUrl;
+  } else {
+    if (!(file instanceof File) || !allowedTypes.has(file.type)) {
+      return Response.json({ error: "Unsupported image" }, { status: 400 });
+    }
+    if (file.size > 15 * 1024 * 1024) {
+      return Response.json({ error: "Image is too large" }, { status: 400 });
+    }
+    imageUrl = "/images/gallery/story-01.jpg";
+    if (!isDemoMode()) {
+      const extension = extensions[file.type];
+      imageUrl = `${collection}/${randomUUID()}${extension}`;
+      const { error } = await createSupabaseAdminClient().storage
+        .from("wedding-media")
+        .upload(imageUrl, file, { contentType: file.type, upsert: false });
+      if (error) throw new Error(error.message);
+    }
   }
 
   const existing = await getRepository().listPhotos(collection);
@@ -59,7 +73,7 @@ export async function POST(request: NextRequest) {
     sortOrder: existing.length + 1,
     isPublic: form.get("isPublic") === "on",
     collection,
-    mediaType: "image",
+    mediaType,
   });
   revalidatePath("/gallery");
   revalidatePath("/memories");

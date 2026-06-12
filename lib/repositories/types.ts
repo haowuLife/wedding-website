@@ -43,6 +43,12 @@ export type Photo = {
 };
 
 export type PhotoInput = Omit<Photo, "id" | "createdAt">;
+export type PhotoUpdate = Partial<
+  Pick<
+    Photo,
+    "title" | "description" | "category" | "sortOrder" | "isPublic"
+  >
+>;
 
 export type SiteSetting = {
   key: string;
@@ -65,6 +71,7 @@ export interface WeddingRepository {
   listPhotos(collection?: Photo["collection"]): Promise<Photo[]>;
   listPublicPhotos(collection?: Photo["collection"]): Promise<Photo[]>;
   createPhoto(input: PhotoInput): Promise<Photo>;
+  updatePhoto(id: string, update: PhotoUpdate): Promise<void>;
   deletePhoto(id: string): Promise<void>;
   listSettings(): Promise<SiteSetting[]>;
   updateSetting(key: string, value: unknown): Promise<void>;

@@ -36,7 +36,7 @@ export function Countdown({ target }: { target: string }) {
     >
       {labels.map(([key, label]) => (
         <div key={key} className="px-3 text-center sm:px-5">
-          <span className="block font-serif text-2xl font-light tracking-[0.08em] sm:text-3xl">
+          <span className="block font-serif text-lg font-light tracking-[0.08em] sm:text-2xl">
             {String(value[key]).padStart(2, "0")}
           </span>
           <span className="mt-1 block text-xs tracking-[0.24em] text-[var(--color-muted)]">

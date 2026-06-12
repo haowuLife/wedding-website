@@ -8,6 +8,7 @@ import type {
   MessageUpdate,
   Photo,
   PhotoInput,
+  PhotoUpdate,
   SiteSetting,
   WeddingRepository,
 } from "./types";
@@ -177,6 +178,28 @@ export class SupabaseRepository implements WeddingRepository {
       .single();
     assertNoError(error);
     return mapPhoto(data as Record<string, unknown>);
+  }
+
+  async updatePhoto(id: string, update: PhotoUpdate) {
+    const { error } = await this.client
+      .from("photos")
+      .update({
+        ...(update.title === undefined ? {} : { title: update.title }),
+        ...(update.description === undefined
+          ? {}
+          : { description: update.description }),
+        ...(update.category === undefined
+          ? {}
+          : { category: update.category }),
+        ...(update.sortOrder === undefined
+          ? {}
+          : { sort_order: update.sortOrder }),
+        ...(update.isPublic === undefined
+          ? {}
+          : { is_public: update.isPublic }),
+      })
+      .eq("id", id);
+    assertNoError(error);
   }
 
   async deletePhoto(id: string) {

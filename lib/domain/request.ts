@@ -11,7 +11,24 @@ export function getClientIp(request: NextRequest): string {
 export function isSameOrigin(request: NextRequest): boolean {
   const origin = request.headers.get("origin");
   if (!origin) return process.env.NODE_ENV !== "production";
-  return origin === new URL(request.url).origin;
+  try {
+    const originUrl = new URL(origin);
+    const forwardedHost = request.headers.get("x-forwarded-host");
+    const host = forwardedHost ?? request.headers.get("host");
+    const forwardedProtocol = request.headers.get("x-forwarded-proto");
+    const protocol =
+      forwardedProtocol ?? new URL(request.url).protocol.replace(":", "");
+    const configuredOrigin = process.env.NEXT_PUBLIC_SITE_URL
+      ? new URL(process.env.NEXT_PUBLIC_SITE_URL).origin
+      : null;
+
+    return (
+      originUrl.origin === configuredOrigin ||
+      (originUrl.host === host && originUrl.protocol === `${protocol}:`)
+    );
+  } catch {
+    return false;
+  }
 }
 
 export function validationError(

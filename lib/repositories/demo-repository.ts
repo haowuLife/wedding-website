@@ -6,6 +6,7 @@ import type {
   MessageUpdate,
   Photo,
   PhotoInput,
+  PhotoUpdate,
   SiteSetting,
   WeddingRepository,
 } from "./types";
@@ -212,6 +213,12 @@ export class DemoRepository implements WeddingRepository {
     };
     this.photos.push(photo);
     return photo;
+  }
+
+  async updatePhoto(id: string, update: PhotoUpdate) {
+    this.photos = this.photos.map((photo) =>
+      photo.id === id ? { ...photo, ...update } : photo,
+    );
   }
 
   async deletePhoto(id: string) {

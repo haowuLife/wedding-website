@@ -16,12 +16,16 @@ export function CinematicHero({ content }: { content: SiteContent }) {
   return (
     <section className="relative min-h-[100svh] overflow-hidden bg-[#e7ddcf]">
       <motion.div
-        className="absolute inset-0"
+        className="absolute inset-0 origin-[50%_43%]"
         initial={false}
         animate={
           reduceMotion
-            ? undefined
-            : { scale: [1, 1.055], x: ["0%", "-0.6%"], y: ["0%", "-0.4%"] }
+            ? { scale: 1.32, x: "0%", y: "0%" }
+            : {
+                scale: [1.32, 1.39],
+                x: ["0%", "-0.5%"],
+                y: ["0%", "-0.3%"],
+              }
         }
         transition={{
           duration: 16,
@@ -36,7 +40,7 @@ export function CinematicHero({ content }: { content: SiteContent }) {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[48%_18%] md:object-[center_24%]"
+          className="object-cover object-[50%_44%] md:object-[center_47%]"
         />
       </motion.div>
 
@@ -50,7 +54,7 @@ export function CinematicHero({ content }: { content: SiteContent }) {
           className="w-full max-w-2xl"
         >
           <p className="eyebrow">{hero.eyebrow}</p>
-          <h1 className="mt-4 font-serif text-[clamp(3.4rem,15vw,7.5rem)] font-normal leading-none tracking-[0.08em] text-[var(--color-champagne)]">
+          <h1 className="mt-3 font-serif text-[clamp(2.8rem,12vw,7.5rem)] font-normal leading-none tracking-[0.08em] text-[var(--color-champagne)]">
             {identity.title}
           </h1>
           <p className="mt-5 font-serif text-xl italic tracking-[0.14em] text-[var(--color-muted)] md:text-2xl">
@@ -66,7 +70,7 @@ export function CinematicHero({ content }: { content: SiteContent }) {
 
           <Link
             href="/details"
-            className="mx-auto mt-8 inline-flex min-w-60 items-center justify-center gap-5 rounded-full border border-[var(--color-champagne)] bg-[color:var(--color-ivory)/0.45] px-8 py-4 text-sm tracking-[0.22em] text-[var(--color-champagne)] backdrop-blur-sm transition-colors hover:bg-[var(--color-ivory)]"
+            className="mx-auto mt-7 inline-flex min-w-40 items-center justify-center gap-4 rounded-full border border-[var(--color-champagne)] bg-[color:var(--color-ivory)/0.45] px-6 py-3 text-xs tracking-[0.2em] text-[var(--color-champagne)] backdrop-blur-sm transition-colors hover:bg-[var(--color-ivory)]"
           >
             {hero.invitationLabel}
             <ArrowRightIcon size={17} weight="light" aria-hidden />
@@ -82,6 +86,11 @@ export function CinematicHero({ content }: { content: SiteContent }) {
             <span className="size-1 rounded-full bg-current" />
           </span>
           <ArrowDownIcon size={15} weight="light" aria-hidden />
+          <span className="text-[9px] leading-4 tracking-[0.18em]">
+            向上滑动
+            <br />
+            探索更多
+          </span>
         </a>
       </div>
     </section>

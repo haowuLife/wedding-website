@@ -32,6 +32,12 @@ export function SettingsForm({ content }: { content: SiteContent }) {
         },
       },
       {
+        key: "site.hero",
+        value: {
+          image: form.get("heroImage"),
+        },
+      },
+      {
         key: "memories.enabled",
         value: { enabled: form.get("memoriesEnabled") === "on" },
       },
@@ -63,6 +69,14 @@ export function SettingsForm({ content }: { content: SiteContent }) {
           label="首页副标题"
           name="subtitle"
           defaultValue={identity.subtitle}
+        />
+      </div>
+      <div className="md:col-span-2">
+        <AdminField
+          label="首页主视觉图片 URL"
+          name="heroImage"
+          type="text"
+          defaultValue={content.hero.image}
         />
       </div>
       <AdminField
