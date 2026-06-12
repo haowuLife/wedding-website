@@ -16,7 +16,7 @@ export default async function RsvpPage() {
           <p className="eyebrow">Répondez S&apos;il Vous Plaît</p>
           <h1 className="display-title mt-6">期待你的回复</h1>
           <p className="mt-7 leading-8 text-[var(--color-muted)]">
-            请在 2026 年 9 月 18 日前完成回复。你的信息只用于婚礼安排，不会公开展示。
+            请尽早完成回复。你的信息只用于婚礼安排，不会公开展示。
           </p>
           <div className="mt-10 border-l border-[var(--color-champagne)] pl-5 text-sm leading-7 text-[var(--color-muted)]">
             <p>婚礼日期：{content.wedding.displayDate}</p>

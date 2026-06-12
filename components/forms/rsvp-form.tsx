@@ -68,7 +68,7 @@ export function RsvpForm() {
           谢谢你的回复
         </h2>
         <p className="mx-auto mt-5 max-w-md leading-8 text-[var(--color-muted)]">
-          我们已经收到你的 RSVP。期待在西溪的秋日与你相见。
+          我们已经收到你的 RSVP。期待在泰兴的金秋与你相见。
         </p>
       </div>
     );

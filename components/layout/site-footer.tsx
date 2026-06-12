@@ -12,7 +12,7 @@ export async function SiteFooter() {
             {content.identity.title}
           </p>
           <p className="mt-3 text-sm tracking-[0.18em] text-[var(--color-muted)]">
-            {content.wedding.displayDate} · 杭州
+            {content.wedding.displayDate} · {content.wedding.city}
           </p>
         </div>
         <div className="flex flex-wrap gap-x-6 gap-y-3 text-sm text-[var(--color-muted)]">

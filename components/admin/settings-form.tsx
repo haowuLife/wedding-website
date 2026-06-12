@@ -27,6 +27,9 @@ export function SettingsForm({ content }: { content: SiteContent }) {
           date: form.get("date"),
           venue: form.get("venue"),
           address: form.get("address"),
+          city: form.get("city"),
+          hotelUrl: form.get("hotelUrl"),
+          mapUrl: form.get("mapUrl"),
           ceremonyTime: form.get("ceremonyTime"),
           receptionTime: form.get("receptionTime"),
         },
@@ -88,21 +91,38 @@ export function SettingsForm({ content }: { content: SiteContent }) {
       <AdminField
         label="仪式时间"
         name="ceremonyTime"
-        type="time"
+        type="text"
         defaultValue={wedding.ceremonyTime}
       />
       <AdminField
         label="午宴时间"
         name="receptionTime"
-        type="time"
+        type="text"
         defaultValue={wedding.receptionTime}
       />
+      <AdminField label="城市" name="city" defaultValue={wedding.city} />
       <AdminField label="酒店名称" name="venue" defaultValue={wedding.venue} />
       <div className="md:col-span-2">
         <AdminField
           label="详细地址"
           name="address"
           defaultValue={wedding.address}
+        />
+      </div>
+      <div className="md:col-span-2">
+        <AdminField
+          label="酒店官网"
+          name="hotelUrl"
+          type="url"
+          defaultValue={wedding.hotelUrl}
+        />
+      </div>
+      <div className="md:col-span-2">
+        <AdminField
+          label="地图导航链接"
+          name="mapUrl"
+          type="url"
+          defaultValue={wedding.mapUrl}
         />
       </div>
       <label className="flex items-center gap-3 text-sm md:col-span-2">

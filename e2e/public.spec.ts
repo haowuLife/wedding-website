@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 
 test("mobile invitation opens wedding details", async ({ page }) => {
   await page.goto("/");
-  await expect(page.getByRole("heading", { name: "陈屿 & 林晚" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "吴昊 & 王璐" })).toBeVisible();
   await page.getByRole("link", { name: /查看邀请/ }).click();
   await expect(page).toHaveURL(/\/details$/);
   await expect(page.getByRole("heading", { name: "婚礼信息" })).toBeVisible();

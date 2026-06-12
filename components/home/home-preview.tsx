@@ -16,7 +16,7 @@ const previews = [
   },
   {
     eyebrow: "Wedding Details",
-    title: "相约西溪的秋日",
+    title: "相约泰兴的金秋",
     description:
       "仪式、午宴、交通与住宿信息，都已为你整理在这份宾客指南中。",
     href: "/details",
@@ -35,7 +35,7 @@ export function HomePreview({ content }: { content: SiteContent }) {
           </h2>
           <p className="mx-auto mt-8 max-w-2xl text-base leading-9 text-[var(--color-muted)] md:text-lg">
             从相遇到相爱，我们走过许多平凡而珍贵的日子。
-            如今想邀请最重要的你，在秋天的西溪，一同见证新的开始。
+            如今想邀请最重要的你，在金秋的泰兴，一同见证新的开始。
           </p>
           <div className="mx-auto mt-10 h-px w-20 bg-[var(--color-champagne)]" />
           <p className="mt-8 font-serif text-xl tracking-[0.2em] text-[var(--color-champagne)]">
@@ -90,7 +90,7 @@ export function HomePreview({ content }: { content: SiteContent }) {
             期待与你相见
           </h2>
           <p className="mx-auto mt-6 max-w-xl leading-8 text-[var(--color-muted)]">
-            请在 2026 年 9 月 18 日前告诉我们，你是否能来到现场。
+            请尽早告诉我们，你是否能来到现场，方便我们为你准备席位。
           </p>
           <Link
             href="/rsvp"

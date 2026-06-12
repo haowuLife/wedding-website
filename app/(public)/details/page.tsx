@@ -1,4 +1,7 @@
-import { MapPinIcon } from "@phosphor-icons/react/dist/ssr";
+import {
+  ArrowUpRightIcon,
+  MapPinIcon,
+} from "@phosphor-icons/react/dist/ssr";
 import type { Metadata } from "next";
 
 import { Reveal } from "@/components/motion/reveal";
@@ -29,12 +32,12 @@ export default async function DetailsPage() {
           </p>
         </div>
         <div className="border-y border-[var(--color-line)] py-8 md:border-x md:border-y-0 md:py-0">
-          <p className="eyebrow">Ceremony</p>
+          <p className="eyebrow">Luncheon</p>
           <p className="mt-4 font-serif text-2xl tracking-[0.12em]">
-            {wedding.ceremonyTime}
+            午宴
           </p>
           <p className="mt-2 text-sm text-[var(--color-muted)]">
-            午宴 {wedding.receptionTime}
+            开席时间 {wedding.receptionTime}
           </p>
         </div>
         <div className="py-6 md:py-0">
@@ -52,20 +55,31 @@ export default async function DetailsPage() {
         <Reveal>
           <p className="eyebrow">Location</p>
           <h2 className="mt-5 font-serif text-4xl tracking-[0.08em]">
-            西溪 · 杭州
+            {wedding.city} · 泰州
           </h2>
           <p className="mt-6 leading-8 text-[var(--color-muted)]">
-            酒店位于西溪湿地南侧，四周被水岸、芦苇与林木环绕。建议宾客提前四十分钟抵达。
+            午宴地点位于泰兴市文昌中路。建议宾客提前规划路线，并根据后续通知预留充足到场时间。
           </p>
-          <a
-            href={wedding.mapUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="mt-8 inline-flex items-center gap-3 rounded-full border border-[var(--color-champagne)] px-7 py-3 text-sm tracking-[0.16em] text-[var(--color-champagne)]"
-          >
-            <MapPinIcon size={18} weight="light" aria-hidden />
-            地图导航
-          </a>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a
+              href={wedding.mapUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-3 rounded-full border border-[var(--color-champagne)] px-7 py-3 text-sm tracking-[0.16em] text-[var(--color-champagne)]"
+            >
+              <MapPinIcon size={18} weight="light" aria-hidden />
+              地图导航
+            </a>
+            <a
+              href={wedding.hotelUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-3 rounded-full bg-[var(--color-champagne)] px-7 py-3 text-sm tracking-[0.16em] text-white"
+            >
+              酒店官网
+              <ArrowUpRightIcon size={18} weight="light" aria-hidden />
+            </a>
+          </div>
         </Reveal>
 
         <Reveal delay={0.1}>

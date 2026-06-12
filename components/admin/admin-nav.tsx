@@ -46,7 +46,7 @@ export function AdminNav({
     <aside className="border-b border-black/10 bg-[#26231f] text-white md:fixed md:inset-y-0 md:left-0 md:w-64 md:border-b-0 md:border-r">
       <div className="flex h-full flex-col p-5 md:p-7">
         <Link href="/" className="font-serif text-xl tracking-[0.16em]">
-          C & L
+          W & W
         </Link>
         <p className="mt-2 text-xs tracking-[0.14em] text-white/45">
           WEDDING ADMIN

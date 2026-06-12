@@ -43,9 +43,11 @@ export type SiteContent = {
     lunarDate: string;
     ceremonyTime: string;
     receptionTime: string;
+    city: string;
     venue: string;
     address: string;
     mapUrl: string;
+    hotelUrl: string;
     schedule: ScheduleItem[];
   };
   story: StoryItem[];
@@ -69,9 +71,9 @@ export type SiteContent = {
 
 export const defaultSiteContent: SiteContent = {
   identity: {
-    groom: "陈屿",
-    bride: "林晚",
-    title: "陈屿 & 林晚",
+    groom: "吴昊",
+    bride: "王璐",
+    title: "吴昊 & 王璐",
     subtitle: "诚邀您见证我们的婚礼",
   },
   hero: {
@@ -80,65 +82,68 @@ export const defaultSiteContent: SiteContent = {
     invitationLabel: "查看邀请",
   },
   wedding: {
-    date: "2026-10-18T10:28:00+08:00",
-    displayDate: "2026.10.18",
-    lunarDate: "农历九月初八 · 星期日",
-    ceremonyTime: "10:28",
-    receptionTime: "12:08",
-    venue: "杭州木守西溪酒店",
-    address: "浙江省杭州市西湖区西溪湿地龙舌嘴入口",
+    date: "2026-10-06T12:00:00+08:00",
+    displayDate: "2026.10.06",
+    lunarDate: "星期二 · 午宴",
+    ceremonyTime: "待确认",
+    receptionTime: "待确认",
+    city: "泰兴",
+    venue: "泰州泰兴希尔顿欢朋酒店",
+    address: "江苏省泰州市泰兴市文昌中路1号",
     mapUrl:
-      "https://uri.amap.com/search?keyword=%E6%9D%AD%E5%B7%9E%E6%9C%A8%E5%AE%88%E8%A5%BF%E6%BA%AA%E9%85%92%E5%BA%97",
+      "https://uri.amap.com/search?keyword=%E6%B3%B0%E5%B7%9E%E6%B3%B0%E5%85%B4%E5%B8%8C%E5%B0%94%E9%A1%BF%E6%AC%A2%E6%9C%8B%E9%85%92%E5%BA%97",
+    hotelUrl:
+      "https://www.hilton.com/zh-hans/hotels/ytytxhx-hampton-taizhou-taixing/",
     schedule: [
       {
-        time: "09:30",
+        time: "上午",
         title: "宾客签到",
-        description: "在湖畔草坪相见，领取座位卡并合影留念。",
+        description: "抵达酒店后签到入场，具体时间将在婚礼前另行通知。",
       },
       {
-        time: "10:28",
-        title: "婚礼仪式",
-        description: "请提前十分钟入席，一同见证我们的誓言。",
+        time: "午宴前",
+        title: "合影留念",
+        description: "与新人和亲友合影，记录相聚的珍贵时刻。",
       },
       {
-        time: "11:28",
-        title: "花园酒会",
-        description: "短暂休憩，享用香槟与轻食。",
-      },
-      {
-        time: "12:08",
+        time: "午间",
         title: "午宴开始",
-        description: "移步宴会厅，共享午宴与祝福。",
+        description: "共同入席，分享喜悦、佳肴与祝福。",
+      },
+      {
+        time: "宴后",
+        title: "自由交流",
+        description: "与亲友叙旧留影，慢慢收藏这一天的温暖。",
       },
     ],
   },
   story: [
     {
-      date: "2019.04",
+      date: "待补充",
       title: "初次相遇",
       description:
-        "春雨刚停的傍晚，我们在一间小小的书店里，因为同一本旅行摄影集开始交谈。",
+        "属于吴昊与王璐的初见故事，将在这里慢慢写下。",
       image: "/images/gallery/story-01.jpg",
     },
     {
-      date: "2020.10",
-      title: "第一次远行",
+      date: "待补充",
+      title: "相知相伴",
       description:
-        "沿着海岸开了很久的车，也是在那次旅途中，我们开始认真想象共同生活的模样。",
+        "那些平凡却闪闪发光的日子，等待你们补充真实的回忆。",
       image: "/images/gallery/story-02.jpg",
     },
     {
-      date: "2024.05",
-      title: "山顶的约定",
+      date: "待补充",
+      title: "决定同行",
       description:
-        "晨雾散去时，他拿出戒指。没有排练好的台词，只有一句笃定的“我们回家吧”。",
+        "从两个人到一个家，这段重要的约定将在这里被珍藏。",
       image: "/images/gallery/story-03.jpg",
     },
     {
-      date: "2026.10",
+      date: "2026.10.06",
       title: "婚礼将至",
       description:
-        "我们想把最珍贵的一天分享给一路陪伴的人，期待在西溪的秋日与你相见。",
+        "我们想把最珍贵的一天分享给一路陪伴的人，期待在泰兴的金秋与你相见。",
       image: "/images/gallery/story-04.jpg",
     },
   ],
@@ -146,30 +151,26 @@ export const defaultSiteContent: SiteContent = {
     {
       title: "公共交通",
       description:
-        "地铁 3 号线至西溪湿地南站，B 出口乘坐接驳车约 8 分钟抵达酒店。",
+        "建议使用实时地图导航至泰州泰兴希尔顿欢朋酒店，出发前留意当天路况。",
     },
     {
       title: "停车信息",
       description:
-        "酒店提供免费停车位。自驾宾客请在 RSVP 中勾选停车需求，以便预留。",
+        "酒店提供免费现场停车。自驾宾客请在 RSVP 中勾选停车需求，便于提前统计。",
     },
     {
       title: "住宿建议",
       description:
-        "酒店为外地宾客预留协议房，建议在 2026 年 9 月 18 日前联系新人预订。",
+        "外地宾客可优先咨询泰州泰兴希尔顿欢朋酒店，房态与价格请以酒店实时信息为准。",
     },
     {
       title: "着装建议",
       description:
-        "花园半正式着装。推荐米白、浅棕、雾灰与柔和绿色，请避免全黑或大面积正红。",
+        "推荐简洁雅致的半正式着装，可选择米白、浅棕、雾灰或柔和低饱和色。",
     },
     {
       title: "婚礼联系人",
-      description: "如需接驳或临时协助，请联系婚礼管家周女士。",
-      action: {
-        label: "联系管家",
-        href: "tel:+8613800000000",
-      },
+      description: "如需接驳或临时协助，请联系新人；具体联络方式将在确认后更新。",
     },
   ],
   navigation: [

@@ -33,45 +33,52 @@ export function SiteHeader() {
         )}
       >
         {isHome ? (
-          <nav
-            className="flex items-center gap-2 text-[9px] tracking-[0.12em] text-[var(--color-champagne)] sm:gap-4 sm:text-[11px]"
-            aria-label="首页快捷导航"
-          >
-            {defaultSiteContent.navigation.slice(1, 4).map((item, index) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="whitespace-nowrap"
-              >
-                {item.label}
-                {index < 2 ? (
-                  <span className="ml-2 opacity-45 sm:ml-4">|</span>
-                ) : null}
-              </Link>
-            ))}
-          </nav>
+          <>
+            <nav
+              className="flex items-center gap-2 text-[9px] tracking-[0.12em] text-[var(--color-champagne)] sm:gap-4 sm:text-[11px] lg:hidden"
+              aria-label="首页快捷导航"
+            >
+              {defaultSiteContent.navigation.slice(1, 4).map((item, index) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="whitespace-nowrap"
+                >
+                  {item.label}
+                  {index < 2 ? (
+                    <span className="ml-2 opacity-45 sm:ml-4">|</span>
+                  ) : null}
+                </Link>
+              ))}
+            </nav>
+            <Link
+              href="/"
+              className="hidden font-serif text-xl tracking-[0.2em] lg:block"
+              aria-label="返回首页"
+            >
+              W & W
+            </Link>
+          </>
         ) : (
           <Link
             href="/"
             className="font-serif text-lg tracking-[0.2em] md:text-xl"
             aria-label="返回首页"
           >
-            C & L
+            W & W
           </Link>
         )}
 
         <nav
-          className={cn(
-            "hidden items-center gap-7 lg:flex",
-            isHome && "lg:hidden",
-          )}
+          className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-5 lg:flex xl:gap-7"
           aria-label="主导航"
+          data-testid="desktop-navigation"
         >
-          {defaultSiteContent.navigation.slice(1, 6).map((item) => (
+          {defaultSiteContent.navigation.slice(1).map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm tracking-[0.12em] transition-opacity hover:opacity-55"
+              className="whitespace-nowrap text-xs tracking-[0.1em] transition-opacity hover:opacity-55 xl:text-sm"
             >
               {item.label}
             </Link>
@@ -89,10 +96,11 @@ export function SiteHeader() {
           </button>
           <button
             type="button"
-            className="grid size-9 place-items-center rounded-full transition-colors hover:bg-white/30 md:size-10"
+            className="grid size-9 place-items-center rounded-full transition-colors hover:bg-white/30 md:size-10 lg:hidden"
             onClick={() => setOpen(true)}
             aria-label="打开菜单"
             aria-expanded={open}
+            data-testid="mobile-menu-button"
           >
             <ListIcon size={24} weight="light" aria-hidden />
           </button>
@@ -109,7 +117,7 @@ export function SiteHeader() {
         aria-hidden={!open}
       >
         <div className="flex h-16 items-center justify-between px-5 md:h-20 md:px-10">
-          <span className="font-serif text-lg tracking-[0.2em]">C & L</span>
+          <span className="font-serif text-lg tracking-[0.2em]">W & W</span>
           <button
             type="button"
             className="grid size-11 place-items-center rounded-full"
