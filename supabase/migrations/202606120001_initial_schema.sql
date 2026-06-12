@@ -97,6 +97,55 @@ as $$
   select coalesce((auth.jwt() -> 'app_metadata' ->> 'role') = 'admin', false);
 $$;
 
+create or replace function public.consume_form_rate_limit(
+  p_scope text,
+  p_ip_hash text,
+  p_limit integer,
+  p_window_seconds integer
+)
+returns boolean
+language plpgsql
+security definer
+set search_path = ''
+as $$
+declare
+  current_record public.form_rate_limits%rowtype;
+begin
+  delete from public.form_rate_limits where expires_at <= now();
+
+  select * into current_record
+  from public.form_rate_limits
+  where scope = p_scope and ip_hash = p_ip_hash
+  for update;
+
+  if not found then
+    insert into public.form_rate_limits (
+      scope, ip_hash, request_count, expires_at
+    ) values (
+      p_scope,
+      p_ip_hash,
+      1,
+      now() + make_interval(secs => p_window_seconds)
+    );
+    return true;
+  end if;
+
+  if current_record.request_count >= p_limit then
+    return false;
+  end if;
+
+  update public.form_rate_limits
+  set request_count = request_count + 1
+  where id = current_record.id;
+  return true;
+end;
+$$;
+
+revoke all on function public.consume_form_rate_limit(text, text, integer, integer)
+from public, anon, authenticated;
+grant execute on function public.consume_form_rate_limit(text, text, integer, integer)
+to service_role;
+
 alter table public.guests enable row level security;
 alter table public.messages enable row level security;
 alter table public.photos enable row level security;
