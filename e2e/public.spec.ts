@@ -8,6 +8,17 @@ test("mobile invitation opens wedding details", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "婚礼信息" })).toBeVisible();
 });
 
+test("home scroll surfaces the complete guest guide", async ({ page }) => {
+  await page.goto("/");
+  const guideLink = page.getByRole("link", {
+    name: "查看完整宾客指南",
+  });
+  await expect(guideLink).toBeVisible();
+  await guideLink.click();
+  await expect(page).toHaveURL(/\/guide$/);
+  await expect(page.getByRole("heading", { name: "宾客指南" })).toBeVisible();
+});
+
 test("guest can submit RSVP and receive thanks", async ({ page }) => {
   await page.goto("/rsvp");
   await expect(page.getByLabel("携带儿童")).toHaveCount(0);

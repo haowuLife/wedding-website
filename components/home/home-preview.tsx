@@ -13,14 +13,25 @@ const previews = [
       "那些被时间温柔收藏的瞬间，组成了我们想与你分享的故事。",
     href: "/story",
     image: "/images/gallery/story-01.jpg",
+    actionLabel: "阅读我们的故事",
   },
   {
     eyebrow: "Wedding Details",
     title: "相约泰兴的金秋",
     description:
-      "仪式、午宴、交通与住宿信息，都已为你整理在这份宾客指南中。",
+      "婚礼日期、午宴地点与当天流程，都已为你整理在婚礼信息中。",
     href: "/details",
     image: "/images/gallery/story-03-clean.webp",
+    actionLabel: "查看婚礼信息",
+  },
+  {
+    eyebrow: "Guest Guide",
+    title: "宾客指南",
+    description:
+      "交通、住宿、天气，以及泰州旅行与泰兴美食推荐，都整理在完整宾客指南中。",
+    href: "/guide",
+    image: "/images/guide/taixing-ginkgo-forest.webp",
+    actionLabel: "查看完整宾客指南",
   },
 ];
 
@@ -75,7 +86,7 @@ export function HomePreview({ content }: { content: SiteContent }) {
                 href={preview.href}
                 className="mt-8 inline-flex items-center gap-3 border-b border-[var(--color-champagne)] pb-2 text-sm tracking-[0.18em] text-[var(--color-champagne)]"
               >
-                了解更多
+                {preview.actionLabel}
                 <ArrowUpRightIcon size={17} weight="light" aria-hidden />
               </Link>
             </div>
