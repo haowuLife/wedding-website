@@ -5,13 +5,25 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import { defaultSiteContent } from "@/lib/content/site";
+import { LanguageSwitcher } from "@/components/i18n/language-switcher";
+import type { NavigationItem } from "@/lib/content/site";
+import type { PublicMessages } from "@/lib/i18n/messages";
+import type { Locale } from "@/lib/i18n/locale";
 import { cn } from "@/lib/utils";
 
-export function SiteHeader() {
+export function SiteHeader({
+  locale,
+  navigation,
+  messages,
+}: {
+  locale: Locale;
+  navigation: NavigationItem[];
+  messages: PublicMessages;
+}) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const isHome = pathname === "/";
+  const labels = messages.header;
 
   useEffect(() => {
     if (!open) return;
@@ -36,9 +48,9 @@ export function SiteHeader() {
           <>
             <nav
               className="flex items-center gap-2 text-[9px] tracking-[0.12em] text-[var(--color-champagne)] sm:gap-4 sm:text-[11px] lg:hidden"
-              aria-label="首页快捷导航"
+              aria-label={labels.homeQuickNavigationLabel}
             >
-              {defaultSiteContent.navigation.slice(1, 4).map((item, index) => (
+              {navigation.slice(1, 4).map((item, index) => (
                 <Link
                   key={item.href}
                   href={item.href}
@@ -54,7 +66,7 @@ export function SiteHeader() {
             <Link
               href="/"
               className="hidden font-serif text-xl tracking-[0.2em] lg:block"
-              aria-label="返回首页"
+              aria-label={labels.returnHomeLabel}
             >
               W & W
             </Link>
@@ -63,7 +75,7 @@ export function SiteHeader() {
           <Link
             href="/"
             className="font-serif text-lg tracking-[0.2em] md:text-xl"
-            aria-label="返回首页"
+            aria-label={labels.returnHomeLabel}
           >
             W & W
           </Link>
@@ -71,10 +83,10 @@ export function SiteHeader() {
 
         <nav
           className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-5 lg:flex xl:gap-7"
-          aria-label="主导航"
+          aria-label={labels.mainNavigationLabel}
           data-testid="desktop-navigation"
         >
-          {defaultSiteContent.navigation.slice(1).map((item) => (
+          {navigation.slice(1).map((item) => (
             <Link
               key={item.href}
               href={item.href}
@@ -86,11 +98,15 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <LanguageSwitcher
+            locale={locale}
+            labels={messages.languageSwitcher}
+          />
           <button
             type="button"
-            className="grid size-9 place-items-center rounded-full border border-current/35 transition-colors hover:bg-white/30 md:size-10"
-            aria-label="背景音乐暂未启用"
-            title="背景音乐暂未启用"
+            className="hidden size-9 place-items-center rounded-full border border-current/35 transition-colors hover:bg-white/30 md:grid md:size-10"
+            aria-label={labels.musicDisabledLabel}
+            title={labels.musicDisabledLabel}
           >
             <MusicNotesIcon size={17} weight="light" aria-hidden />
           </button>
@@ -98,7 +114,7 @@ export function SiteHeader() {
             type="button"
             className="grid size-9 place-items-center rounded-full transition-colors hover:bg-white/30 md:size-10 lg:hidden"
             onClick={() => setOpen(true)}
-            aria-label="打开菜单"
+            aria-label={labels.openMenuLabel}
             aria-expanded={open}
             data-testid="mobile-menu-button"
           >
@@ -122,16 +138,16 @@ export function SiteHeader() {
             type="button"
             className="grid size-11 place-items-center rounded-full"
             onClick={() => setOpen(false)}
-            aria-label="关闭菜单"
+            aria-label={labels.closeMenuLabel}
           >
             <XIcon size={26} weight="light" aria-hidden />
           </button>
         </div>
         <nav
           className="mx-auto flex max-w-xl flex-col px-8 pb-10 pt-10"
-          aria-label="移动导航"
+          aria-label={labels.mobileNavigationLabel}
         >
-          {defaultSiteContent.navigation.map((item, index) => (
+          {navigation.map((item, index) => (
             <Link
               key={item.href}
               href={item.href}

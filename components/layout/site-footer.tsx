@@ -1,9 +1,15 @@
 import Link from "next/link";
 
-import { getSiteContent } from "@/lib/content/settings";
+import type { SiteContent } from "@/lib/content/site";
+import type { PublicMessages } from "@/lib/i18n/messages";
 
-export async function SiteFooter() {
-  const content = await getSiteContent();
+export function SiteFooter({
+  content,
+  messages,
+}: {
+  content: SiteContent;
+  messages: PublicMessages;
+}) {
   return (
     <footer className="border-t border-[var(--color-line)] px-6 py-14 md:px-10">
       <div className="mx-auto flex max-w-6xl flex-col gap-8 md:flex-row md:items-end md:justify-between">
@@ -23,10 +29,10 @@ export async function SiteFooter() {
             href="/guestbook"
             className="transition-colors hover:text-current"
           >
-            留下祝福
+            {messages.footer.guestbookLabel}
           </Link>
           <Link href="/admin" className="transition-colors hover:text-current">
-            管理
+            {messages.footer.adminLabel}
           </Link>
         </div>
       </div>
