@@ -141,6 +141,7 @@ export type PublicMessages = {
     title: string;
     introduction: string;
     allCategory: string;
+    categoryNames: Record<string, string>;
     categoryLabel: string;
     filterPrefix: string;
     viewPrefix: string;
@@ -334,6 +335,11 @@ export const publicMessages = {
       introduction:
         "晨光、山野与一起走过的寻常日子，都成为我们想长久保存的画面。",
       allCategory: "全部",
+      categoryNames: {
+        晨光: "晨光",
+        山野: "山野",
+        日常: "日常",
+      },
       categoryLabel: "照片分类",
       filterPrefix: "筛选",
       viewPrefix: "查看",
@@ -525,9 +531,14 @@ export const publicMessages = {
       introduction:
         "Morning light, open landscapes, and the ordinary days we have shared have become photographs we hope to keep for years.",
       allCategory: "All",
+      categoryNames: {
+        晨光: "Morning Light",
+        山野: "Outdoors",
+        日常: "Everyday",
+      },
       categoryLabel: "Photo categories",
-      filterPrefix: "Filter by",
-      viewPrefix: "View",
+      filterPrefix: "Filter by ",
+      viewPrefix: "View ",
       previewLabel: "Photo preview",
       closePreviewLabel: "Close photo preview",
       previousPhotoLabel: "Previous photo",

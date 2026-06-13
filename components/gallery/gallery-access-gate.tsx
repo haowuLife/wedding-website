@@ -3,7 +3,13 @@
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 
-export function GalleryAccessGate() {
+import type { PublicMessages } from "@/lib/i18n/messages";
+
+export function GalleryAccessGate({
+  messages,
+}: {
+  messages: PublicMessages["gallery"];
+}) {
   const router = useRouter();
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -13,21 +19,26 @@ export function GalleryAccessGate() {
     setSubmitting(true);
     setError("");
     const code = new FormData(event.currentTarget).get("code");
-    const response = await fetch("/api/gallery/access", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ code }),
-    });
-    const result = (await response.json()) as {
-      ok: boolean;
-      error?: string;
-    };
-    if (!response.ok || !result.ok) {
-      setError(result.error ?? "访问码错误");
+    try {
+      const response = await fetch("/api/gallery/access", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code }),
+      });
+      const result = (await response.json()) as {
+        ok: boolean;
+        error?: string;
+      };
+      if (!response.ok || !result.ok) {
+        setError(messages.accessError);
+        setSubmitting(false);
+        return;
+      }
+      router.refresh();
+    } catch {
+      setError(messages.accessError);
       setSubmitting(false);
-      return;
     }
-    router.refresh();
   }
 
   return (
@@ -38,13 +49,13 @@ export function GalleryAccessGate() {
       >
         <p className="eyebrow">Private Gallery</p>
         <h1 className="mt-5 font-serif text-4xl tracking-[0.1em]">
-          输入相册访问码
+          {messages.accessTitle}
         </h1>
         <p className="mt-5 leading-8 text-[var(--color-muted)]">
-          这是一份只与亲友分享的影像记录。
+          {messages.accessDescription}
         </p>
         <label htmlFor="gallery-code" className="sr-only">
-          相册访问码
+          {messages.accessCodeLabel}
         </label>
         <input
           id="gallery-code"
@@ -65,7 +76,7 @@ export function GalleryAccessGate() {
           disabled={submitting}
           className="mt-7 rounded-full bg-[var(--color-champagne)] px-9 py-4 text-sm tracking-[0.18em] text-white disabled:opacity-50"
         >
-          {submitting ? "验证中..." : "进入相册"}
+          {submitting ? messages.accessSubmitting : messages.accessSubmit}
         </button>
       </form>
     </div>

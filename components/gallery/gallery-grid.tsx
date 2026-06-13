@@ -2,14 +2,17 @@
 
 import Image from "next/image";
 
+import type { PublicMessages } from "@/lib/i18n/messages";
 import type { Photo } from "@/lib/repositories/types";
 
 export function GalleryGrid({
   photos,
   onSelect,
+  messages,
 }: {
   photos: Photo[];
   onSelect: (photo: Photo) => void;
+  messages: PublicMessages["gallery"];
 }) {
   return (
     <div className="columns-2 gap-3 md:columns-3 md:gap-5">
@@ -17,7 +20,7 @@ export function GalleryGrid({
         <button
           key={photo.id}
           type="button"
-          aria-label={`查看${photo.title}`}
+          aria-label={`${messages.viewPrefix}${photo.title}`}
           onClick={() => onSelect(photo)}
           className="group relative mb-3 block w-full break-inside-avoid overflow-hidden text-left md:mb-5"
         >

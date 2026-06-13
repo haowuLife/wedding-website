@@ -8,6 +8,7 @@ import {
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 
+import type { PublicMessages } from "@/lib/i18n/messages";
 import type { Photo } from "@/lib/repositories/types";
 
 export function GalleryLightbox({
@@ -15,11 +16,13 @@ export function GalleryLightbox({
   photos,
   onChange,
   onClose,
+  messages,
 }: {
   photo: Photo;
   photos: Photo[];
   onChange: (photo: Photo) => void;
   onClose: () => void;
+  messages: PublicMessages["gallery"];
 }) {
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const pointerStart = useRef<number | null>(null);
@@ -45,7 +48,7 @@ export function GalleryLightbox({
     <div
       role="dialog"
       aria-modal="true"
-      aria-label="照片预览"
+      aria-label={messages.previewLabel}
       className="fixed inset-0 z-[80] grid place-items-center bg-[#1e1c19]/95 p-4 text-white"
       onPointerDown={(event) => {
         pointerStart.current = event.clientX;
@@ -60,7 +63,7 @@ export function GalleryLightbox({
       <button
         ref={closeButtonRef}
         type="button"
-        aria-label="关闭照片预览"
+        aria-label={messages.closePreviewLabel}
         onClick={onClose}
         className="absolute right-5 top-5 grid size-11 place-items-center rounded-full border border-white/30"
       >
@@ -68,7 +71,7 @@ export function GalleryLightbox({
       </button>
       <button
         type="button"
-        aria-label="上一张照片"
+        aria-label={messages.previousPhotoLabel}
         onClick={() => go(-1)}
         className="absolute left-3 top-1/2 grid size-11 -translate-y-1/2 place-items-center rounded-full bg-black/20 md:left-7"
       >
@@ -92,7 +95,7 @@ export function GalleryLightbox({
       </figure>
       <button
         type="button"
-        aria-label="下一张照片"
+        aria-label={messages.nextPhotoLabel}
         onClick={() => go(1)}
         className="absolute right-3 top-1/2 grid size-11 -translate-y-1/2 place-items-center rounded-full bg-black/20 md:right-7"
       >

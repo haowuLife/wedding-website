@@ -2,34 +2,49 @@
 
 import { useMemo, useState } from "react";
 
+import type { PublicMessages } from "@/lib/i18n/messages";
 import type { Photo } from "@/lib/repositories/types";
 
 import { GalleryGrid } from "./gallery-grid";
 import { GalleryLightbox } from "./gallery-lightbox";
 
-export function GalleryExperience({ photos }: { photos: Photo[] }) {
-  const [category, setCategory] = useState("全部");
+const allCategories = "__all__";
+
+export function GalleryExperience({
+  photos,
+  messages,
+}: {
+  photos: Photo[];
+  messages: PublicMessages["gallery"];
+}) {
+  const [category, setCategory] = useState(allCategories);
   const [activePhoto, setActivePhoto] = useState<Photo | null>(null);
   const categories = useMemo(
-    () => ["全部", ...new Set(photos.map((photo) => photo.category))],
+    () => [allCategories, ...new Set(photos.map((photo) => photo.category))],
     [photos],
   );
   const filteredPhotos =
-    category === "全部"
+    category === allCategories
       ? photos
       : photos.filter((photo) => photo.category === category);
+  const categoryLabel = (item: string) =>
+    item === allCategories
+      ? messages.allCategory
+      : (messages.categoryNames[item] ?? item);
 
   return (
     <>
       <div
         className="mb-10 flex gap-2 overflow-x-auto pb-2"
-        aria-label="照片分类"
+        aria-label={messages.categoryLabel}
       >
-        {categories.map((item) => (
+        {categories.map((item) => {
+          const label = categoryLabel(item);
+          return (
           <button
             key={item}
             type="button"
-            aria-label={`筛选${item}`}
+            aria-label={`${messages.filterPrefix}${label}`}
             aria-pressed={category === item}
             onClick={() => setCategory(item)}
             className={`shrink-0 rounded-full border px-5 py-2 text-sm tracking-[0.12em] ${
@@ -38,17 +53,23 @@ export function GalleryExperience({ photos }: { photos: Photo[] }) {
                 : "border-[var(--color-line)]"
             }`}
           >
-            {item}
+            {label}
           </button>
-        ))}
+          );
+        })}
       </div>
-      <GalleryGrid photos={filteredPhotos} onSelect={setActivePhoto} />
+      <GalleryGrid
+        photos={filteredPhotos}
+        onSelect={setActivePhoto}
+        messages={messages}
+      />
       {activePhoto ? (
         <GalleryLightbox
           photo={activePhoto}
           photos={filteredPhotos}
           onChange={setActivePhoto}
           onClose={() => setActivePhoto(null)}
+          messages={messages}
         />
       ) : null}
     </>

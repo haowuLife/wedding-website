@@ -2,7 +2,13 @@
 
 import { FormEvent, useState } from "react";
 
-export function GuestbookForm() {
+import type { PublicMessages } from "@/lib/i18n/messages";
+
+export function GuestbookForm({
+  messages,
+}: {
+  messages: PublicMessages["guestbook"];
+}) {
   const [status, setStatus] = useState<"idle" | "submitting" | "success">(
     "idle",
   );
@@ -28,13 +34,13 @@ export function GuestbookForm() {
         error?: string;
       };
       if (!response.ok || !result.ok) {
-        setError(result.error ?? "提交失败，请稍后再试");
+        setError(messages.submitError);
         setStatus("idle");
         return;
       }
       setStatus("success");
     } catch {
-      setError("网络连接失败，请稍后再试");
+      setError(messages.networkError);
       setStatus("idle");
     }
   }
@@ -42,9 +48,11 @@ export function GuestbookForm() {
   if (status === "success") {
     return (
       <div className="border-y border-[var(--color-line)] py-12 text-center">
-        <h2 className="font-serif text-3xl tracking-[0.1em]">祝福已收到</h2>
+        <h2 className="font-serif text-3xl tracking-[0.1em]">
+          {messages.successTitle}
+        </h2>
         <p className="mt-4 leading-8 text-[var(--color-muted)]">
-          留言会在新人审核后公开展示，谢谢你的祝福。
+          {messages.successDescription}
         </p>
       </div>
     );
@@ -54,7 +62,7 @@ export function GuestbookForm() {
     <form onSubmit={handleSubmit} className="space-y-7">
       <div>
         <label htmlFor="guestbook-name" className="text-sm tracking-[0.1em]">
-          姓名
+          {messages.nameLabel}
         </label>
         <input
           id="guestbook-name"
@@ -66,7 +74,7 @@ export function GuestbookForm() {
       </div>
       <div>
         <label htmlFor="guestbook-message" className="text-sm tracking-[0.1em]">
-          祝福留言
+          {messages.messageLabel}
         </label>
         <textarea
           id="guestbook-message"
@@ -96,7 +104,9 @@ export function GuestbookForm() {
         disabled={status === "submitting"}
         className="rounded-full bg-[var(--color-champagne)] px-9 py-4 text-sm tracking-[0.18em] text-white disabled:opacity-50"
       >
-        {status === "submitting" ? "提交中..." : "送上祝福"}
+        {status === "submitting"
+          ? messages.submittingLabel
+          : messages.submitLabel}
       </button>
     </form>
   );

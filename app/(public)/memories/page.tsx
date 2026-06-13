@@ -4,14 +4,22 @@ import { notFound } from "next/navigation";
 import { GalleryExperience } from "@/components/gallery/gallery-experience";
 import { getSiteContent } from "@/lib/content/settings";
 import { canShowMemories } from "@/lib/domain/memories";
+import { getLocale } from "@/lib/i18n/locale";
+import { getMessages } from "@/lib/i18n/messages";
 import { getDisplayPhotos } from "@/lib/repositories/photo-service";
 
-export const metadata: Metadata = {
-  title: "婚礼回顾",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const messages = getMessages(await getLocale());
+  return {
+    title: messages.metadata.pages.memories,
+    description: messages.metadata.description,
+  };
+}
 
 export default async function MemoriesPage() {
-  const content = await getSiteContent();
+  const locale = await getLocale();
+  const content = await getSiteContent(locale);
+  const messages = getMessages(locale);
   if (!canShowMemories(content.memories)) {
     notFound();
   }
@@ -21,7 +29,7 @@ export default async function MemoriesPage() {
 
   return (
     <div className="page-shell min-h-[75vh] text-center">
-      <p className="eyebrow">Memories</p>
+      <p className="eyebrow">{messages.memories.eyebrow}</p>
       <h1 className="display-title mt-6">
         {content.memories.title}
       </h1>
@@ -47,10 +55,10 @@ export default async function MemoriesPage() {
           </div>
         ) : null}
         {photos.length ? (
-          <GalleryExperience photos={photos} />
+          <GalleryExperience photos={photos} messages={messages.gallery} />
         ) : (
           <p className="border-y border-[var(--color-line)] py-12 text-center text-[var(--color-muted)]">
-            婚礼影像正在整理中，稍后再来看看。
+            {messages.memories.emptyLabel}
           </p>
         )}
       </div>

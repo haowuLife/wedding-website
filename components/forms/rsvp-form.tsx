@@ -3,9 +3,15 @@
 import { CheckCircleIcon } from "@phosphor-icons/react";
 import { FormEvent, useState } from "react";
 
+import type { PublicMessages } from "@/lib/i18n/messages";
+
 type FieldErrors = Record<string, string>;
 
-export function RsvpForm() {
+export function RsvpForm({
+  messages,
+}: {
+  messages: PublicMessages["rsvp"];
+}) {
   const [attending, setAttending] = useState(true);
   const [status, setStatus] = useState<"idle" | "submitting" | "success">(
     "idle",
@@ -40,14 +46,21 @@ export function RsvpForm() {
         fields?: FieldErrors;
       };
       if (!response.ok || !result.ok) {
-        setError(result.error ?? "提交失败，请稍后再试");
-        setFieldErrors(result.fields ?? {});
+        setError(messages.submitError);
+        setFieldErrors(
+          Object.fromEntries(
+            Object.keys(result.fields ?? {}).map((key) => [
+              key,
+              messages.submitError,
+            ]),
+          ),
+        );
         setStatus("idle");
         return;
       }
       setStatus("success");
     } catch {
-      setError("网络连接失败，请稍后再试");
+      setError(messages.networkError);
       setStatus("idle");
     }
   }
@@ -62,10 +75,10 @@ export function RsvpForm() {
           aria-hidden
         />
         <h2 className="mt-6 font-serif text-4xl tracking-[0.1em]">
-          谢谢你的回复
+          {messages.successTitle}
         </h2>
         <p className="mx-auto mt-5 max-w-md leading-8 text-[var(--color-muted)]">
-          我们已经收到你的 RSVP。期待在泰兴的金秋与你相见。
+          {messages.successDescription}
         </p>
       </div>
     );
@@ -74,9 +87,14 @@ export function RsvpForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-8" noValidate>
       <div className="grid gap-8 sm:grid-cols-2">
-        <Field label="姓名" name="name" error={fieldErrors.name} required />
         <Field
-          label="手机号"
+          label={messages.nameLabel}
+          name="name"
+          error={fieldErrors.name}
+          required
+        />
+        <Field
+          label={messages.phoneLabel}
           name="phone"
           type="tel"
           inputMode="tel"
@@ -86,12 +104,16 @@ export function RsvpForm() {
       </div>
 
       <fieldset>
-        <legend className="text-sm tracking-[0.12em]">是否参加婚礼</legend>
+        <legend className="text-sm tracking-[0.12em]">
+          {messages.attendingLegend}
+        </legend>
         <div className="mt-4 grid grid-cols-2 gap-3">
-          {[
-            [true, "欣然参加"],
-            [false, "遗憾缺席"],
-          ].map(([value, label]) => (
+          {(
+            [
+              [true, messages.attendingYes],
+              [false, messages.attendingNo],
+            ] as const
+          ).map(([value, label]) => (
             <button
               key={String(value)}
               type="button"
@@ -116,7 +138,7 @@ export function RsvpForm() {
               htmlFor="guestCount"
               className="text-sm tracking-[0.12em]"
             >
-              参加人数
+              {messages.guestCountLabel}
             </label>
             <select
               id="guestCount"
@@ -126,7 +148,7 @@ export function RsvpForm() {
             >
               {[1, 2, 3, 4, 5, 6].map((count) => (
                 <option key={count} value={count}>
-                  {count} 人
+                  {count} {messages.guestCountSuffix}
                 </option>
               ))}
             </select>
@@ -137,8 +159,8 @@ export function RsvpForm() {
 
       <TextAreaField
         name="message"
-        label="祝福留言"
-        placeholder="想对我们说的话"
+        label={messages.messageLabel}
+        placeholder={messages.messagePlaceholder}
         error={fieldErrors.message}
       />
 
@@ -158,7 +180,9 @@ export function RsvpForm() {
         disabled={status === "submitting"}
         className="w-full rounded-full bg-[var(--color-champagne)] px-8 py-4 text-sm tracking-[0.2em] text-white disabled:opacity-50"
       >
-        {status === "submitting" ? "提交中..." : "提交 RSVP"}
+        {status === "submitting"
+          ? messages.submittingLabel
+          : messages.submitLabel}
       </button>
     </form>
   );
