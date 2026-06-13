@@ -1,11 +1,12 @@
 "use client";
 
-import { ListIcon, MusicNotesIcon, XIcon } from "@phosphor-icons/react";
+import { ListIcon, XIcon } from "@phosphor-icons/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { LanguageSwitcher } from "@/components/i18n/language-switcher";
+import { CoupleSignature } from "@/components/layout/couple-signature";
 import type { NavigationItem } from "@/lib/content/site";
 import type { PublicMessages } from "@/lib/i18n/messages";
 import type { Locale } from "@/lib/i18n/locale";
@@ -22,129 +23,119 @@ export function SiteHeader({
 }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const isHome = pathname === "/";
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
   const labels = messages.header;
 
   useEffect(() => {
     if (!open) return;
+    closeButtonRef.current?.focus();
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setOpen(false);
+      if (event.key === "Escape") {
+        setOpen(false);
+        menuButtonRef.current?.focus();
+      }
     };
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [open]);
 
+  function isActive(href: string) {
+    return href === "/" ? pathname === href : pathname.startsWith(href);
+  }
+
   return (
     <>
       <header
-        className={cn(
-          "fixed inset-x-0 top-0 z-50 flex h-16 items-center justify-between px-4 transition-colors md:h-20 md:px-8",
-          isHome
-            ? "text-[var(--color-ink)]"
-            : "border-b border-[var(--color-line)] bg-[color:var(--color-ivory)/0.92] text-[var(--color-ink)] backdrop-blur-xl",
-        )}
+        data-site-header
+        className="fixed inset-x-0 top-0 z-50 h-[4.5rem] border-b border-[var(--color-romantic-line)] bg-white/95 text-[var(--color-ink)] shadow-[0_0.5rem_2rem_rgb(185_79_83/0.05)] backdrop-blur-xl md:h-20"
       >
-        {isHome ? (
-          <>
-            <nav
-              className="flex items-center gap-2 text-[9px] tracking-[0.12em] text-[var(--color-champagne)] sm:gap-4 sm:text-[11px] lg:hidden"
-              aria-label={labels.homeQuickNavigationLabel}
-            >
-              {navigation.slice(1, 4).map((item, index) => (
+        <div className="relative mx-auto flex h-full max-w-[90rem] items-center justify-between gap-3 px-4 sm:px-6 md:px-8">
+          <Link
+            href="/"
+            className="shrink-0 rounded-md"
+            aria-label={labels.returnHomeLabel}
+          >
+            <CoupleSignature locale={locale} compact />
+          </Link>
+
+          <nav
+            className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-4 lg:flex xl:gap-7"
+            aria-label={labels.mainNavigationLabel}
+            data-testid="desktop-navigation"
+          >
+            {navigation.slice(1).map((item) => {
+              const active = isActive(item.href);
+              return (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="whitespace-nowrap"
+                  aria-current={active ? "page" : undefined}
+                  className={cn(
+                    "relative whitespace-nowrap py-2 text-xs font-medium tracking-[0.08em] text-[var(--color-muted)] transition-colors after:absolute after:inset-x-0 after:-bottom-0.5 after:h-0.5 after:origin-center after:rounded-full after:bg-[var(--color-coral)] after:transition-transform hover:text-[var(--color-coral-deep)] xl:text-sm",
+                    active
+                      ? "text-[var(--color-coral-deep)] after:scale-x-100"
+                      : "after:scale-x-0",
+                  )}
                 >
                   {item.label}
-                  {index < 2 ? (
-                    <span className="ml-2 opacity-45 sm:ml-4">|</span>
-                  ) : null}
                 </Link>
-              ))}
-            </nav>
-            <Link
-              href="/"
-              className="hidden font-serif text-xl tracking-[0.2em] lg:block"
-              aria-label={labels.returnHomeLabel}
-            >
-              W & W
-            </Link>
-          </>
-        ) : (
-          <Link
-            href="/"
-            className="font-serif text-lg tracking-[0.2em] md:text-xl"
-            aria-label={labels.returnHomeLabel}
-          >
-            W & W
-          </Link>
-        )}
+              );
+            })}
+          </nav>
 
-        <nav
-          className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-5 lg:flex xl:gap-7"
-          aria-label={labels.mainNavigationLabel}
-          data-testid="desktop-navigation"
-        >
-          {navigation.slice(1).map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="whitespace-nowrap text-xs tracking-[0.1em] transition-opacity hover:opacity-55 xl:text-sm"
+          <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
+            <LanguageSwitcher
+              locale={locale}
+              labels={messages.languageSwitcher}
+            />
+            <button
+              ref={menuButtonRef}
+              type="button"
+              className="grid size-10 place-items-center rounded-full text-[var(--color-coral-deep)] transition-colors hover:bg-[var(--color-blush)] lg:hidden"
+              onClick={() => setOpen(true)}
+              aria-label={labels.openMenuLabel}
+              aria-expanded={open}
+              aria-controls="mobile-navigation-dialog"
+              data-testid="mobile-menu-button"
             >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
-
-        <div className="flex items-center gap-2">
-          <LanguageSwitcher
-            locale={locale}
-            labels={messages.languageSwitcher}
-          />
-          <button
-            type="button"
-            className="hidden size-9 place-items-center rounded-full border border-current/35 transition-colors hover:bg-white/30 md:grid md:size-10"
-            aria-label={labels.musicDisabledLabel}
-            title={labels.musicDisabledLabel}
-          >
-            <MusicNotesIcon size={17} weight="light" aria-hidden />
-          </button>
-          <button
-            type="button"
-            className="grid size-9 place-items-center rounded-full transition-colors hover:bg-white/30 md:size-10 lg:hidden"
-            onClick={() => setOpen(true)}
-            aria-label={labels.openMenuLabel}
-            aria-expanded={open}
-            data-testid="mobile-menu-button"
-          >
-            <ListIcon size={24} weight="light" aria-hidden />
-          </button>
+              <ListIcon size={24} weight="regular" aria-hidden />
+            </button>
+          </div>
         </div>
       </header>
 
       <div
+        id="mobile-navigation-dialog"
         className={cn(
-          "fixed inset-0 z-[60] bg-[var(--color-ivory)] transition duration-500",
+          "fixed inset-0 z-[60] bg-[var(--color-warm-white)] transition duration-300 lg:hidden",
           open
             ? "pointer-events-auto translate-y-0 opacity-100"
-            : "pointer-events-none -translate-y-4 opacity-0",
+            : "pointer-events-none -translate-y-3 opacity-0",
         )}
+        role="dialog"
+        aria-modal="true"
+        aria-label={labels.mobileNavigationLabel}
         aria-hidden={!open}
       >
-        <div className="flex h-16 items-center justify-between px-5 md:h-20 md:px-10">
-          <span className="font-serif text-lg tracking-[0.2em]">W & W</span>
+        <div className="flex h-[4.5rem] items-center justify-between border-b border-[var(--color-romantic-line)] bg-white px-4 sm:px-6 md:h-20 md:px-8">
+          <CoupleSignature locale={locale} compact />
           <button
+            ref={closeButtonRef}
             type="button"
-            className="grid size-11 place-items-center rounded-full"
-            onClick={() => setOpen(false)}
+            className="grid size-11 place-items-center rounded-full text-[var(--color-coral-deep)] transition-colors hover:bg-[var(--color-blush)]"
+            onClick={() => {
+              setOpen(false);
+              menuButtonRef.current?.focus();
+            }}
             aria-label={labels.closeMenuLabel}
+            tabIndex={open ? 0 : -1}
           >
-            <XIcon size={26} weight="light" aria-hidden />
+            <XIcon size={25} weight="regular" aria-hidden />
           </button>
         </div>
         <nav
-          className="mx-auto flex max-w-xl flex-col px-8 pb-10 pt-10"
+          className="mx-auto flex max-w-xl flex-col px-6 pb-10 pt-7 sm:px-8 sm:pt-10"
           aria-label={labels.mobileNavigationLabel}
         >
           {navigation.map((item, index) => (
@@ -153,12 +144,16 @@ export function SiteHeader({
               href={item.href}
               tabIndex={open ? 0 : -1}
               onClick={() => setOpen(false)}
-              className="flex items-baseline justify-between border-b border-[var(--color-line)] py-5"
+              aria-current={isActive(item.href) ? "page" : undefined}
+              className={cn(
+                "flex items-baseline justify-between border-b border-[var(--color-romantic-line)] py-5 transition-colors hover:text-[var(--color-coral-deep)]",
+                isActive(item.href) && "text-[var(--color-coral-deep)]",
+              )}
             >
-              <span className="font-serif text-2xl tracking-[0.08em]">
+              <span className="font-serif text-2xl font-medium tracking-[0.06em]">
                 {item.label}
               </span>
-              <span className="text-xs text-[var(--color-muted)]">
+              <span className="text-xs tracking-[0.14em] text-[var(--color-muted)]">
                 {String(index + 1).padStart(2, "0")}
               </span>
             </Link>

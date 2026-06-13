@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { CoupleSignature } from "@/components/layout/couple-signature";
 import type { SiteContent } from "@/lib/content/site";
 import type { PublicMessages } from "@/lib/i18n/messages";
 
@@ -11,27 +12,31 @@ export function SiteFooter({
   messages: PublicMessages;
 }) {
   return (
-    <footer className="border-t border-[var(--color-line)] px-6 py-14 md:px-10">
-      <div className="mx-auto flex max-w-6xl flex-col gap-8 md:flex-row md:items-end md:justify-between">
+    <footer className="border-t border-[var(--color-romantic-line)] bg-white px-6 py-12 md:px-10 md:py-14">
+      <div className="mx-auto flex max-w-6xl flex-col gap-9 md:flex-row md:items-end md:justify-between">
         <div>
-          <p className="font-serif text-3xl tracking-[0.12em]">
-            {content.identity.title}
-          </p>
-          <p className="mt-3 text-sm tracking-[0.18em] text-[var(--color-muted)]">
+          <CoupleSignature names={content.identity} />
+          <p className="mt-4 text-xs tracking-[0.16em] text-[var(--color-muted)] sm:text-sm">
             {content.wedding.displayDate} · {content.wedding.city}
           </p>
         </div>
-        <div className="flex flex-wrap gap-x-6 gap-y-3 text-sm text-[var(--color-muted)]">
-          <Link href="/rsvp" className="transition-colors hover:text-current">
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
+          <Link
+            href="/rsvp"
+            className="font-medium text-[var(--color-coral-deep)] underline decoration-[var(--color-coral)] decoration-2 underline-offset-4 transition-colors hover:text-[var(--color-ink)]"
+          >
             RSVP
           </Link>
           <Link
             href="/guestbook"
-            className="transition-colors hover:text-current"
+            className="font-medium text-[var(--color-coral-deep)] underline decoration-[var(--color-coral)] decoration-2 underline-offset-4 transition-colors hover:text-[var(--color-ink)]"
           >
             {messages.footer.guestbookLabel}
           </Link>
-          <Link href="/admin" className="transition-colors hover:text-current">
+          <Link
+            href="/admin"
+            className="text-xs tracking-[0.08em] text-[var(--color-muted)] transition-colors hover:text-[var(--color-ink)]"
+          >
             {messages.footer.adminLabel}
           </Link>
         </div>

@@ -1,6 +1,26 @@
 import type { Metadata, Viewport } from "next";
+import { Great_Vibes, Noto_Sans_SC, Noto_Serif_SC } from "next/font/google";
 
 import "./globals.css";
+
+const notoSerifSc = Noto_Serif_SC({
+  variable: "--font-noto-serif-sc",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const notoSansSc = Noto_Sans_SC({
+  variable: "--font-noto-sans-sc",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const greatVibes = Great_Vibes({
+  variable: "--font-great-vibes",
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -13,7 +33,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#f6f1e8",
+  themeColor: "#fffaf5",
 };
 
 export default function RootLayout({
@@ -23,7 +43,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN" data-scroll-behavior="smooth">
-      <body>
+      <body
+        className={`${notoSerifSc.variable} ${notoSansSc.variable} ${greatVibes.variable}`}
+      >
         <main>{children}</main>
       </body>
     </html>

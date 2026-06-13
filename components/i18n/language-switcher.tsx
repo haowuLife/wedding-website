@@ -45,7 +45,7 @@ export function LanguageSwitcher({
         role="group"
         aria-label={labels.label}
         data-testid="language-switcher"
-        className="flex h-9 items-center rounded-full border border-current/35 bg-[color:var(--color-ivory)/0.58] p-0.5 text-[10px] font-medium tracking-[0.08em] backdrop-blur-sm md:h-10 md:text-[11px]"
+        className="flex h-9 items-center rounded-full border border-[var(--color-romantic-line)] bg-white p-0.5 text-[10px] font-semibold tracking-[0.08em] shadow-[0_0.25rem_1rem_rgb(185_79_83/0.06)] md:h-10 md:text-[11px]"
       >
         {(
           [
@@ -62,10 +62,10 @@ export function LanguageSwitcher({
               disabled={isPending}
               onClick={() => switchLocale(value)}
               className={cn(
-                "grid h-7 min-w-8 place-items-center rounded-full px-2 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-champagne)] disabled:opacity-55 md:h-8 md:min-w-10",
+                "grid h-7 min-w-8 place-items-center rounded-full px-2 transition-colors disabled:cursor-wait disabled:opacity-55 md:h-8 md:min-w-10",
                 selected
-                  ? "bg-[var(--color-champagne)] text-white"
-                  : "text-current hover:bg-white/35",
+                  ? "bg-[var(--color-coral)] text-[var(--color-ink)]"
+                  : "text-[var(--color-muted)] hover:bg-[var(--color-blush)] hover:text-[var(--color-coral-deep)]",
               )}
             >
               {label}
@@ -76,7 +76,7 @@ export function LanguageSwitcher({
       {error ? (
         <p
           role="status"
-          className="absolute right-0 top-full mt-2 w-48 rounded-lg bg-[var(--color-ivory)] px-3 py-2 text-right text-xs leading-5 text-red-800 shadow-lg"
+          className="absolute right-0 top-full mt-2 w-48 rounded-xl border border-[var(--color-romantic-line)] bg-white px-3 py-2 text-right text-xs leading-5 text-red-800 shadow-lg"
         >
           {error}
         </p>
