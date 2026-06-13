@@ -46,7 +46,9 @@ function mapPhoto(row: Record<string, unknown>): Photo {
   return {
     id: String(row.id),
     title: String(row.title),
+    titleEn: row.title_en ? String(row.title_en) : null,
     description: String(row.description ?? ""),
+    descriptionEn: row.description_en ? String(row.description_en) : null,
     imageUrl: String(row.image_url),
     category: String(row.category),
     sortOrder: Number(row.sort_order),
@@ -163,7 +165,9 @@ export class SupabaseRepository implements WeddingRepository {
       .from("photos")
       .insert({
         title: input.title,
+        title_en: input.titleEn,
         description: input.description,
+        description_en: input.descriptionEn,
         image_url: input.imageUrl,
         category: input.category,
         sort_order: input.sortOrder,
@@ -182,9 +186,13 @@ export class SupabaseRepository implements WeddingRepository {
       .from("photos")
       .update({
         ...(update.title === undefined ? {} : { title: update.title }),
+        ...(update.titleEn === undefined ? {} : { title_en: update.titleEn }),
         ...(update.description === undefined
           ? {}
           : { description: update.description }),
+        ...(update.descriptionEn === undefined
+          ? {}
+          : { description_en: update.descriptionEn }),
         ...(update.category === undefined
           ? {}
           : { category: update.category }),

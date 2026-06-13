@@ -67,7 +67,10 @@ export async function POST(request: NextRequest) {
   const existing = await getRepository().listPhotos(collection);
   const photo = await getRepository().createPhoto({
     title: String(form.get("title") || "未命名照片"),
+    titleEn: String(form.get("titleEn") || "").trim() || null,
     description: String(form.get("description") || ""),
+    descriptionEn:
+      String(form.get("descriptionEn") || "").trim() || null,
     imageUrl,
     category: String(form.get("category") || "未分类"),
     sortOrder: existing.length + 1,

@@ -23,7 +23,7 @@ export default async function MemoriesPage() {
   if (!canShowMemories(content.memories)) {
     notFound();
   }
-  const media = await getDisplayPhotos("memories");
+  const media = await getDisplayPhotos("memories", locale);
   const photos = media.filter((item) => item.mediaType === "image");
   const videos = media.filter((item) => item.mediaType === "video");
 

@@ -68,7 +68,9 @@ const demoPhotos: Photo[] = [
   {
     id: "photo-1",
     title: "晨光",
+    titleEn: "Morning Light",
     description: "山谷里的第一束光",
+    descriptionEn: "The first light in the valley",
     imageUrl: "/images/gallery/story-04-clean.webp",
     category: "晨光",
     sortOrder: 1,
@@ -80,7 +82,9 @@ const demoPhotos: Photo[] = [
   {
     id: "photo-2",
     title: "相望",
+    titleEn: "A Quiet Gaze",
     description: "风从湖面吹来",
+    descriptionEn: "A breeze moving across the lake",
     imageUrl: "/images/gallery/story-03-clean.webp",
     category: "山野",
     sortOrder: 2,
@@ -92,7 +96,9 @@ const demoPhotos: Photo[] = [
   {
     id: "photo-3",
     title: "并肩",
+    titleEn: "Side by Side",
     description: "把普通的日子走成风景",
+    descriptionEn: "Turning ordinary days into a shared landscape",
     imageUrl: "/images/gallery/story-02-clean.webp",
     category: "日常",
     sortOrder: 3,
@@ -104,7 +110,9 @@ const demoPhotos: Photo[] = [
   {
     id: "photo-4",
     title: "书页之间",
+    titleEn: "Between the Pages",
     description: "故事开始的地方",
+    descriptionEn: "Where the story began",
     imageUrl: "/images/gallery/story-01.jpg",
     category: "日常",
     sortOrder: 4,

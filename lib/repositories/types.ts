@@ -29,7 +29,9 @@ export type MessageInput = Pick<GuestbookMessage, "name" | "message">;
 export type Photo = {
   id: string;
   title: string;
+  titleEn: string | null;
   description: string;
+  descriptionEn: string | null;
   imageUrl: string;
   category: string;
   sortOrder: number;
@@ -43,7 +45,13 @@ export type PhotoInput = Omit<Photo, "id" | "createdAt">;
 export type PhotoUpdate = Partial<
   Pick<
     Photo,
-    "title" | "description" | "category" | "sortOrder" | "isPublic"
+    | "title"
+    | "titleEn"
+    | "description"
+    | "descriptionEn"
+    | "category"
+    | "sortOrder"
+    | "isPublic"
   >
 >;
 

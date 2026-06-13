@@ -21,12 +21,13 @@ export function PhotoManager({ photos }: { photos: Photo[] }) {
     setSubmitting(false);
     if (response.ok) {
       event.currentTarget.reset();
+      setMediaType("image");
       router.refresh();
     }
   }
 
   async function remove(id: string) {
-    if (!window.confirm("确认删除这张照片？")) return;
+    if (!window.confirm("确认删除这项影像吗？")) return;
     await fetch(`/api/admin/photos/${id}`, { method: "DELETE" });
     router.refresh();
   }
@@ -38,6 +39,11 @@ export function PhotoManager({ photos }: { photos: Photo[] }) {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
+        title: form.get("title"),
+        titleEn: String(form.get("titleEn") || "").trim() || null,
+        description: form.get("description"),
+        descriptionEn:
+          String(form.get("descriptionEn") || "").trim() || null,
         category: form.get("category"),
         sortOrder: Number(form.get("sortOrder")),
         isPublic: form.get("isPublic") === "on",
@@ -52,22 +58,17 @@ export function PhotoManager({ photos }: { photos: Photo[] }) {
         onSubmit={upload}
         className="mt-8 grid gap-4 rounded-2xl bg-white p-6 md:grid-cols-2"
       >
-        <input
-          name="title"
-          placeholder="照片标题"
-          required
-          className="rounded-xl border border-black/10 px-4 py-3 text-sm"
+        <AdminInput name="title" placeholder="中文标题" required />
+        <AdminInput name="titleEn" placeholder="English title（可选）" />
+        <AdminInput name="description" placeholder="中文说明" />
+        <AdminInput
+          name="descriptionEn"
+          placeholder="English description（可选）"
         />
-        <input
+        <AdminInput
           name="category"
-          placeholder="分类，如 晨光"
+          placeholder="分类，例如：晨光"
           required
-          className="rounded-xl border border-black/10 px-4 py-3 text-sm"
-        />
-        <input
-          name="description"
-          placeholder="照片说明"
-          className="rounded-xl border border-black/10 px-4 py-3 text-sm md:col-span-2"
         />
         <select
           name="mediaType"
@@ -96,12 +97,11 @@ export function PhotoManager({ photos }: { photos: Photo[] }) {
             className="rounded-xl border border-black/10 px-4 py-3 text-sm"
           />
         ) : (
-          <input
+          <AdminInput
             name="videoUrl"
             type="url"
             placeholder="https://cdn.example.com/wedding.mp4"
             required
-            className="rounded-xl border border-black/10 px-4 py-3 text-sm"
           />
         )}
         <label className="flex items-center gap-3 text-sm">
@@ -117,9 +117,10 @@ export function PhotoManager({ photos }: { photos: Photo[] }) {
           disabled={submitting}
           className="rounded-xl bg-[#2d2924] px-5 py-3 text-sm text-white disabled:opacity-50"
         >
-          {submitting ? "上传中..." : "上传照片"}
+          {submitting ? "上传中..." : "上传影像"}
         </button>
       </form>
+
       <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
         {photos.map((photo) => (
           <article key={photo.id} className="overflow-hidden rounded-2xl bg-white">
@@ -150,6 +151,7 @@ export function PhotoManager({ photos }: { photos: Photo[] }) {
                   </p>
                 </div>
                 <button
+                  type="button"
                   onClick={() => remove(photo.id)}
                   className="text-xs text-red-700"
                 >
@@ -158,38 +160,80 @@ export function PhotoManager({ photos }: { photos: Photo[] }) {
               </div>
               <form
                 onSubmit={(event) => update(event, photo.id)}
-                className="mt-5 grid grid-cols-[1fr_5rem] gap-2"
+                className="mt-5 grid gap-3"
               >
-                <input
-                  name="category"
-                  defaultValue={photo.category}
-                  aria-label={`${photo.title} 分类`}
+                <AdminInput
+                  name="title"
+                  aria-label={`${photo.title} 中文标题`}
+                  defaultValue={photo.title}
+                  required
+                />
+                <AdminInput
+                  name="titleEn"
+                  aria-label={`${photo.title} 英文标题`}
+                  defaultValue={photo.titleEn ?? ""}
+                  placeholder="English title（可选）"
+                />
+                <textarea
+                  name="description"
+                  aria-label={`${photo.title} 中文说明`}
+                  defaultValue={photo.description}
+                  rows={2}
                   className="rounded-lg border border-black/10 px-3 py-2 text-xs"
                 />
-                <input
-                  name="sortOrder"
-                  type="number"
-                  min="0"
-                  defaultValue={photo.sortOrder}
-                  aria-label={`${photo.title} 排序`}
+                <textarea
+                  name="descriptionEn"
+                  aria-label={`${photo.title} 英文说明`}
+                  defaultValue={photo.descriptionEn ?? ""}
+                  rows={2}
+                  placeholder="English description（可选）"
                   className="rounded-lg border border-black/10 px-3 py-2 text-xs"
                 />
-                <label className="flex items-center gap-2 text-xs">
-                  <input
-                    name="isPublic"
-                    type="checkbox"
-                    defaultChecked={photo.isPublic}
+                <div className="grid grid-cols-[1fr_5rem] gap-2">
+                  <AdminInput
+                    name="category"
+                    aria-label={`${photo.title} 分类`}
+                    defaultValue={photo.category}
+                    required
                   />
-                  公开
-                </label>
-                <button className="rounded-lg bg-black/7 px-3 py-2 text-xs">
-                  保存
-                </button>
+                  <AdminInput
+                    name="sortOrder"
+                    type="number"
+                    min="0"
+                    aria-label={`${photo.title} 排序`}
+                    defaultValue={photo.sortOrder}
+                  />
+                </div>
+                <div className="flex items-center justify-between gap-3">
+                  <label className="flex items-center gap-2 text-xs">
+                    <input
+                      name="isPublic"
+                      type="checkbox"
+                      defaultChecked={photo.isPublic}
+                    />
+                    公开
+                  </label>
+                  <button className="rounded-lg bg-black/7 px-4 py-2 text-xs">
+                    保存
+                  </button>
+                </div>
               </form>
             </div>
           </article>
         ))}
       </div>
     </>
+  );
+}
+
+function AdminInput({
+  className = "",
+  ...props
+}: React.InputHTMLAttributes<HTMLInputElement>) {
+  return (
+    <input
+      className={`rounded-xl border border-black/10 px-4 py-3 text-sm ${className}`}
+      {...props}
+    />
   );
 }

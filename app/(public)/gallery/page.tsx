@@ -32,7 +32,7 @@ export default async function GalleryPage() {
     }
   }
 
-  const photos = await getDisplayPhotos("gallery");
+  const photos = await getDisplayPhotos("gallery", locale);
 
   return (
     <div className="page-shell">

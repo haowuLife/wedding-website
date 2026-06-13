@@ -10,7 +10,9 @@ import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 
 const updateSchema = z.object({
   title: z.string().trim().min(1).max(120).optional(),
+  titleEn: z.string().trim().max(120).nullable().optional(),
   description: z.string().trim().max(500).optional(),
+  descriptionEn: z.string().trim().max(500).nullable().optional(),
   category: z.string().trim().min(1).max(80).optional(),
   sortOrder: z.coerce.number().int().min(0).max(10000).optional(),
   isPublic: z.boolean().optional(),

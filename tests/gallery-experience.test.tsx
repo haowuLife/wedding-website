@@ -10,7 +10,9 @@ const photos: Photo[] = [
   {
     id: "1",
     title: "晨光",
+    titleEn: null,
     description: "第一束光",
+    descriptionEn: null,
     imageUrl: "/images/gallery/story-01.jpg",
     category: "晨光",
     sortOrder: 1,
@@ -22,7 +24,9 @@ const photos: Photo[] = [
   {
     id: "2",
     title: "山野",
+    titleEn: null,
     description: "远山",
+    descriptionEn: null,
     imageUrl: "/images/gallery/story-02.jpg",
     category: "山野",
     sortOrder: 2,
