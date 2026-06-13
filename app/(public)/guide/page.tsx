@@ -34,45 +34,46 @@ export default async function GuidePage() {
     <div className="page-shell">
       <header className="mx-auto max-w-3xl text-center">
         <p className="eyebrow">{messages.eyebrow}</p>
-        <h1 className="display-title mt-6">{messages.title}</h1>
-        <p className="mx-auto mt-7 max-w-xl leading-8 text-[var(--color-muted)]">
+        <h1 className="page-heading display-title mt-5">{messages.title}</h1>
+        <p className="mx-auto mt-6 max-w-xl text-base leading-8 text-[var(--color-muted)]">
           {messages.introduction}
         </p>
       </header>
 
       <div className="mx-auto mt-16 max-w-5xl md:mt-24">
-        {content.guide.map((item) => {
-          const Icon = iconByKind[item.kind] ?? PhoneIcon;
-          return (
-            <Reveal
-              key={item.title}
-              className="grid gap-5 border-b border-[var(--color-line)] py-9 md:grid-cols-[5rem_13rem_1fr] md:items-start"
-            >
-              <Icon
-                size={32}
-                weight="light"
-                className="text-[var(--color-champagne)]"
-                aria-hidden
-              />
-              <h2 className="font-serif text-2xl tracking-[0.08em]">
-                {item.title}
-              </h2>
-              <div>
-                <p className="leading-8 text-[var(--color-muted)]">
-                  {item.description}
-                </p>
-                {item.action ? (
-                  <a
-                    href={item.action.href}
-                    className="mt-4 inline-block border-b border-[var(--color-champagne)] pb-1 text-sm tracking-[0.14em] text-[var(--color-champagne)]"
-                  >
-                    {item.action.label}
-                  </a>
-                ) : null}
-              </div>
-            </Reveal>
-          );
-        })}
+        <div className="grid gap-5 md:grid-cols-3">
+          {content.guide.map((item, index) => {
+            const Icon = iconByKind[item.kind] ?? PhoneIcon;
+            return (
+              <Reveal key={item.title} delay={index * 0.06}>
+                <article className="romantic-card h-full rounded-[1.5rem] border border-white/80 bg-white p-7 shadow-[0_18px_45px_rgba(77,46,40,0.09)] md:p-8">
+                  <span className="grid size-12 place-items-center rounded-full bg-[var(--color-coral)]/10">
+                    <Icon
+                      size={25}
+                      weight="light"
+                      className="text-[var(--color-coral)]"
+                      aria-hidden
+                    />
+                  </span>
+                  <h2 className="mt-6 font-serif text-2xl tracking-[0.08em]">
+                    {item.title}
+                  </h2>
+                  <p className="mt-4 text-sm leading-7 text-[var(--color-muted)]">
+                    {item.description}
+                  </p>
+                  {item.action ? (
+                    <a
+                      href={item.action.href}
+                      className="mt-5 inline-block border-b border-[var(--color-coral)] pb-1 text-sm tracking-[0.14em] text-[var(--color-coral-deep)]"
+                    >
+                      {item.action.label}
+                    </a>
+                  ) : null}
+                </article>
+              </Reveal>
+            );
+          })}
+        </div>
 
         <RecommendationSection
           eyebrow={messages.travelEyebrow}

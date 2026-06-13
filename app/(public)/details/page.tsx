@@ -26,11 +26,14 @@ export default async function DetailsPage() {
     <div className="page-shell">
       <header className="mx-auto max-w-3xl text-center">
         <p className="eyebrow">{messages.eyebrow}</p>
-        <h1 className="display-title mt-6">{messages.title}</h1>
+        <h1 className="page-heading display-title mt-5">{messages.title}</h1>
+        <p className="mx-auto mt-6 max-w-xl text-base leading-8 text-[var(--color-muted)]">
+          {messages.locationDescription}
+        </p>
       </header>
 
-      <Reveal className="mx-auto mt-16 grid max-w-5xl border-y border-[var(--color-line)] py-10 text-center md:mt-24 md:grid-cols-3 md:py-14">
-        <div className="py-6 md:py-0">
+      <Reveal className="mx-auto mt-16 grid max-w-5xl gap-5 text-center md:mt-24 md:grid-cols-3">
+        <div className="romantic-card rounded-[1.5rem] border border-white/80 bg-white px-6 py-9 shadow-[0_18px_45px_rgba(77,46,40,0.09)]">
           <p className="eyebrow">{messages.dateLabel}</p>
           <p className="mt-4 font-serif text-2xl tracking-[0.12em]">
             {wedding.displayDate}
@@ -39,7 +42,7 @@ export default async function DetailsPage() {
             {wedding.lunarDate}
           </p>
         </div>
-        <div className="border-y border-[var(--color-line)] py-8 md:border-x md:border-y-0 md:py-0">
+        <div className="romantic-card rounded-[1.5rem] border border-white/80 bg-white px-6 py-9 shadow-[0_18px_45px_rgba(77,46,40,0.09)]">
           <p className="eyebrow">{messages.luncheonLabel}</p>
           <p className="mt-4 font-serif text-2xl tracking-[0.12em]">
             {messages.luncheonValue}
@@ -48,7 +51,7 @@ export default async function DetailsPage() {
             {messages.receptionPrefix} {wedding.receptionTime}
           </p>
         </div>
-        <div className="py-6 md:py-0">
+        <div className="romantic-card rounded-[1.5rem] border border-white/80 bg-white px-6 py-9 shadow-[0_18px_45px_rgba(77,46,40,0.09)]">
           <p className="eyebrow">{messages.venueLabel}</p>
           <p className="mt-4 font-serif text-xl tracking-[0.08em]">
             {wedding.venue}
@@ -73,7 +76,7 @@ export default async function DetailsPage() {
               href={wedding.mapUrl}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-3 rounded-full border border-[var(--color-champagne)] px-7 py-3 text-sm tracking-[0.16em] text-[var(--color-champagne)]"
+              className="romantic-primary-button inline-flex items-center gap-3 rounded-full bg-[var(--color-coral)] px-7 py-3 text-sm tracking-[0.16em] text-white shadow-[0_12px_28px_rgba(239,119,121,0.22)] transition hover:-translate-y-0.5 hover:bg-[var(--color-coral-deep)]"
             >
               <MapPinIcon size={18} weight="light" aria-hidden />
               {messages.mapAction}
@@ -82,7 +85,7 @@ export default async function DetailsPage() {
               href={wedding.hotelUrl}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-3 rounded-full bg-[var(--color-champagne)] px-7 py-3 text-sm tracking-[0.16em] text-white"
+              className="inline-flex items-center gap-3 rounded-full border border-[var(--color-coral)] bg-white/60 px-7 py-3 text-sm tracking-[0.16em] text-[var(--color-coral-deep)] transition-colors hover:bg-white"
             >
               {messages.hotelAction}
               <ArrowUpRightIcon size={18} weight="light" aria-hidden />
@@ -98,7 +101,7 @@ export default async function DetailsPage() {
                 key={item.time}
                 className="grid grid-cols-[5rem_1fr] gap-5 border-b border-[var(--color-line)] py-6"
               >
-                <p className="font-serif text-lg text-[var(--color-champagne)]">
+                <p className="font-serif text-lg font-medium text-[var(--color-coral)]">
                   {item.time}
                 </p>
                 <div>

@@ -22,23 +22,23 @@ export default async function StoryPage() {
     <div className="page-shell">
       <header className="mx-auto max-w-3xl text-center">
         <p className="eyebrow">{messages.eyebrow}</p>
-        <h1 className="display-title mt-6">{messages.title}</h1>
-        <p className="mx-auto mt-7 max-w-xl leading-8 text-[var(--color-muted)]">
+        <h1 className="page-heading display-title mt-5">{messages.title}</h1>
+        <p className="mx-auto mt-6 max-w-xl text-base leading-8 text-[var(--color-muted)]">
           {messages.introduction}
         </p>
       </header>
 
-      <div className="relative mx-auto mt-20 max-w-5xl md:mt-28">
-        <div className="absolute bottom-0 left-3 top-0 w-px bg-[var(--color-line)] md:left-1/2" />
-        <div className="space-y-20 md:space-y-28">
+      <div className="relative mx-auto mt-16 max-w-5xl md:mt-24">
+        <div className="absolute bottom-6 left-2.5 top-6 w-0.5 rounded-full bg-[var(--color-coral)] md:left-1/2 md:-translate-x-1/2" />
+        <div className="space-y-16 md:space-y-24">
           {content.story.map((item, index) => (
             <Reveal
-              key={item.date}
-              className="relative grid gap-7 pl-10 md:grid-cols-2 md:gap-20 md:pl-0"
+              key={`${item.date}-${item.title}`}
+              className="relative grid gap-0 pl-9 md:grid-cols-2 md:items-center md:gap-20 md:pl-0"
             >
-              <span className="absolute left-[7px] top-3 size-3 rounded-full border-2 border-[var(--color-ivory)] bg-[var(--color-champagne)] md:left-1/2 md:-translate-x-1/2" />
+              <span className="absolute left-[3px] top-9 z-10 size-4 rounded-full border-4 border-white bg-[var(--color-coral)] shadow-[0_0_0_1px_var(--color-coral)] md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2" />
               <div
-                className={`relative aspect-[4/5] overflow-hidden ${
+                className={`relative aspect-[4/5] overflow-hidden rounded-[1.75rem] shadow-[0_22px_55px_rgba(77,46,40,0.12)] ${
                   index % 2 ? "md:order-2" : ""
                 }`}
               >
@@ -51,17 +51,17 @@ export default async function StoryPage() {
                 />
               </div>
               <div
-                className={`self-center ${
+                className={`romantic-card relative z-10 -mt-10 ml-4 rounded-[1.5rem] border border-white/80 bg-white p-6 shadow-[0_18px_45px_rgba(77,46,40,0.11)] md:ml-0 md:mt-0 md:p-9 ${
                   index % 2 ? "md:order-1 md:text-right" : ""
                 }`}
               >
-                <p className="font-serif text-lg italic tracking-[0.15em] text-[var(--color-champagne)]">
+                <p className="font-serif text-base italic tracking-[0.15em] text-[var(--color-coral)] md:text-lg">
                   {item.date}
                 </p>
-                <h2 className="mt-4 font-serif text-3xl tracking-[0.1em] md:text-4xl">
+                <h2 className="mt-3 font-serif text-2xl tracking-[0.08em] md:mt-4 md:text-3xl">
                   {item.title}
                 </h2>
-                <p className="mt-5 leading-8 text-[var(--color-muted)]">
+                <p className="mt-4 text-sm leading-7 text-[var(--color-muted)] md:mt-5 md:text-base md:leading-8">
                   {item.description}
                 </p>
               </div>

@@ -41,21 +41,23 @@ export function TransportSection({
         </p>
       </Reveal>
 
-      <div className="mt-10 grid gap-px overflow-hidden border border-[var(--color-line)] bg-[var(--color-line)] md:grid-cols-2">
+      <div className="mt-10 grid gap-5 md:grid-cols-2">
         {items.map((item, index) => {
           const Icon = iconByKind[item.kind] ?? CarIcon;
           return (
             <Reveal
               key={item.title}
               delay={index * 0.06}
-              className="bg-[var(--color-ivory)] p-7 md:p-9"
+              className="romantic-card rounded-[1.5rem] border border-white/80 bg-white p-7 shadow-[0_18px_45px_rgba(77,46,40,0.09)] md:p-9"
             >
-              <Icon
-                size={30}
-                weight="light"
-                className="text-[var(--color-champagne)]"
-                aria-hidden
-              />
+              <span className="grid size-12 place-items-center rounded-full bg-[var(--color-coral)]/10">
+                <Icon
+                  size={25}
+                  weight="light"
+                  className="text-[var(--color-coral)]"
+                  aria-hidden
+                />
+              </span>
               <h3 className="mt-5 font-serif text-2xl tracking-[0.06em]">
                 {item.title}
               </h3>
@@ -67,7 +69,7 @@ export function TransportSection({
                   href={item.action.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="mt-5 inline-flex items-center gap-2 border-b border-[var(--color-champagne)] pb-1 text-xs tracking-[0.14em] text-[var(--color-champagne)]"
+                  className="mt-5 inline-flex items-center gap-2 border-b border-[var(--color-coral)] pb-1 text-xs tracking-[0.14em] text-[var(--color-coral-deep)]"
                 >
                   {item.action.label}
                   <ArrowUpRightIcon size={15} weight="light" aria-hidden />
@@ -78,11 +80,13 @@ export function TransportSection({
         })}
       </div>
 
-      <Reveal className="mt-10 bg-[var(--color-ivory-deep)] px-7 py-9 text-center md:px-14 md:py-12">
-        <p className="eyebrow">{messages.noteEyebrow}</p>
-        <p className="mx-auto mt-5 max-w-3xl font-serif text-xl leading-9 tracking-[0.05em] md:text-2xl md:leading-10">
-          {holidayNote}
-        </p>
+      <Reveal className="romantic-card mt-10 overflow-hidden rounded-[1.75rem] text-center">
+        <div className="bg-[#fff0ef] px-7 py-9 md:px-14 md:py-12">
+          <p className="eyebrow">{messages.noteEyebrow}</p>
+          <p className="mx-auto mt-5 max-w-3xl font-serif text-xl leading-9 tracking-[0.05em] md:text-2xl md:leading-10">
+            {holidayNote}
+          </p>
+        </div>
       </Reveal>
     </section>
   );
