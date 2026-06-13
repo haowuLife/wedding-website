@@ -94,7 +94,7 @@ export type SiteContent = {
   };
 };
 
-export const defaultSiteContent: SiteContent = {
+const chineseSiteContent: SiteContent = {
   identity: {
     groom: "吴昊",
     bride: "王璐",
@@ -297,3 +297,222 @@ export const defaultSiteContent: SiteContent = {
     title: "婚礼背景音乐",
   },
 };
+
+const englishSiteContent: SiteContent = {
+  identity: {
+    groom: "Hao Wu",
+    bride: "Lu Wang",
+    title: "Hao Wu & Lu Wang",
+    subtitle: "We warmly invite you to witness our wedding",
+  },
+  hero: {
+    image: "/images/hero-wedding-photo.png",
+    eyebrow: "OUR WEDDING DAY",
+    invitationLabel: "View Invitation",
+  },
+  wedding: {
+    date: "2026-10-06T12:00:00+08:00",
+    displayDate: "2026.10.06",
+    lunarDate: "Tuesday · Luncheon",
+    ceremonyTime: "To be confirmed",
+    receptionTime: "To be confirmed",
+    city: "Taixing",
+    venue: "Hampton by Hilton Taizhou Taixing",
+    address:
+      "No. 1 Wenchang Middle Road, Taixing, Taizhou, Jiangsu, China",
+    mapUrl:
+      "https://uri.amap.com/search?keyword=%E6%B3%B0%E5%B7%9E%E6%B3%B0%E5%85%B4%E5%B8%8C%E5%B0%94%E9%A1%BF%E6%AC%A2%E6%9C%8B%E9%85%92%E5%BA%97",
+    hotelUrl:
+      "https://www.hilton.com/zh-hans/hotels/ytytxhx-hampton-taizhou-taixing/",
+    schedule: [
+      {
+        time: "Morning",
+        title: "Guest Check-in",
+        description:
+          "Please check in after arriving at the hotel. The exact time will be shared before the wedding.",
+      },
+      {
+        time: "Before Lunch",
+        title: "Photos Together",
+        description:
+          "Take photos with the couple, family, and friends to remember our time together.",
+      },
+      {
+        time: "Noon",
+        title: "Wedding Luncheon",
+        description:
+          "Join us at the table for a joyful meal, warm wishes, and good company.",
+      },
+      {
+        time: "After Lunch",
+        title: "Time With Friends",
+        description:
+          "Stay for conversation and photos as we gently bring the celebration to a close.",
+      },
+    ],
+  },
+  story: [
+    {
+      date: "To be added",
+      title: "The Day We Met",
+      description:
+        "The story of how Hao and Lu first met will be written here, one memory at a time.",
+      image: "/images/gallery/story-01.jpg",
+    },
+    {
+      date: "To be added",
+      title: "Growing Together",
+      description:
+        "Ordinary days became our brightest memories as we learned to walk through life side by side.",
+      image: "/images/gallery/story-02-clean.webp",
+    },
+    {
+      date: "To be added",
+      title: "Choosing Forever",
+      description:
+        "From two lives to one home, this promise became the beginning of our next chapter.",
+      image: "/images/gallery/story-03-clean.webp",
+    },
+    {
+      date: "2026.10.06",
+      title: "Our Wedding Day",
+      description:
+        "We would love to share this precious day with the people who have walked beside us. We look forward to seeing you in autumnal Taixing.",
+      image: "/images/gallery/story-04-clean.webp",
+    },
+  ],
+  guide: [
+    {
+      title: "Accommodation",
+      description:
+        "Guests travelling from out of town may contact Hampton by Hilton Taizhou Taixing first. Room availability and rates are subject to the hotel’s latest information.",
+    },
+    {
+      title: "Weather",
+      description:
+        "October mornings and evenings in Taixing can be cool. Please dress for the day’s temperature and carry an umbrella if rain is expected.",
+    },
+    {
+      title: "Wedding Contact",
+      description:
+        "For transport assistance or anything urgent on the day, please contact the couple. Contact details will be updated after confirmation.",
+    },
+  ],
+  travel: [
+    {
+      title: "Taixing Ancient Ginkgo Forest Park",
+      description:
+        "Ancient ginkgo trees form a golden canopy in autumn, offering a peaceful place for a walk and photographs around the wedding trip.",
+      image: "/images/guide/taixing-ginkgo-forest.webp",
+      meta: "Free admission",
+      action: {
+        label: "View on Map",
+        href: "https://uri.amap.com/search?keyword=%E6%B3%B0%E5%85%B4%E5%9B%BD%E5%AE%B6%E5%8F%A4%E9%93%B6%E6%9D%8F%E6%A3%AE%E6%9E%97%E5%85%AC%E5%9B%AD",
+      },
+    },
+    {
+      title: "Qin Lake National Wetland Park",
+      description:
+        "Lakes, reeds, and wetland scenery make this a relaxed half-day outing, with boat rides available for a slower view of Taizhou’s natural landscape.",
+      image: "/images/guide/qin-lake-wetland.webp",
+      meta: "Adult ticket approx. CNY 78",
+      action: {
+        label: "View on Map",
+        href: "https://uri.amap.com/search?keyword=%E6%BA%B1%E6%B9%96%E5%9B%BD%E5%AE%B6%E6%B9%BF%E5%9C%B0%E5%85%AC%E5%9B%AD",
+      },
+    },
+    {
+      title: "Fengcheng River and Wanghai Tower",
+      description:
+        "Take an easy evening walk along the Fengcheng River and enjoy Wanghai Tower and the lights of Taizhou’s historic waterways.",
+      image: "/images/guide/fengcheng-river-wanghai-tower.webp",
+      meta: "Wanghai Tower day ticket approx. CNY 35",
+      action: {
+        label: "View on Map",
+        href: "https://uri.amap.com/search?keyword=%E6%B3%B0%E5%B7%9E%E5%87%A4%E5%9F%8E%E6%B2%B3%E9%A3%8E%E6%99%AF%E5%8C%BA%E6%9C%9B%E6%B5%B7%E6%A5%BC",
+      },
+    },
+  ],
+  travelDisclaimer:
+    "Ticket prices, opening hours, and reservation requirements may change. Please check the attraction’s latest notice before visiting.",
+  food: [
+    {
+      title: "Huangqiao Sesame Cake",
+      description:
+        "A flaky, sesame-covered Taixing pastry with a rich toasted aroma, perfect for tasting locally or taking home as a small gift.",
+      image: "/images/guide/huangqiao-sesame-cake.webp",
+    },
+    {
+      title: "Xuanbao Mini Wontons",
+      description:
+        "Delicate wrappers, tender filling, and a clear savoury broth make this a comforting local breakfast or late-night snack.",
+      image: "/images/guide/xuanbao-wontons.webp",
+    },
+    {
+      title: "Quxia Soup Dumplings",
+      description:
+        "Thin wrappers hold a fragrant, savoury broth. Lift one gently, open a small bite, and enjoy the soup while it is warm.",
+      image: "/images/guide/quxia-soup-dumplings.webp",
+    },
+  ],
+  transport: [
+    {
+      title: "Taizhou Railway Station",
+      description:
+        "A taxi or ride-hailing car to the hotel takes about 1 hour and costs approximately CNY 60. Travelling with friends is recommended for company along the way.",
+    },
+    {
+      title: "Yangzhou Taizhou International Airport",
+      description:
+        "A taxi or ride-hailing car to the hotel takes about 1 hour 10 minutes and costs approximately CNY 130.",
+    },
+    {
+      title: "Taixing Coach Station",
+      description:
+        "The station is about 4.7 km from the hotel. A taxi is the simplest option; actual time and price depend on traffic and the platform.",
+    },
+    {
+      title: "Driving",
+      description:
+        "Navigate directly to Hampton by Hilton Taizhou Taixing. Complimentary on-site parking is available; please follow the hotel’s signs when you arrive.",
+      action: {
+        label: "Open Navigation",
+        href: "https://uri.amap.com/search?keyword=%E6%B3%B0%E5%B7%9E%E6%B3%B0%E5%85%B4%E5%B8%8C%E5%B0%94%E9%A1%BF%E6%AC%A2%E6%9C%8B%E9%85%92%E5%BA%97",
+      },
+    },
+  ],
+  holidayTravelNote:
+    "Our wedding falls at the end of China’s National Day holiday, when return traffic may make the journey longer and more tiring than usual. We are sorry for the difficult trip and deeply grateful that you are willing to travel so far to share this important day with us.",
+  navigation: [
+    { label: "Home", href: "/" },
+    { label: "Our Story", href: "/story" },
+    { label: "Wedding Details", href: "/details" },
+    { label: "Guest Guide", href: "/guide" },
+    { label: "Gallery", href: "/gallery" },
+    { label: "Guestbook", href: "/guestbook" },
+    { label: "RSVP", href: "/rsvp" },
+  ],
+  memories: {
+    enabled: false,
+    title: "Wedding Memories",
+    description:
+      "After the wedding, we will collect photographs and films from the day here.",
+  },
+  gallery: {
+    accessCodeEnabled: false,
+    categories: ["All", "Morning Light", "Outdoors", "Everyday"],
+  },
+  music: {
+    enabled: false,
+    src: "",
+    title: "Wedding Background Music",
+  },
+};
+
+export const defaultSiteContentByLocale: Record<Locale, SiteContent> = {
+  zh: chineseSiteContent,
+  en: englishSiteContent,
+};
+
+export const defaultSiteContent = defaultSiteContentByLocale.zh;
+import type { Locale } from "@/lib/i18n/locale";

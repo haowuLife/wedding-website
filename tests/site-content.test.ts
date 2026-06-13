@@ -1,6 +1,9 @@
 import { describe, expect, it } from "vitest";
 
-import { defaultSiteContent } from "@/lib/content/site";
+import {
+  defaultSiteContent,
+  defaultSiteContentByLocale,
+} from "@/lib/content/site";
 
 describe("defaultSiteContent", () => {
   it("provides the public navigation and disabled memories state", () => {
@@ -92,5 +95,27 @@ describe("defaultSiteContent", () => {
         "/images/gallery/story-04.jpg",
       ]),
     );
+  });
+
+  it("provides complete English wedding defaults", () => {
+    const english = defaultSiteContentByLocale.en;
+
+    expect(english.identity).toMatchObject({
+      groom: "Hao Wu",
+      bride: "Lu Wang",
+      title: "Hao Wu & Lu Wang",
+    });
+    expect(english.wedding).toMatchObject({
+      date: "2026-10-06T12:00:00+08:00",
+      city: "Taixing",
+      venue: "Hampton by Hilton Taizhou Taixing",
+    });
+    expect(
+      english.navigation.find((item) => item.href === "/guide")?.label,
+    ).toBe("Guest Guide");
+    expect(english.story).toHaveLength(defaultSiteContent.story.length);
+    expect(english.travel).toHaveLength(defaultSiteContent.travel.length);
+    expect(english.food).toHaveLength(defaultSiteContent.food.length);
+    expect(english.transport).toHaveLength(defaultSiteContent.transport.length);
   });
 });
