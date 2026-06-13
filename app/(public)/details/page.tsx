@@ -6,24 +6,32 @@ import type { Metadata } from "next";
 
 import { Reveal } from "@/components/motion/reveal";
 import { getSiteContent } from "@/lib/content/settings";
+import { getLocale } from "@/lib/i18n/locale";
+import { getMessages } from "@/lib/i18n/messages";
 
-export const metadata: Metadata = {
-  title: "婚礼信息",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const messages = getMessages(await getLocale());
+  return {
+    title: messages.metadata.pages.details,
+    description: messages.details.locationDescription,
+  };
+}
 
 export default async function DetailsPage() {
-  const { wedding } = await getSiteContent();
+  const locale = await getLocale();
+  const { wedding } = await getSiteContent(locale);
+  const messages = getMessages(locale).details;
 
   return (
     <div className="page-shell">
       <header className="mx-auto max-w-3xl text-center">
-        <p className="eyebrow">Wedding Details</p>
-        <h1 className="display-title mt-6">婚礼信息</h1>
+        <p className="eyebrow">{messages.eyebrow}</p>
+        <h1 className="display-title mt-6">{messages.title}</h1>
       </header>
 
       <Reveal className="mx-auto mt-16 grid max-w-5xl border-y border-[var(--color-line)] py-10 text-center md:mt-24 md:grid-cols-3 md:py-14">
         <div className="py-6 md:py-0">
-          <p className="eyebrow">Date</p>
+          <p className="eyebrow">{messages.dateLabel}</p>
           <p className="mt-4 font-serif text-2xl tracking-[0.12em]">
             {wedding.displayDate}
           </p>
@@ -32,16 +40,16 @@ export default async function DetailsPage() {
           </p>
         </div>
         <div className="border-y border-[var(--color-line)] py-8 md:border-x md:border-y-0 md:py-0">
-          <p className="eyebrow">Luncheon</p>
+          <p className="eyebrow">{messages.luncheonLabel}</p>
           <p className="mt-4 font-serif text-2xl tracking-[0.12em]">
-            午宴
+            {messages.luncheonValue}
           </p>
           <p className="mt-2 text-sm text-[var(--color-muted)]">
-            开席时间 {wedding.receptionTime}
+            {messages.receptionPrefix} {wedding.receptionTime}
           </p>
         </div>
         <div className="py-6 md:py-0">
-          <p className="eyebrow">Venue</p>
+          <p className="eyebrow">{messages.venueLabel}</p>
           <p className="mt-4 font-serif text-xl tracking-[0.08em]">
             {wedding.venue}
           </p>
@@ -53,12 +61,12 @@ export default async function DetailsPage() {
 
       <div className="mx-auto mt-16 grid max-w-5xl gap-16 md:mt-24 md:grid-cols-[0.8fr_1.2fr] md:gap-24">
         <Reveal>
-          <p className="eyebrow">Location</p>
+          <p className="eyebrow">{messages.locationEyebrow}</p>
           <h2 className="mt-5 font-serif text-4xl tracking-[0.08em]">
-            {wedding.city} · 泰州
+            {wedding.city} · {messages.citySuffix}
           </h2>
           <p className="mt-6 leading-8 text-[var(--color-muted)]">
-            午宴地点位于泰兴市文昌中路，详细交通方式与周边行程可在宾客指南中查看。
+            {messages.locationDescription}
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a
@@ -68,7 +76,7 @@ export default async function DetailsPage() {
               className="inline-flex items-center gap-3 rounded-full border border-[var(--color-champagne)] px-7 py-3 text-sm tracking-[0.16em] text-[var(--color-champagne)]"
             >
               <MapPinIcon size={18} weight="light" aria-hidden />
-              地图导航
+              {messages.mapAction}
             </a>
             <a
               href={wedding.hotelUrl}
@@ -76,14 +84,14 @@ export default async function DetailsPage() {
               rel="noreferrer"
               className="inline-flex items-center gap-3 rounded-full bg-[var(--color-champagne)] px-7 py-3 text-sm tracking-[0.16em] text-white"
             >
-              酒店官网
+              {messages.hotelAction}
               <ArrowUpRightIcon size={18} weight="light" aria-hidden />
             </a>
           </div>
         </Reveal>
 
         <Reveal delay={0.1}>
-          <p className="eyebrow">Timeline</p>
+          <p className="eyebrow">{messages.timelineEyebrow}</p>
           <div className="mt-4">
             {wedding.schedule.map((item) => (
               <div

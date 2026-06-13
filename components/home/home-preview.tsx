@@ -4,49 +4,40 @@ import Link from "next/link";
 
 import { Reveal } from "@/components/motion/reveal";
 import type { SiteContent } from "@/lib/content/site";
+import type { PublicMessages } from "@/lib/i18n/messages";
 
-const previews = [
+const previewAssets = [
   {
-    eyebrow: "Our Story",
-    title: "从一次偶遇，到一生同行",
-    description:
-      "那些被时间温柔收藏的瞬间，组成了我们想与你分享的故事。",
     href: "/story",
     image: "/images/gallery/story-01.jpg",
-    actionLabel: "阅读我们的故事",
   },
   {
-    eyebrow: "Wedding Details",
-    title: "相约泰兴的金秋",
-    description:
-      "婚礼日期、午宴地点与当天流程，都已为你整理在婚礼信息中。",
     href: "/details",
     image: "/images/gallery/story-03-clean.webp",
-    actionLabel: "查看婚礼信息",
   },
   {
-    eyebrow: "Guest Guide",
-    title: "宾客指南",
-    description:
-      "交通、住宿、天气，以及泰州旅行与泰兴美食推荐，都整理在完整宾客指南中。",
     href: "/guide",
     image: "/images/guide/taixing-ginkgo-forest.webp",
-    actionLabel: "查看完整宾客指南",
   },
 ];
 
-export function HomePreview({ content }: { content: SiteContent }) {
+export function HomePreview({
+  content,
+  messages,
+}: {
+  content: SiteContent;
+  messages: PublicMessages["home"];
+}) {
   return (
     <div id="invitation">
       <section className="px-5 py-24 md:px-10 md:py-36">
         <Reveal className="mx-auto max-w-3xl text-center">
-          <p className="eyebrow">Dear Family & Friends</p>
+          <p className="eyebrow">{messages.invitationEyebrow}</p>
           <h2 className="mt-6 font-serif text-5xl leading-[1.4] tracking-[0.1em] md:text-7xl">
-            我们要结婚了
+            {messages.invitationTitle}
           </h2>
           <p className="mx-auto mt-8 max-w-2xl text-base leading-9 text-[var(--color-muted)] md:text-lg">
-            从相遇到相爱，我们走过许多平凡而珍贵的日子。
-            如今想邀请最重要的你，在金秋的泰兴，一同见证新的开始。
+            {messages.invitationDescription}
           </p>
           <div className="mx-auto mt-10 h-px w-20 bg-[var(--color-champagne)]" />
           <p className="mt-8 font-serif text-xl tracking-[0.2em] text-[var(--color-champagne)]">
@@ -56,9 +47,11 @@ export function HomePreview({ content }: { content: SiteContent }) {
       </section>
 
       <section className="mx-auto max-w-6xl space-y-24 px-5 pb-28 md:px-10">
-        {previews.map((preview, index) => (
+        {previewAssets.map((asset, index) => {
+          const preview = messages.previews[index];
+          return (
           <Reveal
-            key={preview.href}
+            key={asset.href}
             className="grid items-center gap-9 md:grid-cols-2 md:gap-16"
           >
             <div
@@ -67,7 +60,7 @@ export function HomePreview({ content }: { content: SiteContent }) {
               }`}
             >
               <Image
-                src={preview.image}
+                src={asset.image}
                 alt=""
                 fill
                 sizes="(min-width: 768px) 44vw, 100vw"
@@ -83,7 +76,7 @@ export function HomePreview({ content }: { content: SiteContent }) {
                 {preview.description}
               </p>
               <Link
-                href={preview.href}
+                href={asset.href}
                 className="mt-8 inline-flex items-center gap-3 border-b border-[var(--color-champagne)] pb-2 text-sm tracking-[0.18em] text-[var(--color-champagne)]"
               >
                 {preview.actionLabel}
@@ -91,23 +84,24 @@ export function HomePreview({ content }: { content: SiteContent }) {
               </Link>
             </div>
           </Reveal>
-        ))}
+          );
+        })}
       </section>
 
       <section className="bg-[var(--color-ivory-deep)] px-5 py-24 text-center md:px-10 md:py-32">
         <Reveal>
-          <p className="eyebrow">Will You Join Us?</p>
+          <p className="eyebrow">{messages.rsvpEyebrow}</p>
           <h2 className="mt-6 font-serif text-5xl tracking-[0.08em] md:text-7xl">
-            期待与你相见
+            {messages.rsvpTitle}
           </h2>
           <p className="mx-auto mt-6 max-w-xl leading-8 text-[var(--color-muted)]">
-            请尽早告诉我们，你是否能来到现场，方便我们为你准备席位。
+            {messages.rsvpDescription}
           </p>
           <Link
             href="/rsvp"
             className="mt-9 inline-flex rounded-full bg-[var(--color-champagne)] px-10 py-4 text-sm tracking-[0.22em] text-white"
           >
-            填写 RSVP
+            {messages.rsvpAction}
           </Link>
         </Reveal>
       </section>

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 
 import { getCountdown, type CountdownValue } from "@/lib/domain/countdown";
+import type { PublicMessages } from "@/lib/i18n/messages";
 
 const emptyCountdown: CountdownValue = {
   days: 0,
@@ -11,15 +12,20 @@ const emptyCountdown: CountdownValue = {
   seconds: 0,
 };
 
-const labels: Array<[keyof CountdownValue, string]> = [
-  ["days", "天"],
-  ["hours", "时"],
-  ["minutes", "分"],
-  ["seconds", "秒"],
-];
-
-export function Countdown({ target }: { target: string }) {
+export function Countdown({
+  target,
+  messages,
+}: {
+  target: string;
+  messages: PublicMessages["countdown"];
+}) {
   const [value, setValue] = useState(emptyCountdown);
+  const labels: Array<[keyof CountdownValue, string]> = [
+    ["days", messages.days],
+    ["hours", messages.hours],
+    ["minutes", messages.minutes],
+    ["seconds", messages.seconds],
+  ];
 
   useEffect(() => {
     const weddingDate = new Date(target);
@@ -32,7 +38,7 @@ export function Countdown({ target }: { target: string }) {
   return (
     <div
       className="grid grid-cols-4 divide-x divide-[var(--color-line)]"
-      aria-label="婚礼倒计时"
+      aria-label={messages.ariaLabel}
     >
       {labels.map(([key, label]) => (
         <div key={key} className="px-3 text-center sm:px-5">

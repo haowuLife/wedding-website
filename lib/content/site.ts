@@ -17,6 +17,7 @@ export type ScheduleItem = {
 };
 
 export type GuideItem = {
+  kind: "accommodation" | "weather" | "contact";
   title: string;
   description: string;
   action?: {
@@ -37,6 +38,7 @@ export type RecommendationItem = {
 };
 
 export type TransportItem = {
+  kind: "train" | "airport" | "coach" | "driving";
   title: string;
   description: string;
   action?: {
@@ -174,16 +176,19 @@ const chineseSiteContent: SiteContent = {
   ],
   guide: [
     {
+      kind: "accommodation",
       title: "住宿建议",
       description:
         "外地宾客可优先咨询泰州泰兴希尔顿欢朋酒店，房态与价格请以酒店实时信息为准。",
     },
     {
+      kind: "weather",
       title: "天气提醒",
       description:
         "十月泰兴早晚可能偏凉，请根据当天气温增减衣物；如遇降雨，建议随身携带雨具。",
     },
     {
+      kind: "contact",
       title: "婚礼联系人",
       description: "如需接驳或临时协助，请联系新人；具体联络方式将在确认后更新。",
     },
@@ -247,21 +252,25 @@ const chineseSiteContent: SiteContent = {
   ],
   transport: [
     {
+      kind: "train",
       title: "泰州站",
       description:
         "乘出租车或网约车前往酒店，车程约 1 小时，参考费用约 60 元。建议好友同行，路上也能彼此照应。",
     },
     {
+      kind: "airport",
       title: "扬州泰州国际机场",
       description:
         "乘出租车或网约车前往酒店，车程约 1 小时 10 分钟，参考费用约 130 元。",
     },
     {
+      kind: "coach",
       title: "泰兴汽车客运站",
       description:
         "距酒店约 4.7 公里，可直接打车前往；实际时间和费用请以实时地图及平台计价为准。",
     },
     {
+      kind: "driving",
       title: "自驾前往",
       description:
         "直接导航至“泰州泰兴希尔顿欢朋酒店”。酒店提供免费现场停车，抵达后请按现场指引停放。",
@@ -383,16 +392,19 @@ const englishSiteContent: SiteContent = {
   ],
   guide: [
     {
+      kind: "accommodation",
       title: "Accommodation",
       description:
         "Guests travelling from out of town may contact Hampton by Hilton Taizhou Taixing first. Room availability and rates are subject to the hotel’s latest information.",
     },
     {
+      kind: "weather",
       title: "Weather",
       description:
         "October mornings and evenings in Taixing can be cool. Please dress for the day’s temperature and carry an umbrella if rain is expected.",
     },
     {
+      kind: "contact",
       title: "Wedding Contact",
       description:
         "For transport assistance or anything urgent on the day, please contact the couple. Contact details will be updated after confirmation.",
@@ -457,21 +469,25 @@ const englishSiteContent: SiteContent = {
   ],
   transport: [
     {
+      kind: "train",
       title: "Taizhou Railway Station",
       description:
         "A taxi or ride-hailing car to the hotel takes about 1 hour and costs approximately CNY 60. Travelling with friends is recommended for company along the way.",
     },
     {
+      kind: "airport",
       title: "Yangzhou Taizhou International Airport",
       description:
         "A taxi or ride-hailing car to the hotel takes about 1 hour 10 minutes and costs approximately CNY 130.",
     },
     {
+      kind: "coach",
       title: "Taixing Coach Station",
       description:
         "The station is about 4.7 km from the hotel. A taxi is the simplest option; actual time and price depend on traffic and the platform.",
     },
     {
+      kind: "driving",
       title: "Driving",
       description:
         "Navigate directly to Hampton by Hilton Taizhou Taixing. Complimentary on-site parking is available; please follow the hotel’s signs when you arrive.",

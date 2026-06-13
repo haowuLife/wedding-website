@@ -2,11 +2,17 @@ import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
 import { HomePreview } from "@/components/home/home-preview";
-import { defaultSiteContent } from "@/lib/content/site";
+import { defaultSiteContentByLocale } from "@/lib/content/site";
+import { getMessages } from "@/lib/i18n/messages";
 
 describe("HomePreview", () => {
   it("surfaces distinct wedding details and guest guide entries", () => {
-    render(<HomePreview content={defaultSiteContent} />);
+    render(
+      <HomePreview
+        content={defaultSiteContentByLocale.zh}
+        messages={getMessages("zh").home}
+      />,
+    );
 
     expect(
       screen.getByRole("link", { name: "查看婚礼信息" }),
@@ -24,5 +30,26 @@ describe("HomePreview", () => {
       guideHeading.compareDocumentPosition(rsvpHeading) &
         Node.DOCUMENT_POSITION_FOLLOWING,
     ).toBeTruthy();
+  });
+
+  it("renders the complete English home invitation", () => {
+    render(
+      <HomePreview
+        content={defaultSiteContentByLocale.en}
+        messages={getMessages("en").home}
+      />,
+    );
+
+    expect(
+      screen.getByRole("heading", { name: "We Are Getting Married" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Guest Guide" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", {
+        name: "View the Complete Guest Guide",
+      }),
+    ).toHaveAttribute("href", "/guide");
   });
 });

@@ -9,34 +9,40 @@ import { RecommendationSection } from "@/components/guide/recommendation-section
 import { TransportSection } from "@/components/guide/transport-section";
 import { Reveal } from "@/components/motion/reveal";
 import { getSiteContent } from "@/lib/content/settings";
+import { getLocale } from "@/lib/i18n/locale";
+import { getMessages } from "@/lib/i18n/messages";
 
-export const metadata: Metadata = {
-  title: "宾客指南",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const messages = getMessages(await getLocale());
+  return {
+    title: messages.metadata.pages.guide,
+    description: messages.guide.introduction,
+  };
+}
 
-const iconByTitle = {
-  住宿建议: BedIcon,
-  天气提醒: CloudSunIcon,
-  婚礼联系人: PhoneIcon,
+const iconByKind = {
+  accommodation: BedIcon,
+  weather: CloudSunIcon,
+  contact: PhoneIcon,
 };
 
 export default async function GuidePage() {
-  const content = await getSiteContent();
+  const locale = await getLocale();
+  const content = await getSiteContent(locale);
+  const messages = getMessages(locale).guide;
   return (
     <div className="page-shell">
       <header className="mx-auto max-w-3xl text-center">
-        <p className="eyebrow">Guest Guide</p>
-        <h1 className="display-title mt-6">宾客指南</h1>
+        <p className="eyebrow">{messages.eyebrow}</p>
+        <h1 className="display-title mt-6">{messages.title}</h1>
         <p className="mx-auto mt-7 max-w-xl leading-8 text-[var(--color-muted)]">
-          除了婚礼当天的信息，我们也整理了几处风景与泰兴味道，
-          希望这趟秋日之行多一些轻松的小停留。
+          {messages.introduction}
         </p>
       </header>
 
       <div className="mx-auto mt-16 max-w-5xl md:mt-24">
         {content.guide.map((item) => {
-          const Icon =
-            iconByTitle[item.title as keyof typeof iconByTitle] ?? PhoneIcon;
+          const Icon = iconByKind[item.kind] ?? PhoneIcon;
           return (
             <Reveal
               key={item.title}
@@ -69,18 +75,18 @@ export default async function GuidePage() {
         })}
 
         <RecommendationSection
-          eyebrow="Around Taizhou"
-          title="泰州旅行推荐"
-          description="如果时间允许，可以在泰兴与泰州市区慢慢走走。以下行程适合半日或一日轻松安排。"
+          eyebrow={messages.travelEyebrow}
+          title={messages.travelTitle}
+          description={messages.travelDescription}
           items={content.travel}
           disclaimer={content.travelDisclaimer}
           testId="travel-section"
         />
 
         <RecommendationSection
-          eyebrow="Taste of Taixing"
-          title="泰兴美食推荐"
-          description="从酥香点心到一碗热汤，挑几样本地味道，也算把这趟相聚好好记在味蕾里。"
+          eyebrow={messages.foodEyebrow}
+          title={messages.foodTitle}
+          description={messages.foodDescription}
           items={content.food}
           testId="food-section"
         />
@@ -88,6 +94,7 @@ export default async function GuidePage() {
         <TransportSection
           items={content.transport}
           holidayNote={content.holidayTravelNote}
+          messages={messages}
         />
       </div>
     </div>

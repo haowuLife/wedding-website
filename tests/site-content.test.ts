@@ -117,5 +117,16 @@ describe("defaultSiteContent", () => {
     expect(english.travel).toHaveLength(defaultSiteContent.travel.length);
     expect(english.food).toHaveLength(defaultSiteContent.food.length);
     expect(english.transport).toHaveLength(defaultSiteContent.transport.length);
+    expect(english.guide.map((item) => item.kind)).toEqual([
+      "accommodation",
+      "weather",
+      "contact",
+    ]);
+    expect(english.transport.map((item) => item.kind)).toEqual([
+      "train",
+      "airport",
+      "coach",
+      "driving",
+    ]);
   });
 });

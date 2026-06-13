@@ -6,10 +6,17 @@ import Image from "next/image";
 import Link from "next/link";
 
 import type { SiteContent } from "@/lib/content/site";
+import type { PublicMessages } from "@/lib/i18n/messages";
 
 import { Countdown } from "./countdown";
 
-export function CinematicHero({ content }: { content: SiteContent }) {
+export function CinematicHero({
+  content,
+  messages,
+}: {
+  content: SiteContent;
+  messages: PublicMessages;
+}) {
   const reduceMotion = useReducedMotion();
   const { hero, identity, wedding } = content;
 
@@ -36,7 +43,7 @@ export function CinematicHero({ content }: { content: SiteContent }) {
       >
         <Image
           src={hero.image}
-          alt="新人在晨光山野中的婚纱照"
+          alt={messages.hero.imageAlt}
           fill
           priority
           sizes="100vw"
@@ -66,7 +73,10 @@ export function CinematicHero({ content }: { content: SiteContent }) {
           </p>
 
           <div className="mx-auto mt-7 max-w-md lg:mx-0">
-            <Countdown target={wedding.date} />
+            <Countdown
+              target={wedding.date}
+              messages={messages.countdown}
+            />
           </div>
 
           <Link
@@ -81,16 +91,16 @@ export function CinematicHero({ content }: { content: SiteContent }) {
         <a
           href="#invitation"
           className="mt-8 flex flex-col items-center gap-2 text-[var(--color-muted)] lg:absolute lg:bottom-8 lg:left-1/2 lg:-translate-x-1/2"
-          aria-label="向下浏览"
+          aria-label={messages.hero.scrollLabel}
         >
           <span className="grid h-12 w-7 place-items-center rounded-full border border-current/55">
             <span className="size-1 rounded-full bg-current" />
           </span>
           <ArrowDownIcon size={15} weight="light" aria-hidden />
           <span className="text-[9px] leading-4 tracking-[0.18em]">
-            向上滑动
+            {messages.hero.scrollLine1}
             <br />
-            探索更多
+            {messages.hero.scrollLine2}
           </span>
         </a>
       </div>
