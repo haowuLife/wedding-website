@@ -14,9 +14,15 @@ describe("HomePreview", () => {
       />,
     );
 
+    expect(screen.getByTestId("home-preview")).toHaveClass(
+      "modern-romantic-home",
+    );
     expect(
       screen.getByRole("link", { name: "查看婚礼信息" }),
     ).toHaveAttribute("href", "/details");
+    expect(
+      screen.getByRole("link", { name: "查看完整宾客指南" }),
+    ).toBeInTheDocument();
     expect(
       screen.getByRole("link", { name: "查看完整宾客指南" }),
     ).toHaveAttribute("href", "/guide");

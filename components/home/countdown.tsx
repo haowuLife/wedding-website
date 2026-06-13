@@ -37,17 +37,26 @@ export function Countdown({
 
   return (
     <div
-      className="grid grid-cols-4 divide-x divide-[var(--color-line)]"
+      className="grid grid-cols-4"
       aria-label={messages.ariaLabel}
     >
-      {labels.map(([key, label]) => (
-        <div key={key} className="px-3 text-center sm:px-5">
-          <span className="block font-serif text-lg font-light tracking-[0.08em] sm:text-2xl">
+      {labels.map(([key, label], index) => (
+        <div
+          key={key}
+          className="relative px-2 text-center sm:px-4"
+        >
+          <span className="block font-serif text-2xl font-normal leading-none tracking-[0.04em] text-[var(--color-ink)] sm:text-3xl">
             {String(value[key]).padStart(2, "0")}
           </span>
-          <span className="mt-1 block text-xs tracking-[0.24em] text-[var(--color-muted)]">
+          <span className="mt-2 block text-[0.58rem] font-medium tracking-[0.2em] text-[var(--color-muted)] uppercase sm:text-[0.62rem]">
             {label}
           </span>
+          {index < labels.length - 1 ? (
+            <span
+              aria-hidden
+              className="absolute right-0 top-1/2 h-7 w-px -translate-y-1/2 bg-[var(--color-coral)] opacity-35"
+            />
+          ) : null}
         </div>
       ))}
     </div>

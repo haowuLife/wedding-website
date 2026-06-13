@@ -5,6 +5,17 @@ import { Countdown } from "@/components/home/countdown";
 import { getMessages } from "@/lib/i18n/messages";
 
 describe("Countdown", () => {
+  it("exposes the localized Chinese countdown label", () => {
+    render(
+      <Countdown
+        target="2026-10-06T12:00:00+08:00"
+        messages={getMessages("zh").countdown}
+      />,
+    );
+
+    expect(screen.getByLabelText("婚礼倒计时")).toBeVisible();
+  });
+
   it("renders English labels and accessibility text", () => {
     render(
       <Countdown
