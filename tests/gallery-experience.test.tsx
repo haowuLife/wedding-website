@@ -51,6 +51,9 @@ describe("GalleryExperience", () => {
       />,
     );
 
+    expect(screen.getByLabelText("照片分类")).toHaveClass(
+      "romantic-filter-bar",
+    );
     await user.click(screen.getByRole("button", { name: "筛选山野" }));
     expect(screen.queryByRole("button", { name: "查看晨光" })).toBeNull();
     await user.click(screen.getByRole("button", { name: "查看山野" }));
@@ -68,6 +71,9 @@ describe("GalleryExperience", () => {
       />,
     );
 
+    expect(screen.getByLabelText("Photo categories")).toHaveClass(
+      "romantic-filter-bar",
+    );
     await user.click(
       screen.getByRole("button", { name: "Filter by Outdoors" }),
     );

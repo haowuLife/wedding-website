@@ -45,7 +45,7 @@ export function GalleryAccessGate({
     <div className="page-shell grid min-h-[72vh] place-items-center">
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-md border-y border-[var(--color-line)] py-12 text-center"
+        className="romantic-card w-full max-w-md px-6 py-10 text-center sm:px-10 sm:py-12"
       >
         <p className="eyebrow">Private Gallery</p>
         <h1 className="mt-5 font-serif text-4xl tracking-[0.1em]">
@@ -63,18 +63,21 @@ export function GalleryAccessGate({
           type="password"
           inputMode="numeric"
           autoComplete="off"
-          className="field mt-8 text-center tracking-[0.4em]"
+          className="field mt-8 text-center tracking-[0.4em] focus:border-[var(--color-coral)]"
           required
         />
         {error ? (
-          <p role="alert" className="mt-3 text-sm text-red-800">
+          <p
+            role="alert"
+            className="mt-3 text-sm text-[var(--color-coral-deep)]"
+          >
             {error}
           </p>
         ) : null}
         <button
           type="submit"
           disabled={submitting}
-          className="mt-7 rounded-full bg-[var(--color-champagne)] px-9 py-4 text-sm tracking-[0.18em] text-white disabled:opacity-50"
+          className="romantic-primary-button mt-7 w-full disabled:cursor-not-allowed disabled:opacity-50"
         >
           {submitting ? messages.accessSubmitting : messages.accessSubmit}
         </button>

@@ -20,27 +20,30 @@ export default async function RsvpPage() {
 
   return (
     <div className="page-shell">
-      <div className="mx-auto grid max-w-5xl gap-14 md:grid-cols-[0.8fr_1.2fr] md:gap-24">
-        <header>
-          <p className="eyebrow">{messages.eyebrow}</p>
-          <h1 className="display-title mt-6">{messages.title}</h1>
-          <p className="mt-7 leading-8 text-[var(--color-muted)]">
-            {messages.introduction}
+      <header className="mx-auto max-w-3xl text-center">
+        <p className="eyebrow">{messages.eyebrow}</p>
+        <h1 className="page-heading mt-6">{messages.title}</h1>
+        <p className="mx-auto mt-7 max-w-xl leading-8 text-[var(--color-muted)]">
+          {messages.introduction}
+        </p>
+        <div className="mt-8 flex flex-col items-center justify-center gap-2 text-sm leading-7 text-[var(--color-muted)] sm:flex-row sm:gap-8">
+          <p>
+            {messages.datePrefix}
+            {content.wedding.displayDate}
           </p>
-          <div className="mt-10 border-l border-[var(--color-champagne)] pl-5 text-sm leading-7 text-[var(--color-muted)]">
-            <p>
-              {messages.datePrefix}
-              {content.wedding.displayDate}
-            </p>
-            <p>
-              {messages.venuePrefix}
-              {content.wedding.venue}
-            </p>
-          </div>
-        </header>
-        <div className="border-t border-[var(--color-line)] pt-8 md:border-l md:border-t-0 md:pl-16 md:pt-0">
-          <RsvpForm messages={messages} />
+          <span
+            className="hidden size-1 rounded-full bg-[var(--color-coral)] sm:block"
+            aria-hidden
+          />
+          <p>
+            {messages.venuePrefix}
+            {content.wedding.venue}
+          </p>
         </div>
+      </header>
+
+      <div className="romantic-card mx-auto mt-14 max-w-3xl p-6 sm:p-10 md:mt-20 md:p-12">
+        <RsvpForm messages={messages} />
       </div>
     </div>
   );

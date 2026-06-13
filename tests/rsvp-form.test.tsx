@@ -23,7 +23,9 @@ describe("RsvpForm", () => {
 
     await user.type(screen.getByLabelText("姓名"), "周清");
     await user.type(screen.getByLabelText("手机号"), "13800001024");
-    await user.click(screen.getByRole("button", { name: "提交 RSVP" }));
+    const submitButton = screen.getByRole("button", { name: "提交 RSVP" });
+    expect(submitButton).toHaveClass("romantic-primary-button");
+    await user.click(submitButton);
 
     expect(
       await screen.findByRole("heading", { name: "谢谢你的回复" }),

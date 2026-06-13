@@ -23,9 +23,11 @@ describe("GuestbookForm", () => {
 
     await user.type(screen.getByLabelText("Name"), "Alex");
     await user.type(screen.getByLabelText("Your Message"), "Best wishes!");
-    await user.click(
-      screen.getByRole("button", { name: "Send Your Wishes" }),
-    );
+    const submitButton = screen.getByRole("button", {
+      name: "Send Your Wishes",
+    });
+    expect(submitButton).toHaveClass("romantic-primary-button");
+    await user.click(submitButton);
 
     expect(
       await screen.findByRole("heading", {

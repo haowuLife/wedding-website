@@ -35,26 +35,34 @@ export function GalleryExperience({
   return (
     <>
       <div
-        className="mb-10 flex gap-2 overflow-x-auto pb-2"
+        className="romantic-filter-bar mb-10 flex gap-2 overflow-x-auto rounded-full p-2"
         aria-label={messages.categoryLabel}
       >
         {categories.map((item) => {
           const label = categoryLabel(item);
           return (
-          <button
-            key={item}
-            type="button"
-            aria-label={`${messages.filterPrefix}${label}`}
-            aria-pressed={category === item}
-            onClick={() => setCategory(item)}
-            className={`shrink-0 rounded-full border px-5 py-2 text-sm tracking-[0.12em] ${
-              category === item
-                ? "border-[var(--color-champagne)] bg-[var(--color-champagne)] text-white"
-                : "border-[var(--color-line)]"
-            }`}
-          >
-            {label}
-          </button>
+            <button
+              key={item}
+              type="button"
+              aria-label={`${messages.filterPrefix}${label}`}
+              aria-pressed={category === item}
+              onClick={() => setCategory(item)}
+              style={
+                category === item
+                  ? {
+                      backgroundColor: "var(--color-coral)",
+                      color: "white",
+                    }
+                  : undefined
+              }
+              className={`shrink-0 rounded-full border px-5 py-2.5 text-sm tracking-[0.1em] transition-colors ${
+                category === item
+                  ? "border-[var(--color-coral)] bg-[var(--color-coral)] text-white shadow-sm"
+                  : "border-transparent bg-white text-[var(--color-muted)] hover:border-[var(--color-coral)] hover:text-[var(--color-coral-deep)]"
+              }`}
+            >
+              {label}
+            </button>
           );
         })}
       </div>

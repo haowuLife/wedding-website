@@ -47,7 +47,7 @@ export function GuestbookForm({
 
   if (status === "success") {
     return (
-      <div className="border-y border-[var(--color-line)] py-12 text-center">
+      <div className="rounded-[1.25rem] bg-[var(--color-ivory-deep)]/55 px-5 py-12 text-center">
         <h2 className="font-serif text-3xl tracking-[0.1em]">
           {messages.successTitle}
         </h2>
@@ -69,7 +69,7 @@ export function GuestbookForm({
           name="name"
           required
           maxLength={80}
-          className="field mt-2"
+          className="field mt-2 focus:border-[var(--color-coral)]"
         />
       </div>
       <div>
@@ -82,7 +82,7 @@ export function GuestbookForm({
           required
           maxLength={500}
           rows={5}
-          className="field mt-2 resize-y"
+          className="field mt-2 resize-y focus:border-[var(--color-coral)]"
         />
       </div>
       <div className="absolute -left-[9999px]" aria-hidden>
@@ -95,14 +95,14 @@ export function GuestbookForm({
         />
       </div>
       {error ? (
-        <p role="alert" className="text-sm text-red-800">
+        <p role="alert" className="text-sm text-[var(--color-coral-deep)]">
           {error}
         </p>
       ) : null}
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="rounded-full bg-[var(--color-champagne)] px-9 py-4 text-sm tracking-[0.18em] text-white disabled:opacity-50"
+        className="romantic-primary-button w-full disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
       >
         {status === "submitting"
           ? messages.submittingLabel

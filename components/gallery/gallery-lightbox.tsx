@@ -49,7 +49,7 @@ export function GalleryLightbox({
       role="dialog"
       aria-modal="true"
       aria-label={messages.previewLabel}
-      className="fixed inset-0 z-[80] grid place-items-center bg-[#1e1c19]/95 p-4 text-white"
+      className="fixed inset-0 z-[80] grid place-items-center bg-[#2b1b1a]/95 p-4 text-white backdrop-blur-md"
       onPointerDown={(event) => {
         pointerStart.current = event.clientX;
       }}
@@ -65,7 +65,7 @@ export function GalleryLightbox({
         type="button"
         aria-label={messages.closePreviewLabel}
         onClick={onClose}
-        className="absolute right-5 top-5 grid size-11 place-items-center rounded-full border border-white/30"
+        className="absolute right-5 top-5 grid size-11 place-items-center rounded-full border border-white/30 bg-white/10 transition-colors hover:border-[var(--color-coral)] hover:bg-[var(--color-coral)]"
       >
         <XIcon size={24} weight="light" aria-hidden />
       </button>
@@ -73,7 +73,7 @@ export function GalleryLightbox({
         type="button"
         aria-label={messages.previousPhotoLabel}
         onClick={() => go(-1)}
-        className="absolute left-3 top-1/2 grid size-11 -translate-y-1/2 place-items-center rounded-full bg-black/20 md:left-7"
+        className="absolute left-3 top-1/2 grid size-11 -translate-y-1/2 place-items-center rounded-full border border-white/20 bg-white/10 transition-colors hover:border-[var(--color-coral)] hover:bg-[var(--color-coral)] md:left-7"
       >
         <ArrowLeftIcon size={24} weight="light" aria-hidden />
       </button>
@@ -89,7 +89,9 @@ export function GalleryLightbox({
           />
         </div>
         <figcaption className="mt-4 text-center">
-          <p className="font-serif text-xl tracking-[0.1em]">{photo.title}</p>
+          <p className="font-serif text-xl tracking-[0.1em] text-[var(--color-champagne-light)]">
+            {photo.title}
+          </p>
           <p className="mt-1 text-sm text-white/65">{photo.description}</p>
         </figcaption>
       </figure>
@@ -97,7 +99,7 @@ export function GalleryLightbox({
         type="button"
         aria-label={messages.nextPhotoLabel}
         onClick={() => go(1)}
-        className="absolute right-3 top-1/2 grid size-11 -translate-y-1/2 place-items-center rounded-full bg-black/20 md:right-7"
+        className="absolute right-3 top-1/2 grid size-11 -translate-y-1/2 place-items-center rounded-full border border-white/20 bg-white/10 transition-colors hover:border-[var(--color-coral)] hover:bg-[var(--color-coral)] md:right-7"
       >
         <ArrowRightIcon size={24} weight="light" aria-hidden />
       </button>

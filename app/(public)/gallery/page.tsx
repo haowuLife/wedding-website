@@ -38,12 +38,12 @@ export default async function GalleryPage() {
     <div className="page-shell">
       <header className="mx-auto max-w-3xl text-center">
         <p className="eyebrow">{messages.eyebrow}</p>
-        <h1 className="display-title mt-6">{messages.title}</h1>
+        <h1 className="page-heading mt-6">{messages.title}</h1>
         <p className="mx-auto mt-7 max-w-xl leading-8 text-[var(--color-muted)]">
           {messages.introduction}
         </p>
       </header>
-      <div className="mx-auto mt-14 max-w-6xl md:mt-20">
+      <div className="mx-auto mt-12 max-w-6xl md:mt-16">
         <GalleryExperience photos={photos} messages={messages} />
       </div>
     </div>

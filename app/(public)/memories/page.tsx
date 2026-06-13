@@ -28,26 +28,30 @@ export default async function MemoriesPage() {
   const videos = media.filter((item) => item.mediaType === "video");
 
   return (
-    <div className="page-shell min-h-[75vh] text-center">
-      <p className="eyebrow">{messages.memories.eyebrow}</p>
-      <h1 className="display-title mt-6">
-        {content.memories.title}
-      </h1>
-      <p className="mx-auto mt-8 max-w-xl leading-8 text-[var(--color-muted)]">
-        {content.memories.description}
-      </p>
-      <div className="mx-auto mt-16 max-w-6xl text-left">
+    <div className="page-shell min-h-[75vh]">
+      <header className="mx-auto max-w-3xl text-center">
+        <p className="eyebrow">{messages.memories.eyebrow}</p>
+        <h1 className="page-heading mt-6">{content.memories.title}</h1>
+        <p className="mx-auto mt-8 max-w-xl leading-8 text-[var(--color-muted)]">
+          {content.memories.description}
+        </p>
+      </header>
+
+      <div className="mx-auto mt-14 max-w-6xl md:mt-20">
         {videos.length ? (
           <div className="mb-14 grid gap-6 md:grid-cols-2">
             {videos.map((video) => (
-              <figure key={video.id}>
+              <figure
+                key={video.id}
+                className="romantic-card overflow-hidden p-2"
+              >
                 <video
                   src={video.imageUrl}
                   controls
                   preload="metadata"
-                  className="aspect-video w-full bg-black object-cover"
+                  className="aspect-video w-full rounded-[1rem] bg-[#2b1b1a] object-cover"
                 />
-                <figcaption className="mt-3 font-serif text-lg">
+                <figcaption className="px-4 py-4 font-serif text-lg tracking-[0.04em]">
                   {video.title}
                 </figcaption>
               </figure>
@@ -57,7 +61,7 @@ export default async function MemoriesPage() {
         {photos.length ? (
           <GalleryExperience photos={photos} messages={messages.gallery} />
         ) : (
-          <p className="border-y border-[var(--color-line)] py-12 text-center text-[var(--color-muted)]">
+          <p className="romantic-card py-12 text-center text-[var(--color-muted)]">
             {messages.memories.emptyLabel}
           </p>
         )}

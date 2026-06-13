@@ -71,10 +71,10 @@ export function RsvpForm({
         <CheckCircleIcon
           size={52}
           weight="light"
-          className="mx-auto text-[var(--color-champagne)]"
+          className="mx-auto text-[var(--color-coral)]"
           aria-hidden
         />
-        <h2 className="mt-6 font-serif text-4xl tracking-[0.1em]">
+        <h2 className="mt-6 font-serif text-3xl tracking-[0.08em] sm:text-4xl">
           {messages.successTitle}
         </h2>
         <p className="mx-auto mt-5 max-w-md leading-8 text-[var(--color-muted)]">
@@ -85,8 +85,8 @@ export function RsvpForm({
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-8" noValidate>
-      <div className="grid gap-8 sm:grid-cols-2">
+    <form onSubmit={handleSubmit} className="space-y-7" noValidate>
+      <div className="grid gap-6 sm:grid-cols-2">
         <Field
           label={messages.nameLabel}
           name="name"
@@ -118,10 +118,10 @@ export function RsvpForm({
               key={String(value)}
               type="button"
               onClick={() => setAttending(Boolean(value))}
-              className={`rounded-full border px-5 py-3 text-sm tracking-[0.12em] transition ${
+              className={`rounded-full border px-5 py-3 text-sm tracking-[0.12em] transition-colors ${
                 attending === value
-                  ? "border-[var(--color-champagne)] bg-[var(--color-champagne)] text-white"
-                  : "border-[var(--color-line)]"
+                  ? "border-[var(--color-coral)] bg-[var(--color-coral)] text-white shadow-[0_0.75rem_1.5rem_rgba(185,79,83,0.16)]"
+                  : "border-[var(--color-line)] bg-white text-[var(--color-ink)] hover:border-[var(--color-coral)] hover:text-[var(--color-coral-deep)]"
               }`}
               aria-pressed={attending === value}
             >
@@ -143,7 +143,7 @@ export function RsvpForm({
             <select
               id="guestCount"
               name="guestCount"
-              className="field mt-2"
+              className="field mt-2 focus:border-[var(--color-coral)]"
               defaultValue="1"
             >
               {[1, 2, 3, 4, 5, 6].map((count) => (
@@ -170,7 +170,7 @@ export function RsvpForm({
       </div>
 
       {error ? (
-        <p role="alert" className="text-sm text-red-800">
+        <p role="alert" className="text-sm text-[var(--color-coral-deep)]">
           {error}
         </p>
       ) : null}
@@ -178,7 +178,7 @@ export function RsvpForm({
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="w-full rounded-full bg-[var(--color-champagne)] px-8 py-4 text-sm tracking-[0.2em] text-white disabled:opacity-50"
+        className="romantic-primary-button w-full disabled:cursor-not-allowed disabled:opacity-50"
       >
         {status === "submitting"
           ? messages.submittingLabel
@@ -206,13 +206,16 @@ function Field({
       <input
         id={name}
         name={name}
-        className="field mt-2"
+        className="field mt-2 focus:border-[var(--color-coral)]"
         aria-invalid={Boolean(error)}
         aria-describedby={error ? `${name}-error` : undefined}
         {...props}
       />
       {error ? (
-        <p id={`${name}-error`} className="mt-2 text-xs text-red-800">
+        <p
+          id={`${name}-error`}
+          className="mt-2 text-xs text-[var(--color-coral-deep)]"
+        >
           {error}
         </p>
       ) : null}
@@ -240,13 +243,16 @@ function TextAreaField({
         id={name}
         name={name}
         rows={3}
-        className="field mt-2 resize-y"
+        className="field mt-2 resize-y focus:border-[var(--color-coral)]"
         placeholder={placeholder}
         aria-invalid={Boolean(error)}
         aria-describedby={error ? `${name}-error` : undefined}
       />
       {error ? (
-        <p id={`${name}-error`} className="mt-2 text-xs text-red-800">
+        <p
+          id={`${name}-error`}
+          className="mt-2 text-xs text-[var(--color-coral-deep)]"
+        >
           {error}
         </p>
       ) : null}
