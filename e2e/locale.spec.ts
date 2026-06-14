@@ -12,6 +12,9 @@ test("public pages switch between Chinese and English on the same URLs", async (
   await expect(
     page.getByRole("heading", { name: "Hao Wu & Lu Wang" }),
   ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Our Special Family · Youyou" }),
+  ).toBeVisible();
   await expect(page).toHaveURL("/");
   await page.getByTestId("mobile-menu-button").click();
   await expect(
@@ -27,9 +30,15 @@ test("public pages switch between Chinese and English on the same URLs", async (
   await expect(
     page.getByText("Yangzhou Taizhou International Airport"),
   ).toBeVisible();
+  await expect(
+    page.getByText("Welcome to Hao Wu and Lu Wang's wedding!"),
+  ).toBeVisible();
 
   await page.goto("/rsvp");
   await expect(page.getByLabel("Name")).toBeVisible();
+  await expect(
+    page.getByText("Welcome to Hao Wu and Lu Wang's wedding!"),
+  ).toBeVisible();
   await expect(
     page.getByRole("button", { name: "Submit RSVP" }),
   ).toBeVisible();

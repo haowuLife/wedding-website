@@ -19,6 +19,29 @@ test("home scroll surfaces the complete guest guide", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "宾客指南" })).toBeVisible();
 });
 
+test("Youyou appears as family and leaves only one paw stamp", async ({
+  page,
+}) => {
+  await page.goto("/");
+  await expect(
+    page.getByRole("heading", { name: "我们的特别家人 · 呦呦" }),
+  ).toBeVisible();
+
+  const portrait = page.getByRole("button", {
+    name: "点击呦呦头像盖下一枚猫爪印",
+  });
+  await portrait.click();
+  await expect(page.getByTestId("youyou-paw-stamp")).toHaveCount(1);
+  await portrait.click();
+  await expect(page.getByTestId("youyou-paw-stamp")).toHaveCount(1);
+
+  await page.goto("/rsvp");
+  await expect(page.getByText("欢迎参加吴昊和王璐的婚礼！")).toBeVisible();
+
+  await page.goto("/guide");
+  await expect(page.getByText("欢迎参加吴昊和王璐的婚礼！")).toBeVisible();
+});
+
 test("guest can submit RSVP and receive thanks", async ({ page }) => {
   await page.goto("/rsvp");
   await expect(page.getByLabel("携带儿童")).toHaveCount(0);

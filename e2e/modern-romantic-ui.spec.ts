@@ -53,5 +53,15 @@ test("public pages avoid horizontal overflow at narrow mobile width", async ({
         4,
       );
     }
+
+    if (path === "/") {
+      await expect(page.getByTestId("youyou-family-card")).toBeVisible();
+    }
+    if (path === "/guide") {
+      await expect(page.getByTestId("youyou-guide-steward")).toBeVisible();
+    }
+    if (path === "/rsvp") {
+      await expect(page.getByTestId("youyou-rsvp-steward")).toBeVisible();
+    }
   }
 });
