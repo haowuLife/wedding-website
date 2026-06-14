@@ -11,6 +11,7 @@ describe("HomePreview", () => {
       <HomePreview
         content={defaultSiteContentByLocale.zh}
         messages={getMessages("zh").home}
+        youyouMessages={getMessages("zh").youyou}
       />,
     );
 
@@ -29,9 +30,29 @@ describe("HomePreview", () => {
     expect(
       screen.getByRole("heading", { name: "宾客指南" }),
     ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "我们的特别家人 · 呦呦" }),
+    ).toBeInTheDocument();
 
+    const invitationHeading = screen.getByRole("heading", {
+      name: "我们要结婚了",
+    });
+    const youyouHeading = screen.getByRole("heading", {
+      name: "我们的特别家人 · 呦呦",
+    });
+    const storyHeading = screen.getByRole("heading", {
+      name: "从一次偶遇，到一生同行",
+    });
     const guideHeading = screen.getByRole("heading", { name: "宾客指南" });
     const rsvpHeading = screen.getByRole("heading", { name: "期待与你相见" });
+    expect(
+      invitationHeading.compareDocumentPosition(youyouHeading) &
+        Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy();
+    expect(
+      youyouHeading.compareDocumentPosition(storyHeading) &
+        Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy();
     expect(
       guideHeading.compareDocumentPosition(rsvpHeading) &
         Node.DOCUMENT_POSITION_FOLLOWING,
@@ -43,6 +64,7 @@ describe("HomePreview", () => {
       <HomePreview
         content={defaultSiteContentByLocale.en}
         messages={getMessages("en").home}
+        youyouMessages={getMessages("en").youyou}
       />,
     );
 
@@ -51,6 +73,11 @@ describe("HomePreview", () => {
     ).toBeInTheDocument();
     expect(
       screen.getByRole("heading", { name: "Guest Guide" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", {
+        name: "Our Special Family · Youyou",
+      }),
     ).toBeInTheDocument();
     expect(
       screen.getByRole("link", {

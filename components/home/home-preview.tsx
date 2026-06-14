@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Reveal } from "@/components/motion/reveal";
+import { YouyouCard } from "@/components/youyou/youyou-card";
 import type { SiteContent } from "@/lib/content/site";
 import type { PublicMessages } from "@/lib/i18n/messages";
 
@@ -24,9 +25,11 @@ const previewAssets = [
 export function HomePreview({
   content,
   messages,
+  youyouMessages,
 }: {
   content: SiteContent;
   messages: PublicMessages["home"];
+  youyouMessages: PublicMessages["youyou"];
 }) {
   return (
     <div
@@ -50,6 +53,12 @@ export function HomePreview({
           <p className="mt-9 font-serif text-xl tracking-[0.18em] text-[var(--color-coral-deep)] md:text-2xl">
             {content.wedding.displayDate}
           </p>
+        </Reveal>
+      </section>
+
+      <section className="px-5 pb-28 sm:px-8 md:px-10 md:pb-40">
+        <Reveal>
+          <YouyouCard variant="family" messages={youyouMessages} />
         </Reveal>
       </section>
 

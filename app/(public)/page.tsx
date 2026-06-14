@@ -21,7 +21,11 @@ export default async function HomePage() {
   return (
     <>
       <CinematicHero content={content} messages={messages} />
-      <HomePreview content={content} messages={messages.home} />
+      <HomePreview
+        content={content}
+        messages={messages.home}
+        youyouMessages={messages.youyou}
+      />
     </>
   );
 }

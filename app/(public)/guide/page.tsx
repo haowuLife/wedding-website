@@ -8,6 +8,7 @@ import type { Metadata } from "next";
 import { RecommendationSection } from "@/components/guide/recommendation-section";
 import { TransportSection } from "@/components/guide/transport-section";
 import { Reveal } from "@/components/motion/reveal";
+import { YouyouCard } from "@/components/youyou/youyou-card";
 import { getSiteContent } from "@/lib/content/settings";
 import { getLocale } from "@/lib/i18n/locale";
 import { getMessages } from "@/lib/i18n/messages";
@@ -29,7 +30,8 @@ const iconByKind = {
 export default async function GuidePage() {
   const locale = await getLocale();
   const content = await getSiteContent(locale);
-  const messages = getMessages(locale).guide;
+  const allMessages = getMessages(locale);
+  const messages = allMessages.guide;
   return (
     <div className="page-shell">
       <header className="mx-auto max-w-3xl text-center">
@@ -41,7 +43,13 @@ export default async function GuidePage() {
       </header>
 
       <div className="mx-auto mt-16 max-w-5xl md:mt-24">
-        <div className="grid gap-5 md:grid-cols-3">
+        <YouyouCard
+          variant="steward"
+          context="guide"
+          messages={allMessages.youyou}
+        />
+
+        <div className="mt-10 grid gap-5 md:mt-14 md:grid-cols-3">
           {content.guide.map((item, index) => {
             const Icon = iconByKind[item.kind] ?? PhoneIcon;
             return (
