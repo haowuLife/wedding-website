@@ -46,7 +46,7 @@ export function RecommendationSection({
               </div>
               <div className="flex flex-1 flex-col p-6 md:p-7">
                 {item.meta ? (
-                  <p className="text-xs tracking-[0.16em] text-[var(--color-coral)]">
+                  <p className="text-xs tracking-[0.16em] text-[var(--color-coral-deep)]">
                     {item.meta}
                   </p>
                 ) : null}

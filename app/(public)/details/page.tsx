@@ -76,7 +76,7 @@ export default async function DetailsPage() {
               href={wedding.mapUrl}
               target="_blank"
               rel="noreferrer"
-              className="romantic-primary-button inline-flex items-center gap-3 rounded-full bg-[var(--color-coral)] px-7 py-3 text-sm tracking-[0.16em] text-white shadow-[0_12px_28px_rgba(239,119,121,0.22)] transition hover:-translate-y-0.5 hover:bg-[var(--color-coral-deep)]"
+              className="romantic-primary-button inline-flex items-center gap-3 rounded-full bg-[var(--color-coral)] px-7 py-3 text-sm tracking-[0.16em] text-[var(--color-ink)] shadow-[0_12px_28px_rgba(239,119,121,0.22)] transition hover:-translate-y-0.5 hover:bg-[var(--color-coral-deep)] hover:text-white"
             >
               <MapPinIcon size={18} weight="light" aria-hidden />
               {messages.mapAction}
@@ -101,7 +101,7 @@ export default async function DetailsPage() {
                 key={item.time}
                 className="grid grid-cols-[5rem_1fr] gap-5 border-b border-[var(--color-line)] py-6"
               >
-                <p className="font-serif text-lg font-medium text-[var(--color-coral)]">
+                <p className="font-serif text-lg font-medium text-[var(--color-coral-deep)]">
                   {item.time}
                 </p>
                 <div>

@@ -65,7 +65,7 @@ export function GalleryLightbox({
         type="button"
         aria-label={messages.closePreviewLabel}
         onClick={onClose}
-        className="absolute right-5 top-5 grid size-11 place-items-center rounded-full border border-white/30 bg-white/10 transition-colors hover:border-[var(--color-coral)] hover:bg-[var(--color-coral)]"
+        className="absolute right-5 top-5 grid size-11 place-items-center rounded-full border border-white/30 bg-white/10 transition-colors hover:border-[var(--color-coral-deep)] hover:bg-[var(--color-coral-deep)]"
       >
         <XIcon size={24} weight="light" aria-hidden />
       </button>
@@ -73,7 +73,7 @@ export function GalleryLightbox({
         type="button"
         aria-label={messages.previousPhotoLabel}
         onClick={() => go(-1)}
-        className="absolute left-3 top-1/2 grid size-11 -translate-y-1/2 place-items-center rounded-full border border-white/20 bg-white/10 transition-colors hover:border-[var(--color-coral)] hover:bg-[var(--color-coral)] md:left-7"
+        className="absolute left-3 top-1/2 grid size-11 -translate-y-1/2 place-items-center rounded-full border border-white/20 bg-white/10 transition-colors hover:border-[var(--color-coral-deep)] hover:bg-[var(--color-coral-deep)] md:left-7"
       >
         <ArrowLeftIcon size={24} weight="light" aria-hidden />
       </button>
@@ -99,7 +99,7 @@ export function GalleryLightbox({
         type="button"
         aria-label={messages.nextPhotoLabel}
         onClick={() => go(1)}
-        className="absolute right-3 top-1/2 grid size-11 -translate-y-1/2 place-items-center rounded-full border border-white/20 bg-white/10 transition-colors hover:border-[var(--color-coral)] hover:bg-[var(--color-coral)] md:right-7"
+        className="absolute right-3 top-1/2 grid size-11 -translate-y-1/2 place-items-center rounded-full border border-white/20 bg-white/10 transition-colors hover:border-[var(--color-coral-deep)] hover:bg-[var(--color-coral-deep)] md:right-7"
       >
         <ArrowRightIcon size={24} weight="light" aria-hidden />
       </button>

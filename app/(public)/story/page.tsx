@@ -55,7 +55,11 @@ export default async function StoryPage() {
                   index % 2 ? "md:order-1 md:text-right" : ""
                 }`}
               >
-                <p className="font-serif text-base italic tracking-[0.15em] text-[var(--color-coral)] md:text-lg">
+                <p
+                  className={`text-base italic tracking-[0.15em] text-[var(--color-coral-deep)] md:text-lg ${
+                    /[A-Za-z]/.test(item.date) ? "font-script" : "font-serif"
+                  }`}
+                >
                   {item.date}
                 </p>
                 <h2 className="mt-3 font-serif text-2xl tracking-[0.08em] md:mt-4 md:text-3xl">

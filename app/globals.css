@@ -1,11 +1,20 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Great Vibes";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/great-vibes-latin.woff2") format("woff2");
+}
+
 :root {
   --color-warm-white: #fffaf5;
   --color-blush: #fff0ef;
   --color-card: #ffffff;
   --color-coral: #ef7779;
   --color-coral-deep: #b94f53;
+  --color-coral-text: #b94f53;
   --color-text: #332b29;
   --color-text-muted: #7c6f6a;
   --color-romantic-line: #f2d3d2;
@@ -18,11 +27,9 @@
   --color-ink: #39352f;
   --color-muted: #7b736a;
   --color-sage: #8e9883;
-  --font-serif:
-    var(--font-noto-serif-sc), "Songti SC", "STSong", "SimSun", serif;
-  --font-sans:
-    var(--font-noto-sans-sc), "PingFang SC", "Microsoft YaHei", sans-serif;
-  --font-script: var(--font-great-vibes), "Snell Roundhand", cursive;
+  --font-serif: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+  --font-sans: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-script: "Great Vibes", "Snell Roundhand", "Segoe Script", cursive;
 }
 
 * {
@@ -44,7 +51,7 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-main:has(> header[data-site-header]) {
+.public-site {
   --color-ivory: var(--color-warm-white);
   --color-ivory-deep: var(--color-blush);
   --color-champagne: var(--color-coral-deep);
@@ -77,7 +84,7 @@ a {
   color: inherit;
 }
 
-::selection {
+.public-site ::selection {
   background: rgb(239 119 121 / 28%);
   color: var(--color-text);
 }
@@ -86,7 +93,7 @@ a {
   font-family: var(--font-serif);
 }
 
-.font-script {
+.public-site .font-script {
   font-family: var(--font-script);
   font-weight: 400;
   letter-spacing: 0.01em;
@@ -100,13 +107,17 @@ a {
 }
 
 .eyebrow {
-  color: var(--color-coral-deep);
+  color: var(--color-champagne);
   font-size: 0.72rem;
   letter-spacing: 0.28em;
   text-transform: uppercase;
 }
 
-.page-heading {
+.public-site .eyebrow {
+  color: var(--color-coral-text);
+}
+
+.public-site .page-heading {
   color: var(--color-ink);
   font-family: var(--font-serif);
   font-size: clamp(2.25rem, 7vw, 4.75rem);
@@ -114,6 +125,15 @@ a {
   letter-spacing: 0.04em;
   line-height: 1.18;
   text-wrap: balance;
+}
+
+.public-site .page-heading::after {
+  display: block;
+  width: 3.5rem;
+  height: 2px;
+  margin: 1.5rem auto 0;
+  background: var(--color-coral);
+  content: "";
 }
 
 .display-title {
@@ -124,14 +144,14 @@ a {
   line-height: 1.18;
 }
 
-.romantic-card {
+.public-site .romantic-card {
   border: 1px solid var(--color-romantic-line);
   border-radius: 1.5rem;
   background: var(--color-card);
   box-shadow: 0 1.25rem 3.5rem rgb(185 79 83 / 8%);
 }
 
-.romantic-primary-button {
+.public-site .romantic-primary-button {
   display: inline-flex;
   min-height: 2.75rem;
   align-items: center;
@@ -153,14 +173,14 @@ a {
     transform 180ms ease;
 }
 
-.romantic-primary-button:hover {
+.public-site .romantic-primary-button:hover {
   border-color: var(--color-coral-deep);
   background: var(--color-coral-deep);
   color: white;
   transform: translateY(-1px);
 }
 
-.romantic-filter-bar {
+.public-site .romantic-filter-bar {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -172,8 +192,8 @@ a {
   box-shadow: 0 0.75rem 2rem rgb(185 79 83 / 6%);
 }
 
-.romantic-filter-bar button,
-.romantic-filter-chip {
+.public-site .romantic-filter-bar button,
+.public-site .romantic-filter-chip {
   min-height: 2.5rem;
   border: 0;
   border-radius: 999px;
@@ -185,10 +205,10 @@ a {
     color 180ms ease;
 }
 
-.romantic-filter-bar button:hover,
-.romantic-filter-chip:hover,
-.romantic-filter-bar button[aria-pressed="true"],
-.romantic-filter-chip[aria-pressed="true"] {
+.public-site .romantic-filter-bar button:hover,
+.public-site .romantic-filter-chip:hover,
+.public-site .romantic-filter-bar button[aria-pressed="true"],
+.public-site .romantic-filter-chip[aria-pressed="true"] {
   background: var(--color-blush);
   color: var(--color-coral-deep);
 }
@@ -204,7 +224,7 @@ a {
 }
 
 .field:focus {
-  border-color: var(--color-coral-deep);
+  border-color: var(--color-champagne);
 }
 
 .focus-ring:focus-visible,
@@ -213,6 +233,20 @@ button:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
+  outline: 2px solid var(--color-champagne);
+  outline-offset: 4px;
+}
+
+.public-site .field:focus {
+  border-color: var(--color-coral-deep);
+}
+
+.public-site .focus-ring:focus-visible,
+.public-site a:focus-visible,
+.public-site button:focus-visible,
+.public-site input:focus-visible,
+.public-site select:focus-visible,
+.public-site textarea:focus-visible {
   outline: 3px solid var(--color-coral-deep);
   outline-offset: 3px;
 }
@@ -224,7 +258,7 @@ textarea:focus-visible {
 }
 
 @media (max-width: 640px) {
-  .romantic-filter-bar {
+  .public-site .romantic-filter-bar {
     border-radius: 1.25rem;
   }
 }

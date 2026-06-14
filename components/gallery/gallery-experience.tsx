@@ -51,13 +51,13 @@ export function GalleryExperience({
                 category === item
                   ? {
                       backgroundColor: "var(--color-coral)",
-                      color: "white",
+                      color: "var(--color-ink)",
                     }
                   : undefined
               }
               className={`shrink-0 rounded-full border px-5 py-2.5 text-sm tracking-[0.1em] transition-colors ${
                 category === item
-                  ? "border-[var(--color-coral)] bg-[var(--color-coral)] text-white shadow-sm"
+                  ? "border-[var(--color-coral)] bg-[var(--color-coral)] text-[var(--color-ink)] shadow-sm"
                   : "border-transparent bg-white text-[var(--color-muted)] hover:border-[var(--color-coral)] hover:text-[var(--color-coral-deep)]"
               }`}
             >

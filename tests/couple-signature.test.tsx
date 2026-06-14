@@ -10,10 +10,10 @@ describe("CoupleSignature", () => {
     render(<CoupleSignature locale="zh" />);
 
     expect(screen.getByText("吴昊 & 王璐")).toBeInTheDocument();
-    expect(screen.getByText("Hao & Lu")).toHaveClass("font-script");
+    expect(screen.getByText("Hao Wu & Lu Wang")).toHaveClass("font-script");
   });
 
-  it("renders localized English names in the compact treatment", () => {
+  it("uses the Chinese names as the supporting line on English pages", () => {
     render(<CoupleSignature locale="en" compact />);
 
     const names = screen.getByText("Hao Wu & Lu Wang");
@@ -22,5 +22,6 @@ describe("CoupleSignature", () => {
       "data-compact",
       "true",
     );
+    expect(screen.getByText("吴昊 & 王璐")).not.toHaveClass("font-script");
   });
 });

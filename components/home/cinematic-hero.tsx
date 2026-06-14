@@ -10,15 +10,14 @@ import type { PublicMessages } from "@/lib/i18n/messages";
 
 import { Countdown } from "./countdown";
 
-function getEnglishSignature(identity: SiteContent["identity"]) {
-  const isEnglish = /^[\u0000-\u007f]+$/.test(
+function getSupportingNames(identity: SiteContent["identity"]) {
+  const isEnglish = /^[\u0000-\u007f\s&]+$/.test(
     `${identity.groom}${identity.bride}`,
   );
 
-  if (!isEnglish) return "Hao & Lu";
-
-  const firstName = (name: string) => name.trim().split(/\s+/)[0];
-  return `${firstName(identity.groom)} & ${firstName(identity.bride)}`;
+  return isEnglish
+    ? { label: "吴昊 & 王璐", isEnglish: false }
+    : { label: "Hao Wu & Lu Wang", isEnglish: true };
 }
 
 export function CinematicHero({
@@ -30,7 +29,7 @@ export function CinematicHero({
 }) {
   const reduceMotion = useReducedMotion();
   const { hero, identity, wedding } = content;
-  const signature = getEnglishSignature(identity);
+  const supportingNames = getSupportingNames(identity);
 
   return (
     <section className="relative bg-[var(--color-ivory)] pt-[4.5rem] md:pt-20">
@@ -77,7 +76,7 @@ export function CinematicHero({
             transition={{ duration: 0.9, delay: 0.15 }}
             className="romantic-card -mt-10 w-full max-w-xl bg-[color:var(--color-card)/0.94] p-5 backdrop-blur-md sm:p-8 lg:mt-0 lg:max-w-[36rem] lg:bg-[color:var(--color-card)/0.9] lg:p-10"
           >
-            <div className="flex items-center gap-3 text-[0.65rem] font-medium tracking-[0.28em] text-[var(--color-coral)]">
+            <div className="flex items-center gap-3 text-[0.65rem] font-medium tracking-[0.28em] text-[var(--color-coral-deep)]">
               <span className="h-px w-9 bg-current" aria-hidden />
               <span>{hero.eyebrow}</span>
             </div>
@@ -85,8 +84,14 @@ export function CinematicHero({
             <h1 className="mt-4 font-serif text-[clamp(2.15rem,10vw,5rem)] font-normal leading-[1.06] tracking-[0.04em] text-[var(--color-ink)] sm:mt-5">
               {identity.title}
             </h1>
-            <p className="font-script mt-1 text-2xl leading-none text-[var(--color-coral)] sm:text-4xl">
-              {signature}
+            <p
+              className={`mt-1 leading-none text-[var(--color-coral-deep)] ${
+                supportingNames.isEnglish
+                  ? "font-script text-2xl sm:text-4xl"
+                  : "font-serif text-base tracking-[0.12em] sm:text-lg"
+              }`}
+            >
+              {supportingNames.label}
             </p>
 
             <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 border-y border-[var(--color-line)] py-3 text-[0.66rem] tracking-[0.17em] text-[var(--color-muted)] sm:mt-6 sm:gap-x-6 sm:py-4 sm:text-[0.7rem] sm:tracking-[0.2em]">
@@ -105,7 +110,7 @@ export function CinematicHero({
 
             <Link
               href="/details"
-              className="romantic-primary-button mt-5 inline-flex min-h-11 w-full items-center justify-center gap-3 rounded-full bg-[var(--color-coral)] px-7 py-2.5 text-xs font-medium tracking-[0.18em] text-white transition hover:bg-[var(--color-coral-deep)] sm:mt-6 sm:min-h-12 sm:w-auto sm:py-3"
+              className="romantic-primary-button mt-5 inline-flex min-h-11 w-full items-center justify-center gap-3 rounded-full bg-[var(--color-coral)] px-7 py-2.5 text-xs font-medium tracking-[0.18em] text-[var(--color-ink)] transition hover:bg-[var(--color-coral-deep)] hover:text-white sm:mt-6 sm:min-h-12 sm:w-auto sm:py-3"
             >
               {hero.invitationLabel}
               <ArrowRightIcon size={17} weight="light" aria-hidden />
@@ -116,7 +121,7 @@ export function CinematicHero({
 
       <a
         href="#invitation"
-        className="absolute bottom-0 left-1/2 z-20 grid size-14 -translate-x-1/2 translate-y-1/2 place-items-center rounded-full bg-[var(--color-coral)] text-white shadow-[0_0.8rem_2rem_rgba(185,79,83,0.24)] transition hover:bg-[var(--color-coral-deep)]"
+        className="absolute bottom-0 left-1/2 z-20 grid size-14 -translate-x-1/2 translate-y-1/2 place-items-center rounded-full bg-[var(--color-coral)] text-[var(--color-ink)] shadow-[0_0.8rem_2rem_rgba(185,79,83,0.24)] transition hover:bg-[var(--color-coral-deep)] hover:text-white"
         aria-label={messages.hero.scrollLabel}
       >
         <ArrowDownIcon size={22} weight="light" aria-hidden />

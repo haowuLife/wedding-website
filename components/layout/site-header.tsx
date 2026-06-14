@@ -1,6 +1,6 @@
 "use client";
 
-import { ListIcon, XIcon } from "@phosphor-icons/react";
+import { ListIcon, MusicNotesIcon, XIcon } from "@phosphor-icons/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -89,6 +89,15 @@ export function SiteHeader({
               locale={locale}
               labels={messages.languageSwitcher}
             />
+            <button
+              type="button"
+              disabled
+              className="hidden size-10 place-items-center rounded-full border border-[var(--color-romantic-line)] text-[var(--color-muted)] lg:grid"
+              aria-label={labels.musicDisabledLabel}
+              title={labels.musicDisabledLabel}
+            >
+              <MusicNotesIcon size={18} weight="light" aria-hidden />
+            </button>
             <button
               ref={menuButtonRef}
               type="button"

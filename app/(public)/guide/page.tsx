@@ -51,7 +51,7 @@ export default async function GuidePage() {
                     <Icon
                       size={25}
                       weight="light"
-                      className="text-[var(--color-coral)]"
+                      className="text-[var(--color-coral-deep)]"
                       aria-hidden
                     />
                   </span>

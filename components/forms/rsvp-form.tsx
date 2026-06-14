@@ -71,7 +71,7 @@ export function RsvpForm({
         <CheckCircleIcon
           size={52}
           weight="light"
-          className="mx-auto text-[var(--color-coral)]"
+          className="mx-auto text-[var(--color-coral-deep)]"
           aria-hidden
         />
         <h2 className="mt-6 font-serif text-3xl tracking-[0.08em] sm:text-4xl">
@@ -120,7 +120,7 @@ export function RsvpForm({
               onClick={() => setAttending(Boolean(value))}
               className={`rounded-full border px-5 py-3 text-sm tracking-[0.12em] transition-colors ${
                 attending === value
-                  ? "border-[var(--color-coral)] bg-[var(--color-coral)] text-white shadow-[0_0.75rem_1.5rem_rgba(185,79,83,0.16)]"
+                  ? "border-[var(--color-coral)] bg-[var(--color-coral)] text-[var(--color-ink)] shadow-[0_0.75rem_1.5rem_rgba(185,79,83,0.16)]"
                   : "border-[var(--color-line)] bg-white text-[var(--color-ink)] hover:border-[var(--color-coral)] hover:text-[var(--color-coral-deep)]"
               }`}
               aria-pressed={attending === value}

@@ -47,7 +47,7 @@ export function HomePreview({
           <p className="mx-auto mt-8 max-w-2xl text-base leading-9 text-[var(--color-muted)] md:text-lg">
             {messages.invitationDescription}
           </p>
-          <p className="mt-9 font-serif text-xl tracking-[0.18em] text-[var(--color-coral)] md:text-2xl">
+          <p className="mt-9 font-serif text-xl tracking-[0.18em] text-[var(--color-coral-deep)] md:text-2xl">
             {content.wedding.displayDate}
           </p>
         </Reveal>
@@ -90,7 +90,7 @@ export function HomePreview({
                 </p>
                 <Link
                   href={asset.href}
-                  className="mt-8 inline-flex items-center gap-3 border-b border-[var(--color-coral)] pb-2 text-sm font-medium tracking-[0.14em] text-[var(--color-coral-deep)] transition hover:text-[var(--color-coral)]"
+                  className="mt-8 inline-flex items-center gap-3 border-b border-[var(--color-coral)] pb-2 text-sm font-medium tracking-[0.14em] text-[var(--color-coral-deep)] transition hover:text-[var(--color-ink)]"
                 >
                   {preview.actionLabel}
                   <ArrowUpRightIcon size={17} weight="light" aria-hidden />
@@ -116,7 +116,7 @@ export function HomePreview({
           </p>
           <Link
             href="/rsvp"
-            className="romantic-primary-button mt-9 inline-flex min-h-12 items-center justify-center rounded-full bg-[var(--color-coral)] px-10 py-4 text-sm font-medium tracking-[0.18em] text-white transition hover:bg-[var(--color-coral-deep)]"
+            className="romantic-primary-button mt-9 inline-flex min-h-12 items-center justify-center rounded-full bg-[var(--color-coral)] px-10 py-4 text-sm font-medium tracking-[0.18em] text-[var(--color-ink)] transition hover:bg-[var(--color-coral-deep)] hover:text-white"
           >
             {messages.rsvpAction}
           </Link>

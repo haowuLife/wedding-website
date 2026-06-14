@@ -18,6 +18,14 @@ export function CoupleSignature({
   className?: string;
 }) {
   const localizedNames = names ?? defaultNames[locale];
+  const usesEnglishNames =
+    locale === "en" ||
+    /^[\u0000-\u007f\s&]+$/.test(
+      `${localizedNames.groom} ${localizedNames.bride}`,
+    );
+  const supportingNames = usesEnglishNames
+    ? defaultNames.zh
+    : defaultNames.en;
 
   return (
     <span
@@ -41,11 +49,20 @@ export function CoupleSignature({
       <span
         aria-hidden="true"
         className={cn(
-          "font-script whitespace-nowrap text-[var(--color-coral-deep)]",
-          compact ? "text-xl sm:text-2xl" : "text-3xl",
+          "whitespace-nowrap text-[var(--color-coral-deep)]",
+          usesEnglishNames
+            ? "font-serif tracking-[0.08em]"
+            : "font-script",
+          compact
+            ? usesEnglishNames
+              ? "text-xs sm:text-sm"
+              : "text-lg sm:text-2xl"
+            : usesEnglishNames
+              ? "text-sm sm:text-base"
+              : "text-3xl",
         )}
       >
-        Hao & Lu
+        {supportingNames.groom} & {supportingNames.bride}
       </span>
     </span>
   );

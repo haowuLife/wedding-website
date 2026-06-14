@@ -15,7 +15,7 @@ export default async function PublicLayout({
   const messages = getMessages(locale);
 
   return (
-    <>
+    <div className="public-site">
       <DocumentLocale locale={locale} />
       <SiteHeader
         locale={locale}
@@ -24,6 +24,6 @@ export default async function PublicLayout({
       />
       {children}
       <SiteFooter content={content} messages={messages} />
-    </>
+    </div>
   );
 }

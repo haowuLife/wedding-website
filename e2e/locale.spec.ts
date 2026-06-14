@@ -13,8 +13,11 @@ test("public pages switch between Chinese and English on the same URLs", async (
     page.getByRole("heading", { name: "Hao Wu & Lu Wang" }),
   ).toBeVisible();
   await expect(page).toHaveURL("/");
+  await page.getByTestId("mobile-menu-button").click();
   await expect(
-    page.getByRole("link", { name: "Guest Guide", exact: true }),
+    page
+      .getByRole("dialog", { name: "Mobile navigation" })
+      .getByRole("link", { name: /^Guest Guide/ }),
   ).toBeVisible();
 
   await page.goto("/guide");
