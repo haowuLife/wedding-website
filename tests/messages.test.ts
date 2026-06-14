@@ -20,4 +20,16 @@ describe("publicMessages", () => {
     expect(english.countdown.days).toBe("Days");
     expect(english.header.openMenuLabel).toBe("Open menu");
   });
+
+  it("contains matching Youyou family and wedding guide copy", () => {
+    const chinese = getMessages("zh");
+    const english = getMessages("en");
+
+    expect(chinese.youyou.familyTitle).toBe("我们的特别家人 · 呦呦");
+    expect(chinese.youyou.welcome).toBe("欢迎参加吴昊和王璐的婚礼！");
+    expect(english.youyou.familyTitle).toBe("Our Special Family · Youyou");
+    expect(english.youyou.welcome).toBe(
+      "Welcome to Hao Wu and Lu Wang's wedding!",
+    );
+  });
 });

@@ -62,6 +62,17 @@ export type PublicMessages = {
     rsvpDescription: string;
     rsvpAction: string;
   };
+  youyou: {
+    imageAlt: string;
+    avatarActionLabel: string;
+    familyEyebrow: string;
+    familyTitle: string;
+    familyDescription: string;
+    stewardTitle: string;
+    welcome: string;
+    rsvpDescription: string;
+    guideDescription: string;
+  };
   story: {
     eyebrow: string;
     title: string;
@@ -244,6 +255,19 @@ export const publicMessages = {
       rsvpDescription:
         "请尽早告诉我们，你是否能来到现场，方便我们为你准备席位。",
       rsvpAction: "填写 RSVP",
+    },
+    youyou: {
+      imageAlt: "灰色猫咪呦呦",
+      avatarActionLabel: "点击呦呦头像盖下一枚猫爪印",
+      familyEyebrow: "Our Special Family",
+      familyTitle: "我们的特别家人 · 呦呦",
+      familyDescription:
+        "陪我们走过每一个平凡而珍贵的日子，也一起期待这场金秋婚礼。",
+      stewardTitle: "婚礼小管家 · 呦呦",
+      welcome: "欢迎参加吴昊和王璐的婚礼！",
+      rsvpDescription: "请告诉我们你是否能够到场，呦呦会替我们认真收好回复。",
+      guideDescription:
+        "婚礼流程、交通与酒店信息都已整理好，出发前可以在这里慢慢查看。",
     },
     story: {
       eyebrow: "Our Story",
@@ -440,6 +464,20 @@ export const publicMessages = {
       rsvpDescription:
         "Please let us know whether you can join us so we can prepare your place at the celebration.",
       rsvpAction: "Complete RSVP",
+    },
+    youyou: {
+      imageAlt: "Youyou, the couple's grey cat",
+      avatarActionLabel: "Tap Youyou's portrait to leave one paw stamp",
+      familyEyebrow: "Our Special Family",
+      familyTitle: "Our Special Family · Youyou",
+      familyDescription:
+        "With us through every ordinary and precious day, Youyou is also looking forward to our autumn wedding.",
+      stewardTitle: "Wedding Guide · Youyou",
+      welcome: "Welcome to Hao Wu and Lu Wang's wedding!",
+      rsvpDescription:
+        "Please let us know whether you can join us. Youyou will make sure your reply reaches us.",
+      guideDescription:
+        "The schedule, transport, and hotel details are ready here whenever you would like to plan your journey.",
     },
     story: {
       eyebrow: "Our Story",
